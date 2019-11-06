@@ -1,5 +1,11 @@
 package com.jeecg.p3.weixin.service.impl;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -33,6 +39,7 @@ import com.jeecg.p3.weixin.entity.WeixinNewstemplate;
 import com.jeecg.p3.weixin.service.WeixinNewstemplateService;
 import com.jeecg.p3.weixin.util.WeixinUtil;
 import com.jeecg.p3.weixin.util.WxErrCodeUtil;
+
 
 /**
  * 描述：</b>图文模板表<br>
@@ -106,7 +113,7 @@ public class WeixinNewstemplateServiceImpl implements WeixinNewstemplateService 
 
 	//update-begin--Author:zhangweijian  Date: 20180802 for：上传图文素材到微信
 	//上传图文素材
-	@Transactional(rollbackFor = {Exception.class})
+	//@Transactional(rollbackFor = {Exception.class})
 	@Override
 	public String uploadNewstemplate(String id,String jwid) {
 		
@@ -183,7 +190,7 @@ public class WeixinNewstemplateServiceImpl implements WeixinNewstemplateService 
 	private String updateContent(String content, String jwid) {
 		if (content != null) {
 			//获取token方法替换
-			String accessToken =WeiXinHttpUtil.getRedisWeixinToken(jwid);
+			String accessToken = WeiXinHttpUtil.getRedisWeixinToken(jwid);
 			//String baseImageUrl = ResourceUtil.getWebProjectPath();
 			//update-begin--Author:zhangweijian  Date: 20180831 for：接口方法替换
 			HttpServletRequest request =((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getRequest();
@@ -222,7 +229,7 @@ public class WeixinNewstemplateServiceImpl implements WeixinNewstemplateService 
 		String media_id="";
 		HttpServletRequest request =((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getRequest();
 		//获取token方法替换
-		String accessToken =WeiXinHttpUtil.getRedisWeixinToken(jwid);
+		String accessToken = WeiXinHttpUtil.getRedisWeixinToken(jwid);
 		//String url=request.getSession().getServletContext().getRealPath("/")+imagePath;
 		String url = upLoadPath + imagePath;
 		JSONObject jsonObj=WeixinUtil.sendMedia("image", url, accessToken);
@@ -245,7 +252,7 @@ public class WeixinNewstemplateServiceImpl implements WeixinNewstemplateService 
 	//上传图文素材
 	private JSONObject uploadGroupNewsTemplate(UploadGraphic graphic, String jwid) {
 		//获取token方法替换
-		String accessToken =WeiXinHttpUtil.getRedisWeixinToken(jwid);
+		String accessToken = WeiXinHttpUtil.getRedisWeixinToken(jwid);
 		if(accessToken!=null){
 			String requestUrl = upload_group_news_url.replace("ACCESS_TOKEN", accessToken);
 			JSONObject obj = JSONObject.fromObject(graphic);
@@ -255,4 +262,5 @@ public class WeixinNewstemplateServiceImpl implements WeixinNewstemplateService 
 		return null;
 	}
 	//update-begin--Author:zhangweijian  Date: 20180802 for：上传图文素材到微信
+	
 }

@@ -50,14 +50,14 @@ public class RefreshTokenTask {
 	/**
 	 * 定时刷新TOKEN
 	 */
-	@Scheduled(cron="0 0/10 * * * ?")
+	@Scheduled(cron="0 0/1 * * * ?")
 	public void run() {
 		LOG.info("===================重置公众号AccseeToken定时任务开启==========================");
 		long start = System.currentTimeMillis();
 		try {
 			//2.重置公众号的Token
 			Date date = new Date();
-			long time= date.getTime()-1000*60*90;
+			long time= date.getTime();
 			Date refDate = new Date(time);
 			List<MyJwWebJwid> myJwWebJwids = myJwWebJwidService.queryResetTokenList(refDate);
 			for(MyJwWebJwid myJwWebJwid:myJwWebJwids){

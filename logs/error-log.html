@@ -1,0 +1,1284 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>Logback Log Messages</title>
+<style  type="text/css">
+table { margin-left: 2em; margin-right: 2em; border-left: 2px solid #AAA; }
+TR.even { background: #FFFFFF; }
+TR.odd { background: #EAEAEA; }
+TR.warn TD.Level, TR.error TD.Level, TR.fatal TD.Level {font-weight: bold; color: #FF4040 }
+TD { padding-right: 1ex; padding-left: 1ex; border-right: 2px solid #AAA; }
+TD.Time, TD.Date { text-align: right; font-family: courier, monospace; font-size: smaller; }
+TD.Thread { text-align: left; }
+TD.Level { text-align: right; }
+TD.Logger { text-align: left; }
+TR.header { background: #596ED5; color: #FFF; font-weight: bold; font-size: larger; }
+TD.Exception { background: #A2AEE8; font-family: courier, monospace;}
+</style>
+
+  </head>
+<body>
+<hr/>
+<p>Log session start time Wed Nov 06 17:47:21 CST 2019</p><p></p>
+
+<table cellspacing="0">
+<tr class="header">
+<td class="Level">Level</td>
+<td class="Date">Date</td>
+<td class="Message">Message</td>
+<td class="MethodOfCaller">MethodOfCaller</td>
+<td class="FileOfCaller">FileOfCaller</td>
+<td class="LineOfCaller">LineOfCaller</td>
+</tr>
+
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 17:47:21,296</td>
+<td class="Message">Starting JeewxBootApplication on DESKTOP-ABCSJG8 with PID 20796 (D:\git_workspace\jeewx-boot\jeewx-boot-base-system\target\classes started by 1 in D:\git_workspace\jeewx-boot\jeewx-boot-base-system)</td>
+<td class="MethodOfCaller">logStarting</td>
+<td class="FileOfCaller">StartupInfoLogger.java</td>
+<td class="LineOfCaller">50</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 17:47:21,300</td>
+<td class="Message">No active profile set, falling back to default profiles: default</td>
+<td class="MethodOfCaller">logStartupProfileInfo</td>
+<td class="FileOfCaller">SpringApplication.java</td>
+<td class="LineOfCaller">675</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 17:47:22,793</td>
+<td class="Message">Tomcat initialized with port(s): 80 (http)</td>
+<td class="MethodOfCaller">initialize</td>
+<td class="FileOfCaller">TomcatWebServer.java</td>
+<td class="LineOfCaller">90</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 17:47:22,809</td>
+<td class="Message">Initializing ProtocolHandler [&quot;http-nio-80&quot;]</td>
+<td class="MethodOfCaller">log</td>
+<td class="FileOfCaller">DirectJDKLog.java</td>
+<td class="LineOfCaller">173</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 17:47:22,821</td>
+<td class="Message">Starting service [Tomcat]</td>
+<td class="MethodOfCaller">log</td>
+<td class="FileOfCaller">DirectJDKLog.java</td>
+<td class="LineOfCaller">173</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 17:47:22,824</td>
+<td class="Message">Starting Servlet engine: [Apache Tomcat/9.0.16]</td>
+<td class="MethodOfCaller">log</td>
+<td class="FileOfCaller">DirectJDKLog.java</td>
+<td class="LineOfCaller">173</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 17:47:22,832</td>
+<td class="Message">The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jre1.8.0_161\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:/Program Files/Java/jre1.8.0_161/bin/server;C:/Program Files/Java/jre1.8.0_161/bin;C:/Program Files/Java/jre1.8.0_161/lib/amd64;C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;D:\application\Git\cmd;C:\Users\1\AppData\Local\Microsoft\WindowsApps;C:\Program Files\Java\jdk1.8.0_161\bin;D:\application\maven3.5.3\bin;;D:\application\eclipse;;.]</td>
+<td class="MethodOfCaller">log</td>
+<td class="FileOfCaller">DirectJDKLog.java</td>
+<td class="LineOfCaller">173</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 17:47:23,000</td>
+<td class="Message">Initializing Spring embedded WebApplicationContext</td>
+<td class="MethodOfCaller">log</td>
+<td class="FileOfCaller">DirectJDKLog.java</td>
+<td class="LineOfCaller">173</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 17:47:23,000</td>
+<td class="Message">Root WebApplicationContext: initialization completed in 1660 ms</td>
+<td class="MethodOfCaller">prepareWebApplicationContext</td>
+<td class="FileOfCaller">ServletWebServerApplicationContext.java</td>
+<td class="LineOfCaller">296</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 17:47:23,388</td>
+<td class="Message">Init DruidDataSource</td>
+<td class="MethodOfCaller">dataSource</td>
+<td class="FileOfCaller">DruidDataSourceAutoConfigure.java</td>
+<td class="LineOfCaller">56</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 17:47:23,674</td>
+<td class="Message">{dataSource-1} inited</td>
+<td class="MethodOfCaller">init</td>
+<td class="FileOfCaller">DruidDataSource.java</td>
+<td class="LineOfCaller">1003</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 17:47:24,684</td>
+<td class="Message">Initializing ExecutorService &#39;applicationTaskExecutor&#39;</td>
+<td class="MethodOfCaller">initialize</td>
+<td class="FileOfCaller">ExecutorConfigurationSupport.java</td>
+<td class="LineOfCaller">171</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 17:47:24,720</td>
+<td class="Message">loginInterceptorExcludeUrls: /system/back/article/toIndex.do,/system/back/article/toArticle.do,/system/preSelectJwid.do,/system/back/home.do,/system/back/jwSystemAccountAPI/getUserAccountAmount.do,/back/backIndex/home.do</td>
+<td class="MethodOfCaller">addInterceptors</td>
+<td class="FileOfCaller">SystemConfigurer.java</td>
+<td class="LineOfCaller">60</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 17:47:24,721</td>
+<td class="Message">accessSignInterceptorExcludeUrls: /api/cms/**,/cms/**,/wechatController.do,/weixinNewsController/goContent.do,/weixinLinksucai/link.do,/linksucai/link.do,/fx/mall/payCallBack.do,/newsController/getNewsClassify.do,/newsController/getNewslist.do,/CommonController/sendMsgCode.do</td>
+<td class="MethodOfCaller">addInterceptors</td>
+<td class="FileOfCaller">SystemConfigurer.java</td>
+<td class="LineOfCaller">61</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 17:47:24,910</td>
+<td class="Message">Initializing ExecutorService &#39;taskScheduler&#39;</td>
+<td class="MethodOfCaller">initialize</td>
+<td class="FileOfCaller">ExecutorConfigurationSupport.java</td>
+<td class="LineOfCaller">171</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 17:47:24,962</td>
+<td class="Message">Starting ProtocolHandler [&quot;http-nio-80&quot;]</td>
+<td class="MethodOfCaller">log</td>
+<td class="FileOfCaller">DirectJDKLog.java</td>
+<td class="LineOfCaller">173</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 17:47:24,989</td>
+<td class="Message">Tomcat started on port(s): 80 (http) with context path &#39;/jeewx&#39;</td>
+<td class="MethodOfCaller">start</td>
+<td class="FileOfCaller">TomcatWebServer.java</td>
+<td class="LineOfCaller">204</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 17:47:24,992</td>
+<td class="Message">Started JeewxBootApplication in 4.079 seconds (JVM running for 4.533)</td>
+<td class="MethodOfCaller">logStarted</td>
+<td class="FileOfCaller">StartupInfoLogger.java</td>
+<td class="LineOfCaller">59</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 17:47:24,994</td>
+<td class="Message">
+----------------------------------------------------------
+	Application Jeewx-Boot is running! Access URLs:
+	Local: 		http://localhost:80/jeewx/
+	External: 	http://172.16.1.151:80/jeewx/
+	----------------------------------------------------------</td>
+<td class="MethodOfCaller">main</td>
+<td class="FileOfCaller">JeewxBootApplication.java</td>
+<td class="LineOfCaller">27</td>
+</tr>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>Logback Log Messages</title>
+<style  type="text/css">
+table { margin-left: 2em; margin-right: 2em; border-left: 2px solid #AAA; }
+TR.even { background: #FFFFFF; }
+TR.odd { background: #EAEAEA; }
+TR.warn TD.Level, TR.error TD.Level, TR.fatal TD.Level {font-weight: bold; color: #FF4040 }
+TD { padding-right: 1ex; padding-left: 1ex; border-right: 2px solid #AAA; }
+TD.Time, TD.Date { text-align: right; font-family: courier, monospace; font-size: smaller; }
+TD.Thread { text-align: left; }
+TD.Level { text-align: right; }
+TD.Logger { text-align: left; }
+TR.header { background: #596ED5; color: #FFF; font-weight: bold; font-size: larger; }
+TD.Exception { background: #A2AEE8; font-family: courier, monospace;}
+</style>
+
+  </head>
+<body>
+<hr/>
+<p>Log session start time Wed Nov 06 19:02:56 CST 2019</p><p></p>
+
+<table cellspacing="0">
+<tr class="header">
+<td class="Level">Level</td>
+<td class="Date">Date</td>
+<td class="Message">Message</td>
+<td class="MethodOfCaller">MethodOfCaller</td>
+<td class="FileOfCaller">FileOfCaller</td>
+<td class="LineOfCaller">LineOfCaller</td>
+</tr>
+
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:02:56,826</td>
+<td class="Message">Starting JeewxBootApplication on DESKTOP-ABCSJG8 with PID 17980 (D:\git_workspace\jeewx-boot\jeewx-boot-base-system\target\classes started by 1 in D:\git_workspace\jeewx-boot\jeewx-boot-base-system)</td>
+<td class="MethodOfCaller">logStarting</td>
+<td class="FileOfCaller">StartupInfoLogger.java</td>
+<td class="LineOfCaller">50</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:02:56,830</td>
+<td class="Message">No active profile set, falling back to default profiles: default</td>
+<td class="MethodOfCaller">logStartupProfileInfo</td>
+<td class="FileOfCaller">SpringApplication.java</td>
+<td class="LineOfCaller">675</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:02:58,383</td>
+<td class="Message">Tomcat initialized with port(s): 80 (http)</td>
+<td class="MethodOfCaller">initialize</td>
+<td class="FileOfCaller">TomcatWebServer.java</td>
+<td class="LineOfCaller">90</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:02:58,398</td>
+<td class="Message">Initializing ProtocolHandler [&quot;http-nio-80&quot;]</td>
+<td class="MethodOfCaller">log</td>
+<td class="FileOfCaller">DirectJDKLog.java</td>
+<td class="LineOfCaller">173</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:02:58,409</td>
+<td class="Message">Starting service [Tomcat]</td>
+<td class="MethodOfCaller">log</td>
+<td class="FileOfCaller">DirectJDKLog.java</td>
+<td class="LineOfCaller">173</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:02:58,410</td>
+<td class="Message">Starting Servlet engine: [Apache Tomcat/9.0.16]</td>
+<td class="MethodOfCaller">log</td>
+<td class="FileOfCaller">DirectJDKLog.java</td>
+<td class="LineOfCaller">173</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:02:58,418</td>
+<td class="Message">The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jre1.8.0_161\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:/Program Files/Java/jre1.8.0_161/bin/server;C:/Program Files/Java/jre1.8.0_161/bin;C:/Program Files/Java/jre1.8.0_161/lib/amd64;C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;D:\application\Git\cmd;C:\Users\1\AppData\Local\Microsoft\WindowsApps;C:\Program Files\Java\jdk1.8.0_161\bin;D:\application\maven3.5.3\bin;;D:\application\eclipse;;.]</td>
+<td class="MethodOfCaller">log</td>
+<td class="FileOfCaller">DirectJDKLog.java</td>
+<td class="LineOfCaller">173</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:02:58,589</td>
+<td class="Message">Initializing Spring embedded WebApplicationContext</td>
+<td class="MethodOfCaller">log</td>
+<td class="FileOfCaller">DirectJDKLog.java</td>
+<td class="LineOfCaller">173</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:02:58,590</td>
+<td class="Message">Root WebApplicationContext: initialization completed in 1724 ms</td>
+<td class="MethodOfCaller">prepareWebApplicationContext</td>
+<td class="FileOfCaller">ServletWebServerApplicationContext.java</td>
+<td class="LineOfCaller">296</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:02:58,962</td>
+<td class="Message">Init DruidDataSource</td>
+<td class="MethodOfCaller">dataSource</td>
+<td class="FileOfCaller">DruidDataSourceAutoConfigure.java</td>
+<td class="LineOfCaller">56</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:02:59,246</td>
+<td class="Message">{dataSource-1} inited</td>
+<td class="MethodOfCaller">init</td>
+<td class="FileOfCaller">DruidDataSource.java</td>
+<td class="LineOfCaller">1003</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:03:00,218</td>
+<td class="Message">Initializing ExecutorService &#39;applicationTaskExecutor&#39;</td>
+<td class="MethodOfCaller">initialize</td>
+<td class="FileOfCaller">ExecutorConfigurationSupport.java</td>
+<td class="LineOfCaller">171</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:03:00,254</td>
+<td class="Message">loginInterceptorExcludeUrls: /system/back/article/toIndex.do,/system/back/article/toArticle.do,/system/preSelectJwid.do,/system/back/home.do,/system/back/jwSystemAccountAPI/getUserAccountAmount.do,/back/backIndex/home.do</td>
+<td class="MethodOfCaller">addInterceptors</td>
+<td class="FileOfCaller">SystemConfigurer.java</td>
+<td class="LineOfCaller">60</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:03:00,255</td>
+<td class="Message">accessSignInterceptorExcludeUrls: /api/cms/**,/cms/**,/wechatController.do,/weixinNewsController/goContent.do,/weixinLinksucai/link.do,/linksucai/link.do,/fx/mall/payCallBack.do,/newsController/getNewsClassify.do,/newsController/getNewslist.do,/CommonController/sendMsgCode.do</td>
+<td class="MethodOfCaller">addInterceptors</td>
+<td class="FileOfCaller">SystemConfigurer.java</td>
+<td class="LineOfCaller">61</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:03:00,436</td>
+<td class="Message">Initializing ExecutorService &#39;taskScheduler&#39;</td>
+<td class="MethodOfCaller">initialize</td>
+<td class="FileOfCaller">ExecutorConfigurationSupport.java</td>
+<td class="LineOfCaller">171</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:03:00,488</td>
+<td class="Message">Starting ProtocolHandler [&quot;http-nio-80&quot;]</td>
+<td class="MethodOfCaller">log</td>
+<td class="FileOfCaller">DirectJDKLog.java</td>
+<td class="LineOfCaller">173</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:03:00,514</td>
+<td class="Message">Tomcat started on port(s): 80 (http) with context path &#39;/jeewx&#39;</td>
+<td class="MethodOfCaller">start</td>
+<td class="FileOfCaller">TomcatWebServer.java</td>
+<td class="LineOfCaller">204</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:03:00,517</td>
+<td class="Message">Started JeewxBootApplication in 4.083 seconds (JVM running for 4.535)</td>
+<td class="MethodOfCaller">logStarted</td>
+<td class="FileOfCaller">StartupInfoLogger.java</td>
+<td class="LineOfCaller">59</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:03:00,519</td>
+<td class="Message">
+----------------------------------------------------------
+	Application Jeewx-Boot is running! Access URLs:
+	Local: 		http://localhost:80/jeewx/
+	External: 	http://172.16.1.151:80/jeewx/
+	----------------------------------------------------------</td>
+<td class="MethodOfCaller">main</td>
+<td class="FileOfCaller">JeewxBootApplication.java</td>
+<td class="LineOfCaller">28</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:03:14,686</td>
+<td class="Message">Initializing Spring DispatcherServlet &#39;dispatcherServlet&#39;</td>
+<td class="MethodOfCaller">log</td>
+<td class="FileOfCaller">DirectJDKLog.java</td>
+<td class="LineOfCaller">173</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:03:14,687</td>
+<td class="Message">Initializing Servlet &#39;dispatcherServlet&#39;</td>
+<td class="MethodOfCaller">initServletBean</td>
+<td class="FileOfCaller">FrameworkServlet.java</td>
+<td class="LineOfCaller">524</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:03:14,697</td>
+<td class="Message">Completed initialization in 10 ms</td>
+<td class="MethodOfCaller">initServletBean</td>
+<td class="FileOfCaller">FrameworkServlet.java</td>
+<td class="LineOfCaller">546</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:03:14,805</td>
+<td class="Message">登录失败：用户【null】验证码错误</td>
+<td class="MethodOfCaller">login</td>
+<td class="FileOfCaller">SystemController.java</td>
+<td class="LineOfCaller">738</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:03:20,088</td>
+<td class="Message">登录验证成功：用户【admin】权限验证通过</td>
+<td class="MethodOfCaller">checkUser</td>
+<td class="FileOfCaller">SystemController.java</td>
+<td class="LineOfCaller">158</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:03:22,765</td>
+<td class="Message"> back home</td>
+<td class="MethodOfCaller">home</td>
+<td class="FileOfCaller">BackController.java</td>
+<td class="LineOfCaller">32</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:03:29,234</td>
+<td class="Message">----获取TOKEN----方法：getRedisWeixinToken----耗时：51ms</td>
+<td class="MethodOfCaller">getRedisWeixinToken</td>
+<td class="FileOfCaller">WeiXinHttpUtil.java</td>
+<td class="LineOfCaller">90</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:03:29,244</td>
+<td class="Message">------------文件不存在------------------------</td>
+<td class="MethodOfCaller">sendMedia</td>
+<td class="FileOfCaller">WeixinUtil.java</td>
+<td class="LineOfCaller">177</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:03:29,245</td>
+<td class="Message">----获取TOKEN----方法：getRedisWeixinToken----耗时：1ms</td>
+<td class="MethodOfCaller">getRedisWeixinToken</td>
+<td class="FileOfCaller">WeiXinHttpUtil.java</td>
+<td class="LineOfCaller">90</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:03:29,257</td>
+<td class="Message">----获取TOKEN----方法：getRedisWeixinToken----耗时：0ms</td>
+<td class="MethodOfCaller">getRedisWeixinToken</td>
+<td class="FileOfCaller">WeiXinHttpUtil.java</td>
+<td class="LineOfCaller">90</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:03:52,466</td>
+<td class="Message">----获取TOKEN----方法：getRedisWeixinToken----耗时：2ms</td>
+<td class="MethodOfCaller">getRedisWeixinToken</td>
+<td class="FileOfCaller">WeiXinHttpUtil.java</td>
+<td class="LineOfCaller">90</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:04:55,130</td>
+<td class="Message">----获取TOKEN----方法：getRedisWeixinToken----耗时：1ms</td>
+<td class="MethodOfCaller">getRedisWeixinToken</td>
+<td class="FileOfCaller">WeiXinHttpUtil.java</td>
+<td class="LineOfCaller">90</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:04:55,131</td>
+<td class="Message">------------文件不存在------------------------</td>
+<td class="MethodOfCaller">sendMedia</td>
+<td class="FileOfCaller">WeixinUtil.java</td>
+<td class="LineOfCaller">177</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:04:55,132</td>
+<td class="Message">----获取TOKEN----方法：getRedisWeixinToken----耗时：1ms</td>
+<td class="MethodOfCaller">getRedisWeixinToken</td>
+<td class="FileOfCaller">WeiXinHttpUtil.java</td>
+<td class="LineOfCaller">90</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:04:55,140</td>
+<td class="Message">----获取TOKEN----方法：getRedisWeixinToken----耗时：1ms</td>
+<td class="MethodOfCaller">getRedisWeixinToken</td>
+<td class="FileOfCaller">WeiXinHttpUtil.java</td>
+<td class="LineOfCaller">90</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:05:18,607</td>
+<td class="Message">----获取TOKEN----方法：getRedisWeixinToken----耗时：3ms</td>
+<td class="MethodOfCaller">getRedisWeixinToken</td>
+<td class="FileOfCaller">WeiXinHttpUtil.java</td>
+<td class="LineOfCaller">90</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:05:18,607</td>
+<td class="Message">------------文件不存在------------------------</td>
+<td class="MethodOfCaller">sendMedia</td>
+<td class="FileOfCaller">WeixinUtil.java</td>
+<td class="LineOfCaller">177</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:05:18,608</td>
+<td class="Message">----获取TOKEN----方法：getRedisWeixinToken----耗时：1ms</td>
+<td class="MethodOfCaller">getRedisWeixinToken</td>
+<td class="FileOfCaller">WeiXinHttpUtil.java</td>
+<td class="LineOfCaller">90</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:05:18,613</td>
+<td class="Message">----获取TOKEN----方法：getRedisWeixinToken----耗时：0ms</td>
+<td class="MethodOfCaller">getRedisWeixinToken</td>
+<td class="FileOfCaller">WeiXinHttpUtil.java</td>
+<td class="LineOfCaller">90</td>
+</tr>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>Logback Log Messages</title>
+<style  type="text/css">
+table { margin-left: 2em; margin-right: 2em; border-left: 2px solid #AAA; }
+TR.even { background: #FFFFFF; }
+TR.odd { background: #EAEAEA; }
+TR.warn TD.Level, TR.error TD.Level, TR.fatal TD.Level {font-weight: bold; color: #FF4040 }
+TD { padding-right: 1ex; padding-left: 1ex; border-right: 2px solid #AAA; }
+TD.Time, TD.Date { text-align: right; font-family: courier, monospace; font-size: smaller; }
+TD.Thread { text-align: left; }
+TD.Level { text-align: right; }
+TD.Logger { text-align: left; }
+TR.header { background: #596ED5; color: #FFF; font-weight: bold; font-size: larger; }
+TD.Exception { background: #A2AEE8; font-family: courier, monospace;}
+</style>
+
+  </head>
+<body>
+<hr/>
+<p>Log session start time Wed Nov 06 19:06:12 CST 2019</p><p></p>
+
+<table cellspacing="0">
+<tr class="header">
+<td class="Level">Level</td>
+<td class="Date">Date</td>
+<td class="Message">Message</td>
+<td class="MethodOfCaller">MethodOfCaller</td>
+<td class="FileOfCaller">FileOfCaller</td>
+<td class="LineOfCaller">LineOfCaller</td>
+</tr>
+
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:06:12,722</td>
+<td class="Message">Starting JeewxBootApplication on DESKTOP-ABCSJG8 with PID 8012 (D:\git_workspace\jeewx-boot\jeewx-boot-base-system\target\classes started by 1 in D:\git_workspace\jeewx-boot\jeewx-boot-base-system)</td>
+<td class="MethodOfCaller">logStarting</td>
+<td class="FileOfCaller">StartupInfoLogger.java</td>
+<td class="LineOfCaller">50</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:06:12,726</td>
+<td class="Message">No active profile set, falling back to default profiles: default</td>
+<td class="MethodOfCaller">logStartupProfileInfo</td>
+<td class="FileOfCaller">SpringApplication.java</td>
+<td class="LineOfCaller">675</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:06:14,262</td>
+<td class="Message">Tomcat initialized with port(s): 80 (http)</td>
+<td class="MethodOfCaller">initialize</td>
+<td class="FileOfCaller">TomcatWebServer.java</td>
+<td class="LineOfCaller">90</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:06:14,277</td>
+<td class="Message">Initializing ProtocolHandler [&quot;http-nio-80&quot;]</td>
+<td class="MethodOfCaller">log</td>
+<td class="FileOfCaller">DirectJDKLog.java</td>
+<td class="LineOfCaller">173</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:06:14,288</td>
+<td class="Message">Starting service [Tomcat]</td>
+<td class="MethodOfCaller">log</td>
+<td class="FileOfCaller">DirectJDKLog.java</td>
+<td class="LineOfCaller">173</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:06:14,288</td>
+<td class="Message">Starting Servlet engine: [Apache Tomcat/9.0.16]</td>
+<td class="MethodOfCaller">log</td>
+<td class="FileOfCaller">DirectJDKLog.java</td>
+<td class="LineOfCaller">173</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:06:14,298</td>
+<td class="Message">The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jre1.8.0_161\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:/Program Files/Java/jre1.8.0_161/bin/server;C:/Program Files/Java/jre1.8.0_161/bin;C:/Program Files/Java/jre1.8.0_161/lib/amd64;C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;D:\application\Git\cmd;C:\Users\1\AppData\Local\Microsoft\WindowsApps;C:\Program Files\Java\jdk1.8.0_161\bin;D:\application\maven3.5.3\bin;;D:\application\eclipse;;.]</td>
+<td class="MethodOfCaller">log</td>
+<td class="FileOfCaller">DirectJDKLog.java</td>
+<td class="LineOfCaller">173</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:06:14,463</td>
+<td class="Message">Initializing Spring embedded WebApplicationContext</td>
+<td class="MethodOfCaller">log</td>
+<td class="FileOfCaller">DirectJDKLog.java</td>
+<td class="LineOfCaller">173</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:06:14,464</td>
+<td class="Message">Root WebApplicationContext: initialization completed in 1701 ms</td>
+<td class="MethodOfCaller">prepareWebApplicationContext</td>
+<td class="FileOfCaller">ServletWebServerApplicationContext.java</td>
+<td class="LineOfCaller">296</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:06:14,839</td>
+<td class="Message">Init DruidDataSource</td>
+<td class="MethodOfCaller">dataSource</td>
+<td class="FileOfCaller">DruidDataSourceAutoConfigure.java</td>
+<td class="LineOfCaller">56</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:06:15,132</td>
+<td class="Message">{dataSource-1} inited</td>
+<td class="MethodOfCaller">init</td>
+<td class="FileOfCaller">DruidDataSource.java</td>
+<td class="LineOfCaller">1003</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:06:16,136</td>
+<td class="Message">Initializing ExecutorService &#39;applicationTaskExecutor&#39;</td>
+<td class="MethodOfCaller">initialize</td>
+<td class="FileOfCaller">ExecutorConfigurationSupport.java</td>
+<td class="LineOfCaller">171</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:06:16,175</td>
+<td class="Message">loginInterceptorExcludeUrls: /system/back/article/toIndex.do,/system/back/article/toArticle.do,/system/preSelectJwid.do,/system/back/home.do,/system/back/jwSystemAccountAPI/getUserAccountAmount.do,/back/backIndex/home.do</td>
+<td class="MethodOfCaller">addInterceptors</td>
+<td class="FileOfCaller">SystemConfigurer.java</td>
+<td class="LineOfCaller">60</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:06:16,175</td>
+<td class="Message">accessSignInterceptorExcludeUrls: /api/cms/**,/cms/**,/wechatController.do,/weixinNewsController/goContent.do,/weixinLinksucai/link.do,/linksucai/link.do,/fx/mall/payCallBack.do,/newsController/getNewsClassify.do,/newsController/getNewslist.do,/CommonController/sendMsgCode.do</td>
+<td class="MethodOfCaller">addInterceptors</td>
+<td class="FileOfCaller">SystemConfigurer.java</td>
+<td class="LineOfCaller">61</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:06:16,360</td>
+<td class="Message">Initializing ExecutorService &#39;taskScheduler&#39;</td>
+<td class="MethodOfCaller">initialize</td>
+<td class="FileOfCaller">ExecutorConfigurationSupport.java</td>
+<td class="LineOfCaller">171</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:06:16,412</td>
+<td class="Message">Starting ProtocolHandler [&quot;http-nio-80&quot;]</td>
+<td class="MethodOfCaller">log</td>
+<td class="FileOfCaller">DirectJDKLog.java</td>
+<td class="LineOfCaller">173</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:06:16,439</td>
+<td class="Message">Tomcat started on port(s): 80 (http) with context path &#39;/jeewx&#39;</td>
+<td class="MethodOfCaller">start</td>
+<td class="FileOfCaller">TomcatWebServer.java</td>
+<td class="LineOfCaller">204</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:06:16,443</td>
+<td class="Message">Started JeewxBootApplication in 4.118 seconds (JVM running for 4.589)</td>
+<td class="MethodOfCaller">logStarted</td>
+<td class="FileOfCaller">StartupInfoLogger.java</td>
+<td class="LineOfCaller">59</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:06:16,446</td>
+<td class="Message">
+----------------------------------------------------------
+	Application Jeewx-Boot is running! Access URLs:
+	Local: 		http://localhost:80/jeewx/
+	External: 	http://172.16.1.151:80/jeewx/
+	----------------------------------------------------------</td>
+<td class="MethodOfCaller">main</td>
+<td class="FileOfCaller">JeewxBootApplication.java</td>
+<td class="LineOfCaller">28</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:06:19,810</td>
+<td class="Message">Initializing Spring DispatcherServlet &#39;dispatcherServlet&#39;</td>
+<td class="MethodOfCaller">log</td>
+<td class="FileOfCaller">DirectJDKLog.java</td>
+<td class="LineOfCaller">173</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:06:19,810</td>
+<td class="Message">Initializing Servlet &#39;dispatcherServlet&#39;</td>
+<td class="MethodOfCaller">initServletBean</td>
+<td class="FileOfCaller">FrameworkServlet.java</td>
+<td class="LineOfCaller">524</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:06:19,816</td>
+<td class="Message">Completed initialization in 5 ms</td>
+<td class="MethodOfCaller">initServletBean</td>
+<td class="FileOfCaller">FrameworkServlet.java</td>
+<td class="LineOfCaller">546</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:06:24,643</td>
+<td class="Message">登录验证成功：用户【admin】权限验证通过</td>
+<td class="MethodOfCaller">checkUser</td>
+<td class="FileOfCaller">SystemController.java</td>
+<td class="LineOfCaller">158</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:06:27,244</td>
+<td class="Message"> back home</td>
+<td class="MethodOfCaller">home</td>
+<td class="FileOfCaller">BackController.java</td>
+<td class="LineOfCaller">32</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:07:00,002</td>
+<td class="Message">===================重置公众号AccseeToken定时任务开启==========================</td>
+<td class="MethodOfCaller">run</td>
+<td class="FileOfCaller">RefreshTokenTask.java</td>
+<td class="LineOfCaller">55</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:07:17,702</td>
+<td class="Message">AccseeToken request url=https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&amp;appid=wx9450f15e78a6be44&amp;secret=921789808747699cc84463109d7dc46e.</td>
+<td class="MethodOfCaller">getAccseeToken</td>
+<td class="FileOfCaller">AccessTokenUtil.java</td>
+<td class="LineOfCaller">27</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:07:23,539</td>
+<td class="Message">AccseeToken response jsonStr={&quot;access_token&quot;:&quot;27_DR55SNQpDVII9nZSX_dGIursVLyVHoIbxMOpQ3YY3AK-P05Wthm9SzCN_CWwiG-zW9dr1fJDbvKTWzC7T6_sZ115fukKEQncEgA2gj8CdlL9y5YYTOqjRBsMKRqkqKTkp9rn4H4BLqiYIgt7AMUcADARDL&quot;,&quot;expires_in&quot;:7200}.</td>
+<td class="MethodOfCaller">getAccseeToken</td>
+<td class="FileOfCaller">AccessTokenUtil.java</td>
+<td class="LineOfCaller">29</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:07:23,787</td>
+<td class="Message">AccseeToken response jsonObjApi={&quot;errcode&quot;:0,&quot;ticket&quot;:&quot;m7RQzjA_ljjEkt-JCoklRJYyUBFTmhtyeMLrrjNyYpiRqiUtG28Ut_r9MGQEpF1q5H_3ulKGY2Lkqp9OvonE4g&quot;,&quot;errmsg&quot;:&quot;ok&quot;,&quot;expires_in&quot;:7200}.</td>
+<td class="MethodOfCaller">getAccseeToken</td>
+<td class="FileOfCaller">AccessTokenUtil.java</td>
+<td class="LineOfCaller">38</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:07:23,927</td>
+<td class="Message">AccseeToken response jsonObjJsApi={&quot;errcode&quot;:0,&quot;ticket&quot;:&quot;bxLdikRXVbTPdHSM05e5u0xD_4tRneQxVrB0wO1R5JK0QNK8I9YoKh5aGLUpkQx_0b94nGXd_6vpv_QvYUSfTw&quot;,&quot;errmsg&quot;:&quot;ok&quot;,&quot;expires_in&quot;:7200}.</td>
+<td class="MethodOfCaller">getAccseeToken</td>
+<td class="FileOfCaller">AccessTokenUtil.java</td>
+<td class="LineOfCaller">47</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:07:40,310</td>
+<td class="Message">===================重置AccseeToken定时任务结束，用时=40306ms.==========================</td>
+<td class="MethodOfCaller">run</td>
+<td class="FileOfCaller">RefreshTokenTask.java</td>
+<td class="LineOfCaller">73</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:07:50,572</td>
+<td class="Message">----获取TOKEN----方法：getRedisWeixinToken----耗时：1ms</td>
+<td class="MethodOfCaller">getRedisWeixinToken</td>
+<td class="FileOfCaller">WeiXinHttpUtil.java</td>
+<td class="LineOfCaller">90</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:07:50,580</td>
+<td class="Message">------------文件不存在------------------------</td>
+<td class="MethodOfCaller">sendMedia</td>
+<td class="FileOfCaller">WeixinUtil.java</td>
+<td class="LineOfCaller">177</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:07:50,581</td>
+<td class="Message">----获取TOKEN----方法：getRedisWeixinToken----耗时：0ms</td>
+<td class="MethodOfCaller">getRedisWeixinToken</td>
+<td class="FileOfCaller">WeiXinHttpUtil.java</td>
+<td class="LineOfCaller">90</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:07:50,593</td>
+<td class="Message">----获取TOKEN----方法：getRedisWeixinToken----耗时：1ms</td>
+<td class="MethodOfCaller">getRedisWeixinToken</td>
+<td class="FileOfCaller">WeiXinHttpUtil.java</td>
+<td class="LineOfCaller">90</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:07:58,065</td>
+<td class="Message">----获取TOKEN----方法：getRedisWeixinToken----耗时：1ms</td>
+<td class="MethodOfCaller">getRedisWeixinToken</td>
+<td class="FileOfCaller">WeiXinHttpUtil.java</td>
+<td class="LineOfCaller">90</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:07:58,066</td>
+<td class="Message">------------文件不存在------------------------</td>
+<td class="MethodOfCaller">sendMedia</td>
+<td class="FileOfCaller">WeixinUtil.java</td>
+<td class="LineOfCaller">177</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:07:58,068</td>
+<td class="Message">----获取TOKEN----方法：getRedisWeixinToken----耗时：2ms</td>
+<td class="MethodOfCaller">getRedisWeixinToken</td>
+<td class="FileOfCaller">WeiXinHttpUtil.java</td>
+<td class="LineOfCaller">90</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:07:58,076</td>
+<td class="Message">----获取TOKEN----方法：getRedisWeixinToken----耗时：1ms</td>
+<td class="MethodOfCaller">getRedisWeixinToken</td>
+<td class="FileOfCaller">WeiXinHttpUtil.java</td>
+<td class="LineOfCaller">90</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:08:00,001</td>
+<td class="Message">===================重置公众号AccseeToken定时任务开启==========================</td>
+<td class="MethodOfCaller">run</td>
+<td class="FileOfCaller">RefreshTokenTask.java</td>
+<td class="LineOfCaller">55</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:08:00,003</td>
+<td class="Message">AccseeToken request url=https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&amp;appid=wx9450f15e78a6be44&amp;secret=921789808747699cc84463109d7dc46e.</td>
+<td class="MethodOfCaller">getAccseeToken</td>
+<td class="FileOfCaller">AccessTokenUtil.java</td>
+<td class="LineOfCaller">27</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:08:00,271</td>
+<td class="Message">AccseeToken response jsonStr={&quot;access_token&quot;:&quot;27_zmWFy6hgVPAZeBISWIUA6hTiP2OWV5qwLZAVl_FZt5CnBdsNOe8sxkjOb-GQuk1rsAYOUdvKTggtDa_U-D9NnFkOD2FKA7-IyqhnFvdCL7O088pvBv_3wfE11GmRnDGjX8NM_tJZMdn2CMSfHCAhAAAVQO&quot;,&quot;expires_in&quot;:7200}.</td>
+<td class="MethodOfCaller">getAccseeToken</td>
+<td class="FileOfCaller">AccessTokenUtil.java</td>
+<td class="LineOfCaller">29</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:08:00,334</td>
+<td class="Message">AccseeToken response jsonObjApi={&quot;errcode&quot;:0,&quot;ticket&quot;:&quot;m7RQzjA_ljjEkt-JCoklRJYyUBFTmhtyeMLrrjNyYpiRqiUtG28Ut_r9MGQEpF1q5H_3ulKGY2Lkqp9OvonE4g&quot;,&quot;errmsg&quot;:&quot;ok&quot;,&quot;expires_in&quot;:7200}.</td>
+<td class="MethodOfCaller">getAccseeToken</td>
+<td class="FileOfCaller">AccessTokenUtil.java</td>
+<td class="LineOfCaller">38</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:08:00,412</td>
+<td class="Message">AccseeToken response jsonObjJsApi={&quot;errcode&quot;:0,&quot;ticket&quot;:&quot;bxLdikRXVbTPdHSM05e5u0xD_4tRneQxVrB0wO1R5JK0QNK8I9YoKh5aGLUpkQx_0b94nGXd_6vpv_QvYUSfTw&quot;,&quot;errmsg&quot;:&quot;ok&quot;,&quot;expires_in&quot;:7200}.</td>
+<td class="MethodOfCaller">getAccseeToken</td>
+<td class="FileOfCaller">AccessTokenUtil.java</td>
+<td class="LineOfCaller">47</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:08:00,418</td>
+<td class="Message">===================重置AccseeToken定时任务结束，用时=417ms.==========================</td>
+<td class="MethodOfCaller">run</td>
+<td class="FileOfCaller">RefreshTokenTask.java</td>
+<td class="LineOfCaller">73</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:08:06,304</td>
+<td class="Message">----获取TOKEN----方法：getRedisWeixinToken----耗时：1ms</td>
+<td class="MethodOfCaller">getRedisWeixinToken</td>
+<td class="FileOfCaller">WeiXinHttpUtil.java</td>
+<td class="LineOfCaller">90</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:08:11,297</td>
+<td class="Message">----获取TOKEN----方法：getRedisWeixinToken----耗时：1ms</td>
+<td class="MethodOfCaller">getRedisWeixinToken</td>
+<td class="FileOfCaller">WeiXinHttpUtil.java</td>
+<td class="LineOfCaller">90</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:08:11,297</td>
+<td class="Message">------------------requestUr------------http://file.api.weixin.qq.com/cgi-bin/media/upload?access_token=27_zmWFy6hgVPAZeBISWIUA6hTiP2OWV5qwLZAVl_FZt5CnBdsNOe8sxkjOb-GQuk1rsAYOUdvKTggtDa_U-D9NnFkOD2FKA7-IyqhnFvdCL7O088pvBv_3wfE11GmRnDGjX8NM_tJZMdn2CMSfHCAhAAAVQO&amp;type=image</td>
+<td class="MethodOfCaller">sendMedia</td>
+<td class="FileOfCaller">WeixinUtil.java</td>
+<td class="LineOfCaller">184</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:08:11,530</td>
+<td class="Message">----获取TOKEN----方法：getRedisWeixinToken----耗时：1ms</td>
+<td class="MethodOfCaller">getRedisWeixinToken</td>
+<td class="FileOfCaller">WeiXinHttpUtil.java</td>
+<td class="LineOfCaller">90</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:08:11,535</td>
+<td class="Message">----获取TOKEN----方法：getRedisWeixinToken----耗时：0ms</td>
+<td class="MethodOfCaller">getRedisWeixinToken</td>
+<td class="FileOfCaller">WeiXinHttpUtil.java</td>
+<td class="LineOfCaller">90</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:09:00,001</td>
+<td class="Message">===================重置公众号AccseeToken定时任务开启==========================</td>
+<td class="MethodOfCaller">run</td>
+<td class="FileOfCaller">RefreshTokenTask.java</td>
+<td class="LineOfCaller">55</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:09:00,003</td>
+<td class="Message">AccseeToken request url=https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&amp;appid=wx9450f15e78a6be44&amp;secret=921789808747699cc84463109d7dc46e.</td>
+<td class="MethodOfCaller">getAccseeToken</td>
+<td class="FileOfCaller">AccessTokenUtil.java</td>
+<td class="LineOfCaller">27</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:09:00,338</td>
+<td class="Message">AccseeToken response jsonStr={&quot;access_token&quot;:&quot;27_mZipBgQ8Y-0aIQtB_4Mh-n_GItGTk9w2daCaJD2cH7uKea4iqLPtF-TI6P_e-lEBGlz5ON4W4h6xkSLTVFP7hFc7eaD_k419R6KFTmpcZ4r1vCPieJ6SSnzYhiz3cNKEpD50oIWl5DeIwOjFCJWiABAQXK&quot;,&quot;expires_in&quot;:7200}.</td>
+<td class="MethodOfCaller">getAccseeToken</td>
+<td class="FileOfCaller">AccessTokenUtil.java</td>
+<td class="LineOfCaller">29</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:09:00,439</td>
+<td class="Message">AccseeToken response jsonObjApi={&quot;errcode&quot;:0,&quot;ticket&quot;:&quot;m7RQzjA_ljjEkt-JCoklRJYyUBFTmhtyeMLrrjNyYpiRqiUtG28Ut_r9MGQEpF1q5H_3ulKGY2Lkqp9OvonE4g&quot;,&quot;errmsg&quot;:&quot;ok&quot;,&quot;expires_in&quot;:7200}.</td>
+<td class="MethodOfCaller">getAccseeToken</td>
+<td class="FileOfCaller">AccessTokenUtil.java</td>
+<td class="LineOfCaller">38</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:09:00,524</td>
+<td class="Message">AccseeToken response jsonObjJsApi={&quot;errcode&quot;:0,&quot;ticket&quot;:&quot;bxLdikRXVbTPdHSM05e5u0xD_4tRneQxVrB0wO1R5JK0QNK8I9YoKh5aGLUpkQx_0b94nGXd_6vpv_QvYUSfTw&quot;,&quot;errmsg&quot;:&quot;ok&quot;,&quot;expires_in&quot;:7200}.</td>
+<td class="MethodOfCaller">getAccseeToken</td>
+<td class="FileOfCaller">AccessTokenUtil.java</td>
+<td class="LineOfCaller">47</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:09:00,528</td>
+<td class="Message">===================重置AccseeToken定时任务结束，用时=527ms.==========================</td>
+<td class="MethodOfCaller">run</td>
+<td class="FileOfCaller">RefreshTokenTask.java</td>
+<td class="LineOfCaller">73</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:10:00,002</td>
+<td class="Message">===================重置公众号AccseeToken定时任务开启==========================</td>
+<td class="MethodOfCaller">run</td>
+<td class="FileOfCaller">RefreshTokenTask.java</td>
+<td class="LineOfCaller">55</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:10:00,004</td>
+<td class="Message">AccseeToken request url=https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&amp;appid=wx9450f15e78a6be44&amp;secret=921789808747699cc84463109d7dc46e.</td>
+<td class="MethodOfCaller">getAccseeToken</td>
+<td class="FileOfCaller">AccessTokenUtil.java</td>
+<td class="LineOfCaller">27</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:10:00,281</td>
+<td class="Message">AccseeToken response jsonStr={&quot;access_token&quot;:&quot;27_GNwMOTxpNuzaKbwSToIZTZWZusjLuU6M8GLOdFAiLd75DpgKMC31dNgZ5br0bIo9vllq6Lu8VgXVqLyCuaCjqdflQlYs_iv_nBnSo9nRiOhiygRb33enHw6qXzg8MPTgtzs6Q92TNPGrF-n5MVAgADAPYD&quot;,&quot;expires_in&quot;:7200}.</td>
+<td class="MethodOfCaller">getAccseeToken</td>
+<td class="FileOfCaller">AccessTokenUtil.java</td>
+<td class="LineOfCaller">29</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:10:00,369</td>
+<td class="Message">AccseeToken response jsonObjApi={&quot;errcode&quot;:0,&quot;ticket&quot;:&quot;m7RQzjA_ljjEkt-JCoklRJYyUBFTmhtyeMLrrjNyYpiRqiUtG28Ut_r9MGQEpF1q5H_3ulKGY2Lkqp9OvonE4g&quot;,&quot;errmsg&quot;:&quot;ok&quot;,&quot;expires_in&quot;:7200}.</td>
+<td class="MethodOfCaller">getAccseeToken</td>
+<td class="FileOfCaller">AccessTokenUtil.java</td>
+<td class="LineOfCaller">38</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:10:00,446</td>
+<td class="Message">AccseeToken response jsonObjJsApi={&quot;errcode&quot;:0,&quot;ticket&quot;:&quot;bxLdikRXVbTPdHSM05e5u0xD_4tRneQxVrB0wO1R5JK0QNK8I9YoKh5aGLUpkQx_0b94nGXd_6vpv_QvYUSfTw&quot;,&quot;errmsg&quot;:&quot;ok&quot;,&quot;expires_in&quot;:7200}.</td>
+<td class="MethodOfCaller">getAccseeToken</td>
+<td class="FileOfCaller">AccessTokenUtil.java</td>
+<td class="LineOfCaller">47</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:10:00,456</td>
+<td class="Message">===================重置AccseeToken定时任务结束，用时=454ms.==========================</td>
+<td class="MethodOfCaller">run</td>
+<td class="FileOfCaller">RefreshTokenTask.java</td>
+<td class="LineOfCaller">73</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:11:00,001</td>
+<td class="Message">===================重置公众号AccseeToken定时任务开启==========================</td>
+<td class="MethodOfCaller">run</td>
+<td class="FileOfCaller">RefreshTokenTask.java</td>
+<td class="LineOfCaller">55</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:11:00,003</td>
+<td class="Message">AccseeToken request url=https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&amp;appid=wx9450f15e78a6be44&amp;secret=921789808747699cc84463109d7dc46e.</td>
+<td class="MethodOfCaller">getAccseeToken</td>
+<td class="FileOfCaller">AccessTokenUtil.java</td>
+<td class="LineOfCaller">27</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:11:00,284</td>
+<td class="Message">AccseeToken response jsonStr={&quot;access_token&quot;:&quot;27_nVHoszXaGoXzIWYe4ogMZIZOoQ3P1I-Pm88arwl6fPYn7HWyvnElDJX4bw2fOkWUiopFXHVVf3yWJ0tDWEg1q_29TMwd10pWcDAslRl9ZbTPaj8kuZ7TgyD1mE_RxyGu9Vo9Dt-n-HIYdsm6LHWeAAAVRG&quot;,&quot;expires_in&quot;:7200}.</td>
+<td class="MethodOfCaller">getAccseeToken</td>
+<td class="FileOfCaller">AccessTokenUtil.java</td>
+<td class="LineOfCaller">29</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:11:00,365</td>
+<td class="Message">AccseeToken response jsonObjApi={&quot;errcode&quot;:0,&quot;ticket&quot;:&quot;m7RQzjA_ljjEkt-JCoklRJYyUBFTmhtyeMLrrjNyYpiRqiUtG28Ut_r9MGQEpF1q5H_3ulKGY2Lkqp9OvonE4g&quot;,&quot;errmsg&quot;:&quot;ok&quot;,&quot;expires_in&quot;:7200}.</td>
+<td class="MethodOfCaller">getAccseeToken</td>
+<td class="FileOfCaller">AccessTokenUtil.java</td>
+<td class="LineOfCaller">38</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:11:00,440</td>
+<td class="Message">AccseeToken response jsonObjJsApi={&quot;errcode&quot;:0,&quot;ticket&quot;:&quot;bxLdikRXVbTPdHSM05e5u0xD_4tRneQxVrB0wO1R5JK0QNK8I9YoKh5aGLUpkQx_0b94nGXd_6vpv_QvYUSfTw&quot;,&quot;errmsg&quot;:&quot;ok&quot;,&quot;expires_in&quot;:7200}.</td>
+<td class="MethodOfCaller">getAccseeToken</td>
+<td class="FileOfCaller">AccessTokenUtil.java</td>
+<td class="LineOfCaller">47</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:11:00,447</td>
+<td class="Message">===================重置AccseeToken定时任务结束，用时=446ms.==========================</td>
+<td class="MethodOfCaller">run</td>
+<td class="FileOfCaller">RefreshTokenTask.java</td>
+<td class="LineOfCaller">73</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:12:00,001</td>
+<td class="Message">===================重置公众号AccseeToken定时任务开启==========================</td>
+<td class="MethodOfCaller">run</td>
+<td class="FileOfCaller">RefreshTokenTask.java</td>
+<td class="LineOfCaller">55</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:12:00,006</td>
+<td class="Message">AccseeToken request url=https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&amp;appid=wx9450f15e78a6be44&amp;secret=921789808747699cc84463109d7dc46e.</td>
+<td class="MethodOfCaller">getAccseeToken</td>
+<td class="FileOfCaller">AccessTokenUtil.java</td>
+<td class="LineOfCaller">27</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:12:00,250</td>
+<td class="Message">AccseeToken response jsonStr={&quot;access_token&quot;:&quot;27_pt4lKX_x6rwgH6-PF1XXciJqc7_sI_dWw5AmYz7PESZd-rW0DkcmhVYLn96tQ98JexZPOhbM-oZ3lp0burP3LFG_K2ZPYYD4aDKmxduyIhjREDG1RiN98C1q9eljZM8JaoD-USbl5UZef3v_ZZHfAAAKKS&quot;,&quot;expires_in&quot;:7200}.</td>
+<td class="MethodOfCaller">getAccseeToken</td>
+<td class="FileOfCaller">AccessTokenUtil.java</td>
+<td class="LineOfCaller">29</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:12:00,341</td>
+<td class="Message">AccseeToken response jsonObjApi={&quot;errcode&quot;:0,&quot;ticket&quot;:&quot;m7RQzjA_ljjEkt-JCoklRJYyUBFTmhtyeMLrrjNyYpiRqiUtG28Ut_r9MGQEpF1q5H_3ulKGY2Lkqp9OvonE4g&quot;,&quot;errmsg&quot;:&quot;ok&quot;,&quot;expires_in&quot;:7200}.</td>
+<td class="MethodOfCaller">getAccseeToken</td>
+<td class="FileOfCaller">AccessTokenUtil.java</td>
+<td class="LineOfCaller">38</td>
+</tr>
+
+<tr class="info odd">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:12:00,433</td>
+<td class="Message">AccseeToken response jsonObjJsApi={&quot;errcode&quot;:0,&quot;ticket&quot;:&quot;bxLdikRXVbTPdHSM05e5u0xD_4tRneQxVrB0wO1R5JK0QNK8I9YoKh5aGLUpkQx_0b94nGXd_6vpv_QvYUSfTw&quot;,&quot;errmsg&quot;:&quot;ok&quot;,&quot;expires_in&quot;:7200}.</td>
+<td class="MethodOfCaller">getAccseeToken</td>
+<td class="FileOfCaller">AccessTokenUtil.java</td>
+<td class="LineOfCaller">47</td>
+</tr>
+
+<tr class="info even">
+<td class="Level">INFO</td>
+<td class="Date">2019-11-06 19:12:00,439</td>
+<td class="Message">===================重置AccseeToken定时任务结束，用时=437ms.==========================</td>
+<td class="MethodOfCaller">run</td>
+<td class="FileOfCaller">RefreshTokenTask.java</td>
+<td class="LineOfCaller">73</td>
+</tr>

@@ -74,6 +74,9 @@
 													<a class="btn btn-info btn-xs"  href="javascript:preview('$!{info.id}')"><i class="fa fa-eye"></i> 手机预览</a>
 												#end
 												<a class="btn btn-info btn-xs" style="background-color: #337ab7;border-color: #337ab7;border:none" href="javascript:void(0);" onclick="uploadNewstemplate('$!{info.id}')"><i class="fa fa-upload"></i> 上传</a>
+												#if($!{info.uploadType}=='2')
+													<a class="btn btn-info btn-xs" style="background-color: #337ab7;border-color: #337ab7;border:none" href="javascript:void(0);" onclick="doMass('$!{info.id}')"><i class="fa fa-upload"></i>群发</a>
+												#end
 											</td>
 										</tr>
 									#end
@@ -200,6 +203,36 @@ function uploadNewstemplate(newstemplateId){
 	var index = layer.msg('正在上传', {icon: 16,shade: 0.01});
 	jQuery.ajax({
 		url:'$!{basePath}/weixin/back/weixinNewstemplate/uploadNewstemplate.do',
+		type:'post',
+		dataType:'json',
+		data:{
+			id:newstemplateId
+		},
+		success:function(data){
+			layer.close(index); 
+			layer.open({
+              type: 1 //Page层类型
+              ,area: ['300px', '100px']
+              ,title: '提示'
+              ,shade: 0.6 //遮罩透明度
+              ,time: 2000
+              ,content: '<p align="center" style="margin-top:15px;">'+data.msg+'</p>'
+			  ,end: function(){ //此处用于演示
+			  	window.location.reload();
+              }
+            });  
+		},
+		error:function(data){
+		}
+	})
+}
+
+//群发
+function doMass(newstemplateId){
+	//var index = layer.alert("正在上传中...");
+	var index = layer.msg('正在群发', {icon: 16,shade: 0.01});
+	jQuery.ajax({
+		url:'$!{basePath}/weixin/back/weixinNewstemplate/doMass.do',
 		type:'post',
 		dataType:'json',
 		data:{

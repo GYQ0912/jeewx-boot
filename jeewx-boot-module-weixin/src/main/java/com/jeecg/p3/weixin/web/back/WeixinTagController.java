@@ -36,6 +36,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.jeecg.p3.baseApi.service.BaseApiJwidService;
 import com.jeecg.p3.commonweixin.entity.MyJwWebJwid;
 import com.jeecg.p3.system.service.MyJwWebJwidService;
 import com.jeecg.p3.weixin.entity.WeixinGzuser;
@@ -65,6 +66,8 @@ import net.sf.json.JSONObject;
 	  private WeixinTagService weixinTagService;
 	  @Autowired
 	  private WeixinGzuserService weixinGzuserService;
+	  @Autowired
+	  private BaseApiJwidService baseApiJwidService; 
 	  //创建标签
 	  public final static String create_tag_url = "https://api.weixin.qq.com/cgi-bin/tags/create?access_token=ACCESS_TOKEN";
 	  //编辑标签
@@ -149,7 +152,7 @@ import net.sf.json.JSONObject;
 		try {
 			//获取accessToken
 			String jwid=request.getSession().getAttribute("jwid").toString();
-			String accessToken=WeiXinHttpUtil.getRedisWeixinToken(jwid);
+			String accessToken = baseApiJwidService.queryAccessTokenByJwid(jwid);
 			//调用创建标签接口
 			String requestUrl=create_tag_url.replace("ACCESS_TOKEN", accessToken);
 			String name="{\"tag\":{\"name\":\""+weixinTag.getName()+"\"}}";
@@ -209,7 +212,7 @@ import net.sf.json.JSONObject;
 		try {
 			//获取accessToken
 			String jwid=request.getSession().getAttribute("jwid").toString();
-			String accessToken=WeiXinHttpUtil.getRedisWeixinToken(jwid);
+			String accessToken=baseApiJwidService.queryAccessTokenByJwid(jwid);
 			//调用编辑标签接口
 			String requestUrl=update_tag_url.replace("ACCESS_TOKEN", accessToken);
 			String name="{\"tag\":{\"id\":\""+weixinTag.getTagid()+"\",\"name\":\""+weixinTag.getName()+"\"}}";
@@ -246,7 +249,7 @@ import net.sf.json.JSONObject;
 				WeixinTag weixinTag=weixinTagService.queryById(id);
 				//获取accessToken
 				String jwid=request.getSession().getAttribute("jwid").toString();
-				String accessToken=WeiXinHttpUtil.getRedisWeixinToken(jwid);
+				String accessToken=baseApiJwidService.queryAccessTokenByJwid(jwid);
 				//调用删除标签接口
 				String requestUrl=delete_tag_url.replace("ACCESS_TOKEN", accessToken);
 				String name="{\"tag\":{\"id\":\""+weixinTag.getTagid()+"\"}}";
@@ -283,7 +286,7 @@ import net.sf.json.JSONObject;
 		try {
 			//获取accessToken
 			String jwid=request.getSession().getAttribute("jwid").toString();
-			String accessToken= WeiXinHttpUtil.getRedisWeixinToken(jwid);
+			String accessToken= baseApiJwidService.queryAccessTokenByJwid(jwid);
 			//调用获取公众号标签接口
 			String requestUrl=get_tag_url.replace("ACCESS_TOKEN", accessToken);
 			jsonObj=WeixinUtil.httpRequest(requestUrl,"GET","");
@@ -333,7 +336,7 @@ import net.sf.json.JSONObject;
 		try {
 			//获取accessToken
 			String jwid=request.getSession().getAttribute("jwid").toString();
-			String accessToken=WeiXinHttpUtil.getRedisWeixinToken(jwid);
+			String accessToken=baseApiJwidService.queryAccessTokenByJwid(jwid);
 			String requestUrl=batchtagging_tag_url.replace("ACCESS_TOKEN", accessToken);
 			//调用批量为用户打标签接口
 			String[] openidList=openids.split(",");
@@ -404,7 +407,7 @@ import net.sf.json.JSONObject;
 		try {
 			//获取用户身上的标签列表
 			String jwid=request.getSession().getAttribute("jwid").toString();
-			String accessToken=WeiXinHttpUtil.getRedisWeixinToken(jwid);
+			String accessToken=baseApiJwidService.queryAccessTokenByJwid(jwid);
 			String requestUrl=getidlist_tag_url.replace("ACCESS_TOKEN", accessToken);
 			String name="{\"openid\":\""+openid+"\"}";
 			JSONObject jsonObj=WeixinUtil.httpRequest(requestUrl,"POST",name);
@@ -432,7 +435,7 @@ import net.sf.json.JSONObject;
 		try {
 			//获取accessToken
 			String jwid=request.getSession().getAttribute("jwid").toString();
-			String accessToken=WeiXinHttpUtil.getRedisWeixinToken(jwid);
+			String accessToken=baseApiJwidService.queryAccessTokenByJwid(jwid);
 			//调用用户新增或取消标签接口
 			String requestchUrl=batchtagging_tag_url.replace("ACCESS_TOKEN", accessToken);
 			String requestchunUrl=batchuntagging_tag_url.replace("ACCESS_TOKEN", accessToken);

@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.jeecg.p3.baseApi.service.BaseApiJwidService;
 import com.jeecg.p3.commonweixin.entity.MyJwWebJwid;
 import com.jeecg.p3.system.service.MyJwWebJwidService;
 import com.jeecg.p3.weixin.entity.WeixinGzuser;
@@ -54,6 +55,8 @@ public class WeixinGzuserController extends BaseController{
   private GzUserInfoTimer gzUserInfoTimer;
   @Autowired
   private WeixinTagService weixinTagService;
+  @Autowired
+  private BaseApiJwidService baseApiJwidService; 
   //获取用户列表
 	public final static String user_List_url = "https://api.weixin.qq.com/cgi-bin/user/get?access_token=ACCESS_TOKEN&next_openid=NEXT_OPENID";
   
@@ -110,7 +113,7 @@ public AjaxJson syncFans(HttpServletResponse response,HttpServletRequest request
 		String message="";
 		//获取token
 		int total=0;
-		String accessToken=WeiXinHttpUtil.getRedisWeixinToken(jwid);
+		String accessToken = baseApiJwidService.queryAccessTokenByJwid(jwid);
 		//调用一次测试微信接口以验证服务接口是否正常，并返回粉丝总数
 		if(StringUtils.isNotEmpty(accessToken)){
 			String requestUrl=user_List_url.replace("NEXT_OPENID", "").replace("ACCESS_TOKEN", accessToken);

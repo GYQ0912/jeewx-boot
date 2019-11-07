@@ -34,4 +34,9 @@ public class BaseApiJwidServiceImpl implements BaseApiJwidService {
 		return baseApiJwidDao.queryOneByAppid(appid);
 	}
 
+	@Override
+	public String queryAccessTokenByJwid(String jwid) {
+		return baseApiJwidDao.queryAccessTokenByJwid(jwid);
+	}
+
 }

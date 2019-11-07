@@ -37,4 +37,13 @@
 			woa.appid=#{appid}
 			LIMIT 1
 	</select>
+	
+	<!-- 根据公众号查询accessToken -->
+	<select id="queryAccessTokenByJwid" parameterType="Object"  resultType="java.lang.String">
+		    SELECT 
+                   jwj.access_token                   /* access_token */ 
+		FROM   	 jw_web_jwid      AS jwj      /*  */ 
+		WHERE 
+			jwj.jwid = #{jwid}
+	</select>
 </mapper>

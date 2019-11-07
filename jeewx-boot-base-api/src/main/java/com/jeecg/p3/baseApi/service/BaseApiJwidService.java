@@ -1,5 +1,7 @@
 package com.jeecg.p3.baseApi.service;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.jeecg.p3.baseApi.vo.OpenAccountVo;
 
 /**
@@ -29,5 +31,12 @@ public interface BaseApiJwidService {
 	 * @return
 	 */
 	public OpenAccountVo queryOneByAppid(String appid);
+	
+	/**
+	 * 通过公众号id获取access_token
+	 * @param jwid
+	 * @return
+	 */
+	public String queryAccessTokenByJwid(String jwid);
 }
 

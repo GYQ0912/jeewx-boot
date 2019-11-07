@@ -50,7 +50,8 @@ public class RefreshTokenTask {
 	/**
 	 * 定时刷新TOKEN
 	 */
-	@Scheduled(cron="0 0/1 * * * ?")
+	//@Scheduled(cron="0 0/30 * * * ?")
+	@Scheduled(initialDelay=1000, fixedRate=1000*60*60) //第一次延迟1秒后执行，之后按fixedRate的规则每1个小时执行一次
 	public void run() {
 		LOG.info("===================重置公众号AccseeToken定时任务开启==========================");
 		long start = System.currentTimeMillis();
@@ -108,7 +109,7 @@ public class RefreshTokenTask {
 				po.setWeixinAccountid(myJwWebJwid.getJwid());//原始ID
 				po.setJsapiticket(myJwWebJwid.getJsApiTicket());
 				po.setJsapitickettime(myJwWebJwid.getJsApiTicketTime());
-				JedisPoolUtil.putWxAccount(po);
+				//JedisPoolUtil.putWxAccount(po);
 			} catch (Exception e) {
 				LOG.error("----------定时任务：H5平台独立公众号，重置redis缓存token失败-------------"+e.toString());
 				e.printStackTrace();

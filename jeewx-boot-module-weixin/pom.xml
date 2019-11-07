@@ -42,5 +42,9 @@
 			<artifactId>xstream</artifactId>
 		</dependency>
 
+		<dependency>
+			<groupId>org.jeewxframework.boot</groupId>
+			<artifactId>jeewx-boot-base-api</artifactId>
+		</dependency>
 	</dependencies>
 </project>

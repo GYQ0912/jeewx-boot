@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.jeecg.p3.baseApi.service.BaseApiJwidService;
 import com.jeecg.p3.commonweixin.entity.MyJwWebJwid;
 import com.jeecg.p3.commonweixin.util.Constants;
 import com.jeecg.p3.system.service.MyJwWebJwidService;
@@ -58,7 +59,9 @@ public class WeixinNewstemplateController extends BaseController{
 	private WeixinGzuserService weixinGzuserService;
 	@Autowired
 	private MyJwWebJwidService myJwWebJwidService;
-  
+	@Autowired
+	private BaseApiJwidService baseApiJwidService; 
+	
 	/**
 	  * 列表页面
 	  * @return
@@ -83,6 +86,7 @@ public class WeixinNewstemplateController extends BaseController{
 			if(jw==null){
 		 		query.setJwid("-");
 		 	}
+			
 		 	//update-end--Author:zhangweijian  Date: 20180928 for：无权限不能查看公众号数据
 		 	//update-end--Author:zhangweijian  Date: 20180720 for：添加jwid查询条件
 			pageQuery.setQuery(query);
@@ -255,7 +259,7 @@ public class WeixinNewstemplateController extends BaseController{
 					String media_id=newstemplate.getMediaId();
 					//获取accessToken
 					String jwid=request.getSession().getAttribute("jwid").toString();
-					String accessToken=WeiXinHttpUtil.getRedisWeixinToken(jwid);
+					String accessToken = baseApiJwidService.queryAccessTokenByJwid(jwid);
 					//调用创建标签接口
 					String name="{\"touser\":\""+openid+"\",\"mpnews\":{\"media_id\":\""+media_id+"\"},\"msgtype\":\"mpnews\"}";
 					String requestUrl=message_preview_url.replace("ACCESS_TOKEN", accessToken);
@@ -292,7 +296,7 @@ public class WeixinNewstemplateController extends BaseController{
 					String media_id=newstemplate.getMediaId();
 					//获取accessToken
 					String jwid=request.getSession().getAttribute("jwid").toString();
-					String accessToken= WeiXinHttpUtil.getRedisWeixinToken(jwid);
+					String accessToken= baseApiJwidService.queryAccessTokenByJwid(jwid);
 					//调用创建标签接口
 					//String name = "{\"filter\":\""+openid+"\",\"mpnews\":{\"media_id\":\""+media_id+"\"},\"msgtype\":\"mpnews\"}";
 					String name = "{\"filter\":{\"is_to_all\":true,\"tag_id\":2},\"mpnews\":{\"media_id\":\"" + media_id + "\"},\"msgtype\":\"mpnews\",\"send_ignore_reprint\":0}";

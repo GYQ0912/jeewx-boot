@@ -11,8 +11,10 @@ import org.jeecgframework.p3.core.util.oConvertUtils;
 import org.jeewx.api.core.common.WxstoreUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.jeecg.p3.baseApi.service.BaseApiJwidService;
 import com.jeecg.p3.baseApi.service.BaseApiWeixinService;
 import com.jeecg.p3.baseApi.vo.TmessageSendVO;
 
@@ -22,6 +24,9 @@ public class BaseApiWeixinServiceImpl implements BaseApiWeixinService {
 public final static Logger log = LoggerFactory.getLogger(BaseApiWeixinServiceImpl.class);
 	
 	private static String SEND_TEMPLATE_MSG_URL = "https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=ACCESS_TOKEN";
+	
+	@Autowired
+	private BaseApiJwidService baseApiJwidService; 
 	
 	/**
 	 * 调用发送模板消息接口
@@ -71,7 +76,7 @@ public final static Logger log = LoggerFactory.getLogger(BaseApiWeixinServiceImp
 		if(oConvertUtils.isNotEmpty(tmessageSendVO.getPagePath())) {
 			param.put("pagepath", tmessageSendVO.getPagePath());
 		}
-		String accessToken = WeiXinHttpUtil.getRedisWeixinToken(tmessageSendVO.getJwid());
+		String accessToken = baseApiJwidService.queryAccessTokenByJwid(tmessageSendVO.getJwid());
 		if (accessToken != null) {
 			String requestUrl = SEND_TEMPLATE_MSG_URL;
 			requestUrl = requestUrl.replace("ACCESS_TOKEN", accessToken);

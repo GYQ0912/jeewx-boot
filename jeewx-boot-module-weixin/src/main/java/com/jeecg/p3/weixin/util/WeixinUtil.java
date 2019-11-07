@@ -265,5 +265,10 @@ public class WeixinUtil {
   		}
   		return jsonobject;
   	}
-  //update-end--Author:zhangweijian  Date: 20180802 for：上传图文素材到微信
+    //update-end--Author:zhangweijian  Date: 20180802 for：上传图文素材到微信
+    
+    public static String getAccessToken() {
+    	
+    	return "";
+    }
 }

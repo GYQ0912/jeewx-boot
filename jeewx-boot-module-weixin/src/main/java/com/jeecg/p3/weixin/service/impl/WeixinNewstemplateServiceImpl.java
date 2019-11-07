@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import net.sf.json.JSONObject;
 
+import org.apache.ibatis.annotations.Param;
 import org.jeecgframework.p3.core.util.PropertiesUtil;
 import org.jeecgframework.p3.core.util.WeiXinHttpUtil;
 import org.jeecgframework.p3.core.utils.common.PageList;
@@ -23,12 +24,14 @@ import org.jeecgframework.p3.core.utils.common.PageQueryWrapper;
 import org.jeecgframework.p3.core.utils.common.Pagenation;
 import org.jeewx.api.wxsendmsg.JwSendMessageAPI;
 import org.jeewx.api.wxsendmsg.util.ReadImgUrls;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
+import com.jeecg.p3.baseApi.service.BaseApiJwidService;
 import com.jeecg.p3.commonweixin.def.CommonWeixinProperties;
 import com.jeecg.p3.weixin.dao.WeixinNewsitemDao;
 import com.jeecg.p3.weixin.dao.WeixinNewstemplateDao;
@@ -57,7 +60,8 @@ public class WeixinNewstemplateServiceImpl implements WeixinNewstemplateService 
 	private WeixinNewstemplateDao weixinNewstemplateDao;
 	@Resource
 	private WeixinNewsitemDao weixinNewsitemDao;
-	
+	@Autowired
+	private BaseApiJwidService baseApiJwidService; 
 	//上传图文消息素材
 	public final static String upload_group_news_url = "https://api.weixin.qq.com/cgi-bin/media/uploadnews?access_token=ACCESS_TOKEN";
 	@Override
@@ -190,7 +194,7 @@ public class WeixinNewstemplateServiceImpl implements WeixinNewstemplateService 
 	private String updateContent(String content, String jwid) {
 		if (content != null) {
 			//获取token方法替换
-			String accessToken = WeiXinHttpUtil.getRedisWeixinToken(jwid);
+			String accessToken = baseApiJwidService.queryAccessTokenByJwid(jwid);
 			//String baseImageUrl = ResourceUtil.getWebProjectPath();
 			//update-begin--Author:zhangweijian  Date: 20180831 for：接口方法替换
 			HttpServletRequest request =((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getRequest();
@@ -229,7 +233,7 @@ public class WeixinNewstemplateServiceImpl implements WeixinNewstemplateService 
 		String media_id="";
 		HttpServletRequest request =((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getRequest();
 		//获取token方法替换
-		String accessToken = WeiXinHttpUtil.getRedisWeixinToken(jwid);
+		String accessToken = baseApiJwidService.queryAccessTokenByJwid(jwid);
 		//String url=request.getSession().getServletContext().getRealPath("/")+imagePath;
 		String url = upLoadPath + imagePath;
 		JSONObject jsonObj=WeixinUtil.sendMedia("image", url, accessToken);
@@ -252,7 +256,7 @@ public class WeixinNewstemplateServiceImpl implements WeixinNewstemplateService 
 	//上传图文素材
 	private JSONObject uploadGroupNewsTemplate(UploadGraphic graphic, String jwid) {
 		//获取token方法替换
-		String accessToken = WeiXinHttpUtil.getRedisWeixinToken(jwid);
+		String accessToken = baseApiJwidService.queryAccessTokenByJwid(jwid);
 		if(accessToken!=null){
 			String requestUrl = upload_group_news_url.replace("ACCESS_TOKEN", accessToken);
 			JSONObject obj = JSONObject.fromObject(graphic);

@@ -30,7 +30,7 @@ public class WeiXinQrcodeUtil {
 	 */
 	public static String getTemporaryQrcode(String jwid, String sceneId, Integer expireSeconds) {
 		//TODO 获取accessTolken
-		String accessToken=WeiXinHttpUtil.getRedisWeixinToken(jwid);
+		String accessToken = "";//WeiXinHttpUtil.getRedisWeixinToken(jwid);
 		
 		try {
 			logger.info("生成带参数二维码请求参数：jwid={},sceneId={},expireSeconds={}.",new Object[]{jwid,sceneId,expireSeconds});

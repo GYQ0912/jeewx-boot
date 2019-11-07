@@ -30,6 +30,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.jeecg.p3.baseApi.service.BaseApiJwidService;
 import com.jeecg.p3.commonweixin.entity.MyJwWebJwid;
 import com.jeecg.p3.commonweixin.util.Constants;
 import com.jeecg.p3.system.service.MyJwWebJwidService;
@@ -56,6 +57,9 @@ public class WeixinMenuController extends BaseController{
   private WeixinMenuService weixinMenuService;
   @Autowired
   private MyJwWebJwidService myJwWebJwidService;
+  @Autowired
+  private BaseApiJwidService baseApiJwidService; 
+  
 /**
   * 列表页面
   * @return
@@ -301,7 +305,7 @@ public AjaxJson doDelete(@RequestParam(required = true, value = "id" ) String id
 		queryFristMenu.setJwid(jwid);
 		List<WeixinMenu> firstMenus=weixinMenuService.queryMenusByJwid(queryFristMenu);
 		//获取token方法替换
-		String accessToken =WeiXinHttpUtil.getRedisWeixinToken(jwid);
+		String accessToken = baseApiJwidService.queryAccessTokenByJwid(jwid);
 		if(oConvertUtils.isEmpty(accessToken)){
 			j.setSuccess(false);
 			j.setMsg("未获取到公众号accessToken");

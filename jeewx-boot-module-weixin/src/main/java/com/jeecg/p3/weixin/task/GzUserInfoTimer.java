@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.jeecg.p3.baseApi.service.BaseApiJwidService;
 import com.jeecg.p3.commonweixin.entity.MyJwWebJwid;
 import com.jeecg.p3.system.service.MyJwWebJwidService;
 import com.jeecg.p3.weixin.entity.WeixinGzuser;
@@ -33,6 +34,8 @@ public class GzUserInfoTimer {
 	private MyJwWebJwidService myJwWebJwidService;
 	@Autowired
 	private WeixinGzuserService weixinGzuserService;
+	@Autowired
+	private BaseApiJwidService baseApiJwidService; 
 	
 	/**
     * 这个定时任务的主要作用是根据用户用户openId微信服务器活动用户基本信息并更新，因为这个接口的活动速度较慢，所以没有和获得列表的接口整合在一块
@@ -59,7 +62,7 @@ public class GzUserInfoTimer {
 			//防止token失效，重新获取
 			myJwWebJwid = myJwWebJwidService.queryByJwid(myJwWebJwid.getJwid());
 			//update-begin-zhangweijian-----Date:20180809---for:accessToken获取修改
-			String accessToken=WeiXinHttpUtil.getRedisWeixinToken(myJwWebJwid.getJwid());
+			String accessToken = baseApiJwidService.queryAccessTokenByJwid(myJwWebJwid.getJwid());
 			//update-end-zhangweijian-----Date:20180809---for:accessToken获取修改
 			int count = 0;
 			int pageNo = 0;

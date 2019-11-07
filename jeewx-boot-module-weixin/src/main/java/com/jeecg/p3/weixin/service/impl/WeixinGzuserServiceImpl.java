@@ -21,9 +21,12 @@ import org.jeecgframework.p3.core.utils.common.Pagenation;
 import org.jeecgframework.p3.core.utils.common.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.jeecg.p3.baseApi.service.BaseApiJwidService;
 import com.jeecg.p3.weixin.dao.WeixinGzuserDao;
+import com.jeecg.p3.weixin.dao.WeixinNewstemplateDao;
 import com.jeecg.p3.weixin.dao.WeixinTagDao;
 import com.jeecg.p3.weixin.entity.WeixinGzuser;
 import com.jeecg.p3.weixin.entity.WeixinTag;
@@ -56,6 +59,10 @@ public class WeixinGzuserServiceImpl implements WeixinGzuserService {
 	private WeixinGzuserDao weixinGzuserDao;
 	@Resource
 	private WeixinTagDao weixinTagDao;
+	@Resource
+	private WeixinNewstemplateDao weixinNewstemplateDao;
+	@Autowired
+	private BaseApiJwidService baseApiJwidService; 
 
 	@Override
 	public void doAdd(WeixinGzuser weixinGzuser) {
@@ -358,7 +365,7 @@ public class WeixinGzuserServiceImpl implements WeixinGzuserService {
 			try {
 				returnMsg = "粉丝同步成功，同步粉丝条数：";
 				//获取token
-				String accessToken=WeiXinHttpUtil.getRedisWeixinToken(jwid);
+				String accessToken = baseApiJwidService.queryAccessTokenByJwid(jwid);
 				if(StringUtils.isNotEmpty(accessToken)){
 					//多线程处理数据
 					ThreadPoolExecutor executor = new ThreadPoolExecutor(10,10,1,TimeUnit.SECONDS,new LinkedBlockingQueue());  

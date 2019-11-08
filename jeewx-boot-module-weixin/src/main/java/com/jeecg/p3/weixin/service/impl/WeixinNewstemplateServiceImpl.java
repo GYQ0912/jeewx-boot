@@ -1,11 +1,14 @@
 package com.jeecg.p3.weixin.service.impl;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -207,13 +210,20 @@ public class WeixinNewstemplateServiceImpl implements WeixinNewstemplateService 
 						continue;
 					}
 					String relativeImgurl =url.replace(CommonWeixinProperties.domain,"");
-					String tempimgurl ="";
+					String src = null;
+					try {
+						src = download(url);
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					/*String tempimgurl ="";
 					if(relativeImgurl.startsWith("http")){
 						tempimgurl = relativeImgurl;
 					}else{
 						tempimgurl = baseImageUrl + relativeImgurl;
-					}
-					JSONObject retObj=JwSendMessageAPI.uploadImgReturnObj(accessToken, tempimgurl);
+					}*/
+					JSONObject retObj=JwSendMessageAPI.uploadImgReturnObj(accessToken, src);
 					if(null!=retObj&&retObj.containsKey("url")){
 						String newUrl=retObj.getString("url");
 						content = content.replace(url, newUrl);
@@ -227,6 +237,40 @@ public class WeixinNewstemplateServiceImpl implements WeixinNewstemplateService 
 		
 		return content;
 	}
+	
+	public String download(String urlString) throws Exception {  
+		File file=new File(urlString);
+		String savePath="D:/wxpicture/";
+		String filename=file.getName();
+        // 构造URL  
+        URL url = new URL(urlString);  
+        // 打开连接  
+        URLConnection con = url.openConnection();  
+        //设置请求超时为5s  
+        con.setConnectTimeout(5*1000);  
+        con.setRequestProperty("User-Agent", "Mozilla/4.0 (compatible; MSIE 5.0; Windows NT; DigExt)");
+        // 输入流  
+        InputStream is = con.getInputStream();  
+      
+        // 1K的数据缓冲  
+        byte[] bs = new byte[1024];  
+        // 读取到的数据长度  
+        int len;  
+        // 输出的文件流  
+       File sf=new File(savePath);  
+       if(!sf.exists()){  
+           sf.mkdirs();  
+       }  
+       OutputStream os = new FileOutputStream(sf.getPath()+"\\"+filename);  
+        // 开始读取  
+        while ((len = is.read(bs)) != -1) {  
+          os.write(bs, 0, len);  
+        }  
+        // 完毕，关闭所有链接  
+        os.close();  
+        is.close();  
+        return savePath+filename;
+    }
 	
 	//图片上传微信服务器
 	private String uploadPhoto(String imagePath, String jwid) {

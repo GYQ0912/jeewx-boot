@@ -66,4 +66,8 @@ public class CmsController extends BaseController {
 		     velocityContext.put(entry.getKey(), valueStr);
 		}   
 	}
+	
+	public static void main(String[] args) {
+		
+	}
 }

@@ -31,6 +31,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSONObject;
+import com.jeecg.p3.baseApi.service.BaseApiJwidService;
 import com.jeecg.p3.goldeneggs.service.WxActGoldeneggsService;
 import com.jeecg.p3.goldeneggs.verify.entity.WxActGoldeneggsVerify;
 import com.jeecg.p3.goldeneggs.verify.service.WxActGoldeneggsVerifyService;
@@ -50,6 +51,8 @@ public class WxActGoldeneggsVerifyController extends BaseController{
   private WxActGoldeneggsVerifyService wxActGoldeneggsVerifyService;
   @Autowired
   private WxActGoldeneggsService wxActGoldeneggsService;
+  @Autowired
+  private BaseApiJwidService baseApiJwidService; 
   
 /**
   * 列表页面
@@ -222,7 +225,7 @@ public AjaxJson getScanCodeList(@RequestParam String ewmCode,HttpServletResponse
 		}
 		if(openid!=null){
 			map.put("openid", openid);
-			JSONObject userobj = WeiXinHttpUtil.getGzUserInfo(openid, defaultJwid);
+			JSONObject userobj = baseApiJwidService.getGzUserInfo(openid, defaultJwid);
 			if (userobj != null && userobj.containsKey("nickname")) {
 				nickname = userobj.getString("nickname");
 				map.put("nickname", nickname);

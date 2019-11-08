@@ -19,6 +19,7 @@ target/
 
 # temp ignore
 *.log
+*.html
 *.cache
 *.diff
 *.patch
@@ -27,6 +28,13 @@ target/
 *.properties~
 *.xml~
 
+<<<<<<< HEAD
+=======
+logs/
+*.html
+*.log
+
+>>>>>>> branch 'master' of https://github.com/GYQ0912/jeewx-boot.git
 # system ignore
 .DS_Store
 Thumbs.db

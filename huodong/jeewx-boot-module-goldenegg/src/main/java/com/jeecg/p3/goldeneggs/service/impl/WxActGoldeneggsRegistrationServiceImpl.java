@@ -25,6 +25,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.alibaba.fastjson.JSONObject;
+import com.jeecg.p3.baseApi.service.BaseApiJwidService;
 import com.jeecg.p3.goldeneggs.dao.WxActGoldeneggsRecordDao;
 import com.jeecg.p3.goldeneggs.dao.WxActGoldeneggsRegistrationDao;
 import com.jeecg.p3.goldeneggs.dao.WxActGoldeneggsShareRecordDao;
@@ -66,6 +67,8 @@ public class WxActGoldeneggsRegistrationServiceImpl implements
 	private WxActGoldeneggsAwardsService wxActGoldeneggsAwardsService;
 	@Autowired
 	private WxActGoldeneggsRecordService wxActGoldeneggsRecordService;
+	@Autowired
+	private BaseApiJwidService baseApiJwidService; 
 
 	@Override
 	public void doAdd(WxActGoldeneggsRegistration wxActGoldeneggsRegistration) {
@@ -217,7 +220,7 @@ public class WxActGoldeneggsRegistrationServiceImpl implements
 		}
 		// 插入中奖记录表的数据
 		WxActGoldeneggsRecord wxActGoldeneggsRecord = new WxActGoldeneggsRecord();
-		JSONObject userobj = WeiXinHttpUtil.getGzUserInfo(openid, jwid);
+		JSONObject userobj = baseApiJwidService.getGzUserInfo(openid, jwid);
 		if (userobj != null && userobj.containsKey("nickname")) {
 			nickname = userobj.getString("nickname");
 		}
@@ -406,7 +409,7 @@ public class WxActGoldeneggsRegistrationServiceImpl implements
 		
 		// 插入中奖记录表的数据
 		WxActGoldeneggsRecord wxActGoldeneggsRecord = new WxActGoldeneggsRecord();
-		JSONObject userobj = WeiXinHttpUtil.getGzUserInfo(openid, jwid);
+		JSONObject userobj = baseApiJwidService.getGzUserInfo(openid, jwid);
 		if (userobj != null && userobj.containsKey("nickname")) {
 			nickname = userobj.getString("nickname");
 		}
@@ -556,7 +559,7 @@ public class WxActGoldeneggsRegistrationServiceImpl implements
 		j.setAttributes(mm);
 		// 插入中奖记录表的数据
 		WxActGoldeneggsRecord wxActGoldeneggsRecord = new WxActGoldeneggsRecord();
-		JSONObject userobj = WeiXinHttpUtil.getGzUserInfo(openid, jwid);
+		JSONObject userobj = baseApiJwidService.getGzUserInfo(openid, jwid);
 		if (userobj != null && userobj.containsKey("nickname")) {
 			nickname = userobj.getString("nickname");
 		}

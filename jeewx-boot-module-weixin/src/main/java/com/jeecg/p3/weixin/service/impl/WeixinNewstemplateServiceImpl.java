@@ -312,3 +312,4 @@ public class WeixinNewstemplateServiceImpl implements WeixinNewstemplateService 
 	//update-begin--Author:zhangweijian  Date: 20180802 for：上传图文素材到微信
 	
 }
+

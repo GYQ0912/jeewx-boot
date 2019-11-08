@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSONArray;
+import com.jeecg.p3.baseApi.service.BaseApiJwidService;
 import com.jeecg.p3.cms.def.CmsProperties;
 import com.jeecg.p3.cms.entity.CmsAd;
 import com.jeecg.p3.cms.entity.CmsArticle;
@@ -52,6 +53,8 @@ public class ApiCmsController extends BaseController{
 	private CmsMenuService cmsMenuService;
 	@Autowired
 	private CmsSiteService cmsSiteService;
+	@Autowired
+	private BaseApiJwidService baseApiJwidService; 
 	
 	/**
 	 * 返回栏目数据
@@ -215,7 +218,7 @@ public class ApiCmsController extends BaseController{
 			attributes.put("jwid", cmsSite.getJwid());
 			attributes.put("appId", cmsSite.getAppid());
 			attributes.put("mainId", mainId);
-			String signature = WeiXinHttpUtil.getRedisSignature(request, cmsSite.getJwid());
+			String signature = baseApiJwidService.getRedisSignature(request, cmsSite.getJwid());
 			attributes.put("signature",signature);
 			
 			String articleId = request.getParameter("articlesId");

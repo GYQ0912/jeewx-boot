@@ -18,6 +18,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.jeecg.p3.baseApi.service.BaseApiJwidService;
 import com.jeecg.p3.commonweixin.entity.MyJwWebJwid;
 import com.jeecg.p3.system.service.MyJwWebJwidService;
 import com.jeecg.p3.weixin.entity.WeixinNewsitem;
@@ -42,6 +43,8 @@ public class WeixinNewsController extends BaseController{
   private WeixinNewstemplateService weixinNewstemplateService;
   @Autowired
   private MyJwWebJwidService myJwWebJwidService;
+  @Autowired
+  private BaseApiJwidService baseApiJwidService; 
   
   /**
 	 * 转向微信文章信息页面
@@ -75,7 +78,7 @@ public class WeixinNewsController extends BaseController{
 		velocityContext.put("appid", myJwWeb.getWeixinAppId());
 		velocityContext.put("nonceStr", WeiXinHttpUtil.nonceStr);
 		velocityContext.put("timestamp", WeiXinHttpUtil.timestamp);
-		velocityContext.put("signature",WeiXinHttpUtil.getRedisSignature(request, jwid));
+		velocityContext.put("signature",baseApiJwidService.getRedisSignature(request, jwid));
 		String viewName = "weixin/back/newsContent.vm";
 		ViewVelocity.view(request,response,viewName,velocityContext);
 	}

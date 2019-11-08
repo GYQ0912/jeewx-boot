@@ -231,7 +231,7 @@ public class NewGoldeneggController {
 				velocityContext.put("appId", appid);// 必填，公众号的唯一标识
 				velocityContext.put("nonceStr", WeiXinHttpUtil.nonceStr);// 必填，生成签名的随机串
 				velocityContext.put("timestamp", WeiXinHttpUtil.timestamp);// 必填，生成签名的时间戳
-				velocityContext.put("signature", WeiXinHttpUtil.getRedisSignature(request, jwid));// 必填，签名，见附录1
+				velocityContext.put("signature", baseApiJwidService.getRedisSignature(request, jwid));// 必填，签名，见附录1
 				velocityContext.put("doMain", "/upload/img/goldeneggs");
 				velocityContext.put("huodong_bottom_copyright", baseApiSystemService.getHuodongLogoBottomCopyright(wxActGoldeneggs.getCreateBy()));
 				String qrcodeUrl = baseApiJwidService.getQrcodeUrl(weixinDto.getJwid());
@@ -668,7 +668,7 @@ public class NewGoldeneggController {
 		Map<String, String> map = new HashMap<String, String>();
 		try {
 			if (weixinDto.getOpenid() != null) {
-				JSONObject jsonObj = WeiXinHttpUtil.getGzUserInfo(weixinDto.getOpenid(), weixinDto.getJwid());
+				JSONObject jsonObj = baseApiJwidService.getGzUserInfo(weixinDto.getOpenid(), weixinDto.getJwid());
 				LOG.info("setWeixinDto Openid getGzUserInfo jsonObj={}",new Object[] { jsonObj });
 				if (jsonObj != null && jsonObj.containsKey("subscribe")) {
 					weixinDto.setSubscribe(jsonObj.getString("subscribe"));
@@ -687,7 +687,7 @@ public class NewGoldeneggController {
 				}
 			}
 			if (StringUtils.isNotEmpty(weixinDto.getFxOpenid())) {
-				JSONObject jsonObj = WeiXinHttpUtil.getGzUserInfo(
+				JSONObject jsonObj = baseApiJwidService.getGzUserInfo(
 						weixinDto.getFxOpenid(), weixinDto.getJwid());
 				LOG.info("setWeixinDto FxOpenid getGzUserInfo jsonObj={}",
 						new Object[] { jsonObj });

@@ -3,6 +3,7 @@ package com.jeecg.p3.baseApi.dao;
 import org.apache.ibatis.annotations.Param;
 
 import com.jeecg.p3.baseApi.vo.OpenAccountVo;
+import com.jeecg.p3.baseApi.vo.WinxinJwWebJwid;
 
 /**
  * 描述：</b>JwWebJwidDao<br>
@@ -40,5 +41,12 @@ public interface BaseApiJwidDao{
 	 * @return
 	 */
 	public String queryAccessTokenByJwid(@Param("jwid") String jwid);
+	
+	/**
+	 * 通过公众号id获得公众号对象
+	 * @param jwid
+	 * @return
+	 */
+	public WinxinJwWebJwid queryByJwid(@Param("jwid") String jwid);
 }
 

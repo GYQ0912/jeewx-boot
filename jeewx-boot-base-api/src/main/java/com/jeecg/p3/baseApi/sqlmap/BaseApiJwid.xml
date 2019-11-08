@@ -46,4 +46,40 @@
 		WHERE 
 			jwj.jwid = #{jwid}
 	</select>
+	
+	<!--
+	方法名称: queryByJwid
+	调用路径: com.jeecg.p3.system.entity.MyJwWebJwid.queryByJwid
+	开发信息: 
+	处理信息: 根据jwid查询信息
+	-->
+	<select id="queryByJwid" parameterType="Object" resultType="com.jeecg.p3.baseApi.vo.WinxinJwWebJwid">
+	    SELECT 
+             jwj.id                            /*  */ 
+            ,jwj.jwid                          /* 公众号 */ 
+            ,jwj.name                          /* 名称 */ 
+            ,jwj.weixin_number				 /* 微信号 */
+            ,jwj.weixin_appid					 /* 微信AppId */
+            ,jwj.weixin_appsecret				 /* 微信AppSecret */
+            ,jwj.account_type					 /* 公众号类型 */
+            ,jwj.auth_status					 /* 是否认证 0不认证 1认证 */
+            ,jwj.access_token					 /* AccessToken */
+            ,jwj.token_gettime				 /* token获取时间 */
+            ,jwj.apiticket					 /* api凭证*/
+            ,jwj.apiticket_gettime             /* apiticket获取时间*/
+            ,jwj.jsapiticket					 /* jsapiticket*/
+            ,jwj.jsapiticket_gettime 			 /* jsapiticket获取时间*/
+            ,jwj.auth_type                     /*类型：1手动授权，2扫码授权*/
+            ,jwj.business_info                 /* 功能的开通状况：1代表已开通*/
+            ,jwj.func_info                     /* 公众号授权给开发者的权限集*/
+            ,jwj.nick_name                     /* 授权方昵称*/
+            ,jwj.headimgurl                    /* 授权方头像*/
+            ,jwj.authorization_info            /* 授权信息*/
+            ,jwj.authorizer_refresh_token      /* 刷新token*/
+            ,jwj.token						 /* 令牌 */
+            ,jwj.qrcodeimg                     /* 二维码图片*/
+            ,jwj.authorization_status			 /* 授权状态 */
+		FROM   	 jw_web_jwid      AS jwj      /*  */ 
+		WHERE jwj.jwid = #{jwid}
+	</select>
 </mapper>

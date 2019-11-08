@@ -6,12 +6,24 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLConnection;
+import java.util.HashMap;
+import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.commons.codec.binary.Base64;
+import org.apache.commons.codec.digest.DigestUtils;
+import org.apache.commons.lang.StringUtil;
+import org.jeecgframework.p3.core.util.HttpUtils;
+import org.jeecgframework.p3.core.util.WeiXinHttpUtil;
 import org.jeecgframework.p3.core.utils.common.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.alibaba.fastjson.JSONObject;
+import com.jeecg.p3.redis.JedisPoolUtil;
+import com.jeecg.p3.weixinInterface.entity.WeixinAccount;
 
 /**
  * 微信接口调用
@@ -112,4 +124,5 @@ public class WebAuthWeixinApi{
 		}
 		return jsonObject;
 	}
+
 }

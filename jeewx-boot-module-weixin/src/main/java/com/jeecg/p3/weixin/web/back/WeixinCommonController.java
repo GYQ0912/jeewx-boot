@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.jeecg.p3.baseApi.service.BaseApiJwidService;
 import com.jeecg.p3.commonweixin.entity.MyJwWebJwid;
 import com.jeecg.p3.system.service.MyJwWebJwidService;
 import com.jeecg.p3.weixin.entity.WeixinNewsitem;
@@ -40,6 +41,8 @@ public class WeixinCommonController {
 	private WeixinNewsitemService weixinNewsitemService;
 	@Autowired
 	private MyJwWebJwidService myJwWebJwidService;
+	@Autowired
+	private BaseApiJwidService baseApiJwidService; 
 	  
 	/**
 	 * @author zhangweijian
@@ -170,7 +173,7 @@ public class WeixinCommonController {
 		velocityContext.put("appid", myJwWeb.getWeixinAppId());
 		velocityContext.put("nonceStr", WeiXinHttpUtil.nonceStr);
 		velocityContext.put("timestamp", WeiXinHttpUtil.timestamp);
-		velocityContext.put("signature",WeiXinHttpUtil.getRedisSignature(request, jwid));
+		velocityContext.put("signature",baseApiJwidService.getRedisSignature(request, jwid));
 		String viewName = "weixin/back/newsContent.vm";
 		ViewVelocity.view(request,response,viewName,velocityContext);
 	}

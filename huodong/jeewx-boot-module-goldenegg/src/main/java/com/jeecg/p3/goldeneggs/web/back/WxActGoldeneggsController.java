@@ -1,5 +1,6 @@
 package com.jeecg.p3.goldeneggs.web.back;
 
+import com.jeecg.p3.baseApi.service.BaseApiJwidService;
 import com.jeecg.p3.baseApi.util.WxActReplaceUtil;
 import com.jeecg.p3.goldeneggs.def.SystemGoldProperties;
 import com.jeecg.p3.goldeneggs.entity.WxActGoldeneggs;
@@ -47,6 +48,10 @@ public class WxActGoldeneggsController extends BaseController{
   private WxActGoldeneggsPrizesService wxActGoldeneggsPrizesService;
   @Autowired
   private WxActGoldeneggsRegistrationService wxActGoldeneggsRegistrationService;
+
+  @Autowired
+  private BaseApiJwidService baseApiJwidService; 
+  
   private static String defaultJwid = SystemGoldProperties.defaultJwid;
   private static String domain = SystemGoldProperties.domain;
 /**
@@ -231,7 +236,7 @@ public AjaxJson getShortUrl(@RequestParam(required = true, value = "id" ) String
 			String hdurl=wxActGoldeneggs.getHdurl();
 			hdurl = hdurl.replace("${domain}", domain);
 			PropertiesUtil properties=new PropertiesUtil("goldeneggs.properties");
-			shortUrl=WeiXinHttpUtil.getShortUrl(hdurl,properties.readProperty("defaultJwid"));
+			shortUrl=baseApiJwidService.getShortUrl(hdurl,properties.readProperty("defaultJwid"));
 			if(StringUtils.isEmpty(shortUrl)){
 				shortUrl=hdurl;
 			}else{

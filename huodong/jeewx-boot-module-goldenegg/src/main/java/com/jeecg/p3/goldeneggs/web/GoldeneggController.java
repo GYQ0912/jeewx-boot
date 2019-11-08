@@ -63,6 +63,8 @@ public class GoldeneggController {
 	private BaseApiJwidService baseApiJwidService;
 	@Autowired
 	private BaseApiSystemService baseApiSystemService;
+
+	
 	/**
 	 * 砸金蛋首页
 	 * 
@@ -106,7 +108,7 @@ public class GoldeneggController {
 			//--update-begin---author:huangqingquan---date:20161125-----for:是否关注可参加---------------
 			if("1".equals(queryById.getFoucsUserCanJoin())){//如果活动设置了需要关注用户才能参加	
 				velocityContext.put("qrcodeUrl", baseApiJwidService.getQrcodeUrl(jwid));
-				JSONObject userobj = WeiXinHttpUtil.getGzUserInfo(weixinDto.getOpenid(),weixinDto.getJwid());
+				JSONObject userobj = baseApiJwidService.getGzUserInfo(weixinDto.getOpenid(),weixinDto.getJwid());
 				if(userobj!=null&&userobj.containsKey("subscribe")){
 					if(!"1".equals(userobj.getString("subscribe"))){
 						velocityContext.put("subscribeFlage", "1");
@@ -426,7 +428,7 @@ public class GoldeneggController {
 		}
 		velocityContext.put("nonceStr", WeiXinHttpUtil.nonceStr);// 必填，生成签名的随机串
 		velocityContext.put("timestamp", WeiXinHttpUtil.timestamp);// 必填，生成签名的时间戳
-		velocityContext.put("signature",WeiXinHttpUtil.getRedisSignature(request, jwid));// 必填，签名，见附录1
+		velocityContext.put("signature",baseApiJwidService.getRedisSignature(request, jwid));// 必填，签名，见附录1
 		velocityContext.put("queryList", queryByCodes);
 		velocityContext.put("goldeneggs", wxActGoldeneggs);
 		velocityContext.put("weixinDto", weixinDto);

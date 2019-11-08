@@ -26,9 +26,10 @@ target/
 *.java~
 *.properties~
 *.xml~
-logs/*.html
+
 logs/
-/logs/
+*.html
+*.log
 
 # system ignore
 .DS_Store

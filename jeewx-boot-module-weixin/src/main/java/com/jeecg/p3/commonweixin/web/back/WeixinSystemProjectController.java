@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.jeecg.p3.baseApi.service.BaseApiJwidService;
 import com.jeecg.p3.commonweixin.def.CommonWeixinProperties;
 import com.jeecg.p3.commonweixin.entity.WeixinSystemProject;
 import com.jeecg.p3.commonweixin.service.WeixinSystemProjectService;
@@ -35,6 +36,8 @@ import com.jeecg.p3.commonweixin.service.WeixinSystemProjectService;
 public class WeixinSystemProjectController extends BaseController{
 	@Autowired
 	private WeixinSystemProjectService weixinSystemProjectService;
+	@Autowired
+	private BaseApiJwidService baseApiJwidService; 
 	
 	/**
 	 * 查列表
@@ -138,7 +141,7 @@ public class WeixinSystemProjectController extends BaseController{
 				List<Map<String, String>> paramMaps = weixinSystemProjectService.queryAllActByTableName(tableName);
 				for (Map<String, String> param:paramMaps) {
 					try {
-						String shortUrl = WeiXinHttpUtil.getShortUrl(param.get("hdurl"), CommonWeixinProperties.defaultJwid);
+						String shortUrl = baseApiJwidService.getShortUrl(param.get("hdurl"), CommonWeixinProperties.defaultJwid);
 						weixinSystemProjectService.doEditShortByTableName(tableName, param.get("actId"), shortUrl);
 					} catch (Exception e) {
 						e.printStackTrace();

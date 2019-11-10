@@ -123,7 +123,6 @@ public class WeixinNewstemplateServiceImpl implements WeixinNewstemplateService 
 	//@Transactional(rollbackFor = {Exception.class})
 	@Override
 	public String uploadNewstemplate(String id,String jwid) {
-		
 		String message=null;
 		WeixinNewstemplate newsTemplate=weixinNewstemplateDao.get(id);
 		//1.根据id获取当前模板的所有图文

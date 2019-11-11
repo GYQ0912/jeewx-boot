@@ -150,6 +150,90 @@ public class WeixinUtil {
         return jsonObject;
     }
     
+    /**
+     * 发起https请求并获取结果
+     * 
+     * @param requestUrl 请求地址
+     * @param requestMethod 请求方式（GET、POST）
+     * @param outputStr 提交的数据
+     * @return JSONObject(通过JSONObject.get(key)的方式获取json对象的属性值)
+     */
+    public static JSONObject httpRequestNoSSL(String requestUrl, String requestMethod, String outputStr) {
+        JSONObject jsonObject = null;
+        StringBuffer buffer = new StringBuffer();
+        HttpURLConnection httpUrlConn =null;
+        OutputStream outputStream =null;
+        InputStream inputStream =null;
+        InputStreamReader inputStreamReader =null;
+        BufferedReader bufferedReader =null;
+        try {
+                URL url = new URL(requestUrl);
+                httpUrlConn = (HttpURLConnection) url.openConnection();
+
+                httpUrlConn.setDoOutput(true);
+                httpUrlConn.setDoInput(true);
+                httpUrlConn.setUseCaches(false);
+			    //设置网络超时
+                httpUrlConn.setConnectTimeout(60000);  
+                httpUrlConn.setReadTimeout(60000);
+                // 设置请求方式（GET/POST）
+                httpUrlConn.setRequestMethod(requestMethod);
+
+                if ("GET".equalsIgnoreCase(requestMethod))
+                        httpUrlConn.connect();
+
+                // 当有数据需要提交时
+                if (null != outputStr) {
+                        outputStream = httpUrlConn.getOutputStream();
+                        // 注意编码格式，防止中文乱码
+                        outputStream.write(outputStr.getBytes("UTF-8"));
+                        outputStream.close();
+                }
+
+                // 将返回的输入流转换成字符串
+                inputStream = httpUrlConn.getInputStream();
+                inputStreamReader = new InputStreamReader(inputStream, "utf-8");
+                bufferedReader = new BufferedReader(inputStreamReader);
+
+                String str = null;
+                while ((str = bufferedReader.readLine()) != null) {
+                        buffer.append(str);
+                }
+                bufferedReader.close();
+                inputStreamReader.close();
+                // 释放资源
+                inputStream.close();
+                inputStream = null;
+                httpUrlConn.disconnect();
+                jsonObject = JSONObject.fromObject(buffer.toString());
+        } catch (ConnectException ce) {
+        	log.info("Weixin server connection timed out.");
+        } catch (Exception e) {
+        	log.info("https request error:{}"+e.getMessage());
+        }finally{
+        	try {
+				if(inputStreamReader!=null){
+					inputStreamReader.close();
+				}
+				if(inputStream!=null){
+					inputStream.close();
+				}
+				if(bufferedReader!=null){
+					bufferedReader.close();
+				}
+				if(outputStream!=null){
+					outputStream.close();
+				}
+				if(httpUrlConn!=null){
+					httpUrlConn.disconnect();
+				}
+			} catch (Exception e) {
+			}
+        }
+        
+        return jsonObject;
+    }
+    
     /** 
      * 编码 
      * @param bstr 

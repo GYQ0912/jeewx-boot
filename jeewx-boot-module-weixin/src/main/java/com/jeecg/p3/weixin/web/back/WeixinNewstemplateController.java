@@ -288,38 +288,40 @@ public class WeixinNewstemplateController extends BaseController{
 	@RequestMapping(value="doMass",method ={RequestMethod.GET, RequestMethod.POST})
 	@ResponseBody
 	public AjaxJson doMass(@RequestParam(required = true, value = "id") String id,HttpServletRequest request){
-			AjaxJson j = new AjaxJson();
-			try {
-				//获取群发消息信息
-				WeixinNewstemplate newstemplate=weixinNewstemplateService.queryById(id);
-				if(newstemplate!=null){
-					String media_id=newstemplate.getMediaId();
-					//获取accessToken
-					String jwid=request.getSession().getAttribute("jwid").toString();
-					String accessToken= baseApiJwidService.queryAccessTokenByJwid(jwid);
-					//调用创建标签接口
-					//String name = "{\"filter\":\""+openid+"\",\"mpnews\":{\"media_id\":\""+media_id+"\"},\"msgtype\":\"mpnews\"}";
-					String name = "{\"filter\":{\"is_to_all\":true,\"tag_id\":2},\"mpnews\":{\"media_id\":\"" + media_id + "\"},\"msgtype\":\"mpnews\",\"send_ignore_reprint\":0}";
-					
-					
-					String requestUrl=message_mass_url.replace("ACCESS_TOKEN", accessToken);
-					JSONObject jsonObj=WeixinUtil.httpRequest(requestUrl,"POST",name);
-					//接口返回信息
-					//update-begin--Author:zhangweijian  Date: 20180831 for：接口返回信息
-					if(jsonObj.getString("errcode").equals("0")){
-		  				j.setMsg("群发成功！");
-		  			}else{
-		  				String errcode=jsonObj.getString("errcode");
-		  				String msg = WxErrCodeUtil.testErrCode(errcode);
-				    	j.setMsg("群发失败！"+msg);
-		  			}
-					//update-end--Author:zhangweijian  Date: 20180831 for：接口返回信息
-				}
-			} catch (Exception e) {
-				j.setSuccess(false);
+		AjaxJson j = new AjaxJson();
+		try {
+			//获取群发消息信息
+			WeixinNewstemplate newstemplate=weixinNewstemplateService.queryById(id);
+			if(newstemplate!=null){
+				String media_id=newstemplate.getMediaId();
+				//获取accessToken
+				String jwid=request.getSession().getAttribute("jwid").toString();
+				String accessToken= baseApiJwidService.queryAccessTokenByJwid(jwid);
+				//调用创建标签接口
+				//String name = "{\"filter\":\""+openid+"\",\"mpnews\":{\"media_id\":\""+media_id+"\"},\"msgtype\":\"mpnews\"}";
+				String name = "{\"filter\":{\"is_to_all\":true,\"tag_id\":2},\"mpnews\":{\"media_id\":\"" + media_id + "\"},\"msgtype\":\"mpnews\",\"send_ignore_reprint\":0}";
+				
+				
+				String requestUrl=message_mass_url.replace("ACCESS_TOKEN", accessToken);
+				JSONObject jsonObj=WeixinUtil.httpRequest(requestUrl,"POST",name);
+				//接口返回信息
+				//update-begin--Author:zhangweijian  Date: 20180831 for：接口返回信息
+				if(jsonObj.getString("errcode").equals("0")){
+	  				j.setMsg("群发成功！");
+	  			}else{
+	  				String errcode=jsonObj.getString("errcode");
+	  				String msg = WxErrCodeUtil.testErrCode(errcode);
+			    	j.setMsg("群发失败！"+msg);
+	  			}
+				//update-end--Author:zhangweijian  Date: 20180831 for：接口返回信息
 			}
-			return j;
+		} catch (Exception e) {
+			j.setSuccess(false);
+		}
+		return j;
 	}
+	
+	
 
 }
 

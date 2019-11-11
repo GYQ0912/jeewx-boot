@@ -1,11 +1,13 @@
 package com.jeecg.p3.weixin.service.impl;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
@@ -14,6 +16,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.net.ssl.HttpsURLConnection;
 import javax.servlet.http.HttpServletRequest;
 
 import net.sf.json.JSONObject;
@@ -309,6 +312,12 @@ public class WeixinNewstemplateServiceImpl implements WeixinNewstemplateService 
 		return null;
 	}
 	//update-begin--Author:zhangweijian  Date: 20180802 for：上传图文素材到微信
+	
+	public void syncPCNewsTemplate() {
+		JSONObject obj = JSONObject.fromObject(new Object());
+		JSONObject result = WeixinUtil.httpRequestNoSSL("http://localhost:8080/jwxtbg_v3/a/login", "POST", obj.toString());
+		System.out.println("hao");
+	}
 	
 }
 

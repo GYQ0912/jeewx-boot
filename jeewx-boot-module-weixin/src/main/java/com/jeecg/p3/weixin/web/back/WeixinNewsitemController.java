@@ -33,6 +33,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.alibaba.fastjson.JSON;
 import com.jeecg.p3.commonweixin.util.Constants;
 import com.jeecg.p3.weixin.entity.WeixinNewsitem;
 import com.jeecg.p3.weixin.entity.WeixinNewstemplate;
@@ -41,6 +42,9 @@ import com.jeecg.p3.weixin.enums.WeixinSheetTypeEnum;
 import com.jeecg.p3.weixin.service.WeixinNewsitemService;
 import com.jeecg.p3.weixin.service.WeixinNewstemplateService;
 import com.jeecg.p3.weixin.service.WeixinTemplateService;
+
+import cn.hutool.json.JSONArray;
+import cn.hutool.json.JSONObject;
 
  /**
  * 描述：</b>图文模板素材表<br>
@@ -143,6 +147,61 @@ public AjaxJson doAdd(@ModelAttribute WeixinNewsitem weixinNewsitem){
 		j.setMsg("保存失败");
 	}
 	return j;
+}
+
+/**
+ * 跳转到添加页面
+ * @return
+ */
+@ResponseBody
+@RequestMapping(value = "/getJson",method ={RequestMethod.GET, RequestMethod.POST})
+public JSONArray getJson(@ModelAttribute WeixinNewsitem query,HttpServletResponse response,HttpServletRequest request,
+		@RequestParam(required = false, value = "pageNo", defaultValue = "1") int pageNo,
+		@RequestParam(required = false, value = "pageSize", defaultValue = "10") int pageSize)throws Exception{
+	PageQuery<WeixinNewsitem> pageQuery = new PageQuery<WeixinNewsitem>();
+ 	pageQuery.setPageNo(pageNo);
+ 	pageQuery.setPageSize(pageSize);
+ 	VelocityContext velocityContext = new VelocityContext();
+	pageQuery.setQuery(query);
+	velocityContext.put("weixinNewsitem",query);
+	JSONArray jsonArray=weixinNewsitemService.getJson(pageQuery);
+	String jsonString = jsonArray.toString();
+	jsonString.replaceAll("id", "");
+	save(jsonArray);
+	return jsonArray;
+}
+
+public void save(JSONArray jsonArray){
+	for(int i=0;i<jsonArray.size();i++){
+		WeixinNewsitem weixinNewsitem=new WeixinNewsitem();
+		JSONObject job = jsonArray.getJSONObject(i); // 遍历 jsonarray 数组，把每一个对象转成 json 对象
+		System.out.println(job.get("id"));
+		System.out.println(job.get("title")); // 得到 每个对象中的属性值
+
+		//update-begin--Author:zhangweijian  Date: 20180724 for：获取素材最大序号
+		//获取素材最大序号
+		String maxOrderNo=weixinNewsitemService.getMaxOrderNo(weixinNewsitem.getNewstemplateId());
+		if(StringUtil.isEmpty(maxOrderNo)){
+			maxOrderNo="1";
+		}else{
+			maxOrderNo=String.valueOf(Integer.parseInt(maxOrderNo)+1);
+		}
+		weixinNewsitem.setOrderNo(maxOrderNo);
+		//update-end--Author:zhangweijian  Date: 20180724 for：获取素材最大序号
+		weixinNewsitem.setCreateTime(new Date());
+		weixinNewsitem.setAuthor(job.get("author").toString());
+		weixinNewsitem.setContent(job.get("content").toString());
+		weixinNewsitem.setDescription(job.get("description").toString());
+		weixinNewsitem.setExternalUrl(job.get("externalUrl").toString());
+		weixinNewsitem.setImagePath(job.get("imagePath").toString());
+		weixinNewsitem.setNewType(job.get("newType").toString());
+		weixinNewsitem.setShowCoverPic(job.get("showCoverPic").toString());
+		weixinNewsitem.setTitle(job.get("title").toString());
+		weixinNewsitem.setUrl(job.get("url").toString());
+		weixinNewsitem.setFile(job.get("file").toString());
+		weixinNewsitemService.doAdd(weixinNewsitem);
+		}
+	 
 }
 
 /**

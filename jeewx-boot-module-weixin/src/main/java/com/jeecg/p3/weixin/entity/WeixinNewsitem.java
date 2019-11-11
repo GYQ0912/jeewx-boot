@@ -48,5 +48,14 @@ public class WeixinNewsitem implements Entity<String> {
 	}
 	/**	 *原文链接	 */
 	//update-end--Author:zhangweijian  Date: 20180726 for：新增图文类型，外部链接字段	private String url;	/**	 *创建人名称	 */	private String createBy;	/**	 *创建时间	 */	private Date createTime;	/**	 *修改人名称	 */	private String updateBy;	/**	 *修改人时间	 */	private Date updateTime;	public String getId() {	    return this.id;	}	public void setId(String id) {	    this.id=id;	}	public String getNewstemplateId() {	    return this.newstemplateId;	}	public void setNewstemplateId(String newstemplateId) {	    this.newstemplateId=newstemplateId;	}	public String getTitle() {	    return this.title;	}	public void setTitle(String title) {	    this.title=title;	}	public String getAuthor() {	    return this.author;	}	public void setAuthor(String author) {	    this.author=author;	}	public String getImagePath() {	    return this.imagePath;	}	public void setImagePath(String imagePath) {	    this.imagePath=imagePath;	}	public String getContent() {	    return this.content;	}	public void setContent(String content) {	    this.content=content;	}	public String getDescription() {	    return this.description;	}	public void setDescription(String description) {	    this.description=description;	}	public String getOrderNo() {	    return this.orderNo;	}	public void setOrderNo(String orderNo) {	    this.orderNo=orderNo;	}	public String getUrl() {	    return this.url;	}	public void setUrl(String url) {	    this.url=url;	}	public String getCreateBy() {	    return this.createBy;	}	public void setCreateBy(String createBy) {	    this.createBy=createBy;	}	public Date getCreateTime() {	    return this.createTime;	}	public void setCreateTime(Date createTime) {	    this.createTime=createTime;	}	public String getUpdateBy() {	    return this.updateBy;	}	public void setUpdateBy(String updateBy) {	    this.updateBy=updateBy;	}	public Date getUpdateTime() {	    return this.updateTime;	}	public void setUpdateTime(Date updateTime) {	    this.updateTime=updateTime;	}
+	
+	private String file;
+	public String getFile() {
+		return file;
+	}
+	public void setFile(String file) {
+		this.file = file;
+	}
+	
 }
 

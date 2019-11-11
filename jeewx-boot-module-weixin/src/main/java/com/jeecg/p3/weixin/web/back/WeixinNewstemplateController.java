@@ -1,12 +1,19 @@
 package com.jeecg.p3.weixin.web.back;
 
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.OutputStream;
+import java.net.URL;
 import java.util.Date;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.velocity.VelocityContext;
 import org.jeecgframework.p3.core.common.utils.AjaxJson;
+import org.jeecgframework.p3.core.common.utils.StringUtil;
 import org.jeecgframework.p3.core.util.SystemTools;
 import org.jeecgframework.p3.core.util.WeiXinHttpUtil;
 import org.jeecgframework.p3.core.util.plugin.ViewVelocity;
@@ -28,9 +35,11 @@ import com.jeecg.p3.commonweixin.entity.MyJwWebJwid;
 import com.jeecg.p3.commonweixin.util.Constants;
 import com.jeecg.p3.system.service.MyJwWebJwidService;
 import com.jeecg.p3.weixin.entity.WeixinGzuser;
+import com.jeecg.p3.weixin.entity.WeixinNewsitem;
 import com.jeecg.p3.weixin.entity.WeixinNewstemplate;
 import com.jeecg.p3.weixin.enums.WeixinMsgTypeEnum;
 import com.jeecg.p3.weixin.service.WeixinGzuserService;
+import com.jeecg.p3.weixin.service.WeixinNewsitemService;
 import com.jeecg.p3.weixin.service.WeixinNewstemplateService;
 import com.jeecg.p3.weixin.util.WeixinUtil;
 import com.jeecg.p3.weixin.util.WxErrCodeUtil;
@@ -61,6 +70,8 @@ public class WeixinNewstemplateController extends BaseController{
 	private MyJwWebJwidService myJwWebJwidService;
 	@Autowired
 	private BaseApiJwidService baseApiJwidService; 
+	@Autowired
+	private WeixinNewsitemService weixinNewsitemService;
 	
 	/**
 	  * 列表页面
@@ -119,7 +130,6 @@ public class WeixinNewstemplateController extends BaseController{
 		 String viewName = "weixin/back/weixinNewstemplate-add.vm";
 		 ViewVelocity.view(request,response,viewName,velocityContext);
 	}
-	
 	/**
 	 * 保存信息
 	 * @return
@@ -143,6 +153,80 @@ public class WeixinNewstemplateController extends BaseController{
 			j.setMsg("保存失败");
 		}
 		return j;
+	}
+	/**
+	 * 跳转到添加页面 弹框
+	 * @return
+	 */
+	@RequestMapping(value = "/toNewstemplate",method ={RequestMethod.GET, RequestMethod.POST})
+	public void toNewstemplate(@RequestParam String items, HttpServletRequest request,HttpServletResponse response,ModelMap model)throws Exception{
+		VelocityContext velocityContext = new VelocityContext();
+		velocityContext.put("items", items);
+		String viewName = "weixin/back/weixinNewstemplate-add-dialog.vm";
+		ViewVelocity.view(request,response,viewName,velocityContext);
+	}
+	
+	/**
+	 * 创建图文素材
+	 * @return
+	 */
+	@RequestMapping(value = "/saveNewstemplate",method ={RequestMethod.GET, RequestMethod.POST})
+	@ResponseBody
+	public AjaxJson saveNewstemplate(@ModelAttribute WeixinNewstemplate weixinNewstemplate,@RequestParam String items){
+		AjaxJson j = new AjaxJson();
+		try {
+			//update-begin--Author:zhangweijian  Date: 20180807 for：新增默认未上传
+			//'0':未上传；'1'：上传中；'2'：上传成功；'3'：上传失败
+			weixinNewstemplate.setUploadType("0");
+			//update-end--Author:zhangweijian  Date: 20180807 for：新增默认未上传
+			weixinNewstemplate.setTemplateType(WeixinMsgTypeEnum.wx_msg_type_news.getCode());
+			weixinNewstemplate.setCreateTime(new Date());
+			weixinNewstemplateService.doAdd(weixinNewstemplate);
+			String strArr[]= items.split(",");
+			for(int i=0;i<strArr.length;i++){
+				WeixinNewsitem weixinNewsitem=weixinNewsitemService.queryById(strArr[i]);
+				weixinNewsitem.setNewstemplateId(weixinNewstemplate.getId());
+				weixinNewstemplate.setUpdateTime(new Date());
+				weixinNewsitemService.doEdit(weixinNewsitem);
+		    }
+			
+			j.setMsg("保存成功");
+		} catch (Exception e) {
+			log.error(e.getMessage());
+			j.setSuccess(false);
+			j.setMsg("保存失败");
+		}
+		return j;
+	}
+	
+	private static ServletContext servletContext;
+	@RequestMapping(value = "/downLoad",method ={RequestMethod.GET, RequestMethod.POST})
+	public void downLoad(String filePath, HttpServletResponse response, boolean isOnLine) throws Exception {
+		String wordPath=servletContext.getRealPath("/");
+	    File f = new File(filePath);
+	    if (!f.exists()) {
+	      response.sendError(404, "File not found!");
+	      return;
+	    }
+	    BufferedInputStream br = new BufferedInputStream(new FileInputStream(f));
+	    byte[] buf = new byte[1024];
+	    int len = 0;
+	 
+	    response.reset(); // 非常重要
+	    if (isOnLine) { // 在线打开方式
+	      URL u = new URL("file:///" + filePath);
+	      response.setContentType(u.openConnection().getContentType());
+	      response.setHeader("Content-Disposition", "inline; filename=" + f.getName());
+	      // 文件名应该编码成UTF-8
+	    } else { // 纯下载方式
+	      response.setContentType("application/x-msdownload");
+	      response.setHeader("Content-Disposition", "attachment; filename=" + f.getName());
+	    }
+	    OutputStream out = response.getOutputStream();
+	    while ((len = br.read(buf)) > 0)
+	      out.write(buf, 0, len);
+	    br.close();
+	    out.close();
 	}
 	
 	/**
@@ -211,7 +295,7 @@ public class WeixinNewstemplateController extends BaseController{
 		AjaxJson j = new AjaxJson();
 		try {
 			String jwid =request.getSession().getAttribute("jwid").toString();
-			String message=weixinNewstemplateService.uploadNewstemplate(id,jwid);
+			String message=weixinNewstemplateService.uploadNewstemplate(id,jwid,request);
 			j.setMsg(message);
 			j.setSuccess(true);
 		} catch (Exception e) {

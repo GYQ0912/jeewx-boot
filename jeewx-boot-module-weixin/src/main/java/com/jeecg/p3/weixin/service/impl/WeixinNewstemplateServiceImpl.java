@@ -122,7 +122,7 @@ public class WeixinNewstemplateServiceImpl implements WeixinNewstemplateService 
 	//上传图文素材
 	//@Transactional(rollbackFor = {Exception.class})
 	@Override
-	public String uploadNewstemplate(String id,String jwid) {
+	public String uploadNewstemplate(String id,String jwid,HttpServletRequest request) {
 		
 		String message=null;
 		WeixinNewstemplate newsTemplate=weixinNewstemplateDao.get(id);
@@ -145,7 +145,20 @@ public class WeixinNewstemplateServiceImpl implements WeixinNewstemplateService 
 					baseGraphic.setAuthor(newsItem.getAuthor());
 					baseGraphic.setTitle(newsItem.getTitle());
 					baseGraphic.setContent_source_url(newsItem.getUrl());
-					baseGraphic.setContent(this.updateContent(newsItem.getContent(),jwid));
+					/*2.得到登录的计算机域名，如果没有域名就得到IP 
+					request.getRemoteHost();
+
+					3.得到登录计算机的IP 
+					request.getRemoteAddr();*/
+					String path = request.getContextPath(); 
+					String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+					String strArr[]= newsItem.getFile().split(",");
+					StringBuffer sb=new StringBuffer();
+					for(int j=0;j<strArr.length;j++){
+						String filePath="<a href='"+basePath+"weixin/back/weixinNewstemplate/downLoad?filePath="+strArr[j]+"' >外网项目实施进度计划表.docx</a>";
+						sb.append(filePath);
+				    }
+					baseGraphic.setContent(this.updateContent(newsItem.getContent(),jwid)+sb);
 					baseGraphic.setDigest(newsItem.getDescription());
 					//update-begin--Author:zhangweijian Date:20181016 for：传入封面图是否展示参数
 					//是否显示封面图，1为显示，0为不显示

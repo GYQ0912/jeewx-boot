@@ -2,6 +2,8 @@ package com.jeecg.p3.weixin.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.jeecgframework.p3.core.utils.common.PageList;
 import org.jeecgframework.p3.core.utils.common.PageQuery;
 import com.jeecg.p3.weixin.entity.WeixinNewstemplate;
@@ -40,7 +42,7 @@ public interface WeixinNewstemplateService {
 	 * @param jwid 
 	 * @功能：上传图文素材
 	 */
-	public String uploadNewstemplate(String id, String jwid);
+	public String uploadNewstemplate(String id, String jwid,HttpServletRequest request);
 	//update-end--Author:zhangweijian  Date: 20180820 for：新增media_id字段
 
 }

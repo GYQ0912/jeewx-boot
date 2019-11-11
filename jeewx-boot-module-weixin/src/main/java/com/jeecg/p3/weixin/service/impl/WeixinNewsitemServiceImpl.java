@@ -12,6 +12,9 @@ import org.jeecgframework.p3.core.utils.common.PageQuery;
 import org.jeecgframework.p3.core.utils.common.PageQueryWrapper;
 import org.jeecgframework.p3.core.utils.common.Pagenation;
 import com.jeecg.p3.weixin.service.WeixinNewsitemService;
+
+import cn.hutool.json.JSONArray;
+
 import com.jeecg.p3.weixin.entity.WeixinNewsitem;
 import com.jeecg.p3.weixin.dao.WeixinNewsitemDao;
 
@@ -58,6 +61,16 @@ public class WeixinNewsitemServiceImpl implements WeixinNewsitemService {
 		result.setPagenation(pagenation);
 		result.setValues(list);
 		return result;
+	}
+	
+	@Override
+	public JSONArray getJson(PageQuery<WeixinNewsitem> pageQuery) {
+		PageList<WeixinNewsitem> result = new PageList<WeixinNewsitem>();
+		Integer itemCount = weixinNewsitemDao.count(pageQuery);
+		PageQueryWrapper<WeixinNewsitem> wrapper = new PageQueryWrapper<WeixinNewsitem>(pageQuery.getPageNo(), pageQuery.getPageSize(),itemCount, pageQuery.getQuery());
+		List<WeixinNewsitem> list = weixinNewsitemDao.queryPageList(wrapper);
+		JSONArray jsonArray=new JSONArray(list);
+		return jsonArray;
 	}
 
 	//根据newstemplateId获取模板素材

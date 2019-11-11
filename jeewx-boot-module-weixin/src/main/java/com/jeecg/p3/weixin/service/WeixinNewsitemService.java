@@ -6,6 +6,8 @@ import org.jeecgframework.p3.core.utils.common.PageList;
 import org.jeecgframework.p3.core.utils.common.PageQuery;
 import com.jeecg.p3.weixin.entity.WeixinNewsitem;
 
+import cn.hutool.json.JSONArray;
+
 /**
  * 描述：</b>图文模板素材表<br>
  * @author：weijian.zhang
@@ -47,5 +49,7 @@ public interface WeixinNewsitemService {
 	 */
 	public String getMaxOrderNo(String newstemplateId);
 	//update-end--Author:zhangweijian  Date: 20180724 for：获取素材最大序号
+
+	JSONArray getJson(PageQuery<WeixinNewsitem> pageQuery);
 }
 

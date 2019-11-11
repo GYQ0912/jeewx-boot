@@ -50,7 +50,7 @@ public class RefreshTokenTask {
 	/**
 	 * 定时刷新TOKEN
 	 */
-	//@Scheduled(cron="0 0/30 * * * ?")
+	//@Scheduled(cron="0 0/5 * * * ?")
 	@Scheduled(initialDelay=1000, fixedRate=1000*60*60) //第一次延迟1秒后执行，之后按fixedRate的规则每1个小时执行一次
 	public void run() {
 		LOG.info("===================重置公众号AccseeToken定时任务开启==========================");

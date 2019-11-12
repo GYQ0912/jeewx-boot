@@ -2,6 +2,7 @@ package com.jeecg.p3.weixin.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.jeecgframework.p3.core.utils.common.PageQuery;
 import org.jeecgframework.p3.core.utils.common.PageQueryWrapper;
 import org.jeecgframework.p3.core.utils.persistence.GenericDao;
@@ -36,5 +37,7 @@ public interface WeixinNewsitemDao extends GenericDao<WeixinNewsitem>{
 	public String getMaxOrderNo(String newstemplateId);
 	//update-end--Author:zhangweijian  Date: 20180724 for：获取素材最大序号
 	
+	List<WeixinNewsitem> queryByNewstemplateIdAndArticleId(@Param("newstemplateId") String newstemplateId, 
+			@Param("articleId") String articleId);
 }
 

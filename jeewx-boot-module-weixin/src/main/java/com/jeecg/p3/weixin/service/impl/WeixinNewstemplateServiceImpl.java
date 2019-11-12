@@ -8,12 +8,14 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+import java.lang.reflect.InvocationTargetException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.net.ssl.HttpsURLConnection;
@@ -21,6 +23,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import net.sf.json.JSONObject;
 
+import org.apache.commons.beanutils.BeanUtils;
 import org.apache.ibatis.annotations.Param;
 import org.jeecgframework.p3.core.util.PropertiesUtil;
 import org.jeecgframework.p3.core.util.WeiXinHttpUtil;
@@ -92,8 +95,7 @@ public class WeixinNewstemplateServiceImpl implements WeixinNewstemplateService 
 	}
 
 	@Override
-	public PageList<WeixinNewstemplate> queryPageList(
-		PageQuery<WeixinNewstemplate> pageQuery) {
+	public PageList<WeixinNewstemplate> queryPageList(PageQuery<WeixinNewstemplate> pageQuery) {
 		PageList<WeixinNewstemplate> result = new PageList<WeixinNewstemplate>();
 		Integer itemCount = weixinNewstemplateDao.count(pageQuery);
 		PageQueryWrapper<WeixinNewstemplate> wrapper = new PageQueryWrapper<WeixinNewstemplate>(pageQuery.getPageNo(), pageQuery.getPageSize(),itemCount, pageQuery.getQuery());
@@ -123,7 +125,7 @@ public class WeixinNewstemplateServiceImpl implements WeixinNewstemplateService 
 
 	//update-begin--Author:zhangweijian  Date: 20180802 for：上传图文素材到微信
 	//上传图文素材
-	//@Transactional(rollbackFor = {Exception.class})
+	@Transactional(rollbackFor = {Exception.class})
 	@Override
 	public String uploadNewstemplate(String id,String jwid) {
 		String message=null;
@@ -214,7 +216,7 @@ public class WeixinNewstemplateServiceImpl implements WeixinNewstemplateService 
 					String relativeImgurl =url.replace(CommonWeixinProperties.domain,"");
 					String src = null;
 					try {
-						src = download(url);
+						src = download1(url);
 					} catch (Exception e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -240,9 +242,11 @@ public class WeixinNewstemplateServiceImpl implements WeixinNewstemplateService 
 		return content;
 	}
 	
-	public String download(String urlString) throws Exception {  
+
+	
+	public String download1(String urlString) throws Exception {  
 		File file=new File(urlString);
-		String savePath="D:/wxpicture/";
+		String savePath=upLoadPath;
 		String filename=file.getName();
         // 构造URL  
         URL url = new URL(urlString);  
@@ -272,6 +276,46 @@ public class WeixinNewstemplateServiceImpl implements WeixinNewstemplateService 
         os.close();  
         is.close();  
         return savePath+filename;
+    }
+	
+	public String download2(String urlString) throws Exception {  
+		File file=new File(urlString);
+		String basePath = upLoadPath;
+		String filePath = "/upload/files/";
+		String savePath = basePath + filePath;
+		String fileName=file.getName();
+		// 构造URL  
+		URL url = new URL(urlString);  
+		// 打开连接  
+		URLConnection con = url.openConnection();  
+		//设置请求超时为5s  
+		con.setConnectTimeout(5*1000);  
+		con.setRequestProperty("User-Agent", "Mozilla/4.0 (compatible; MSIE 5.0; Windows NT; DigExt)");
+		// 输入流  
+		InputStream is = con.getInputStream();
+		  
+		// 1K的数据缓冲  
+		byte[] bs = new byte[1024];  
+		// 读取到的数据长度  
+		int len;  
+		// 输出的文件流  
+		String fileExtension = fileName.substring(fileName.lastIndexOf("."));
+		String newFileName=UUID.randomUUID().toString().replace("-", "")+fileExtension;
+		
+       File sf=new File(savePath);  
+       if(!sf.exists()){  
+           sf.mkdirs();  
+       }  
+       OutputStream os = new FileOutputStream(sf.getPath()+"\\"+newFileName);  
+        // 开始读取  
+        while ((len = is.read(bs)) != -1) {  
+          os.write(bs, 0, len);  
+        }  
+        // 完毕，关闭所有链接  
+        os.close();  
+        is.close();  
+         
+        return filePath + newFileName;
     }
 	
 	//图片上传微信服务器
@@ -312,11 +356,57 @@ public class WeixinNewstemplateServiceImpl implements WeixinNewstemplateService 
 		return null;
 	}
 	//update-begin--Author:zhangweijian  Date: 20180802 for：上传图文素材到微信
+
+	@Override
+	public void receiveArticle(WeixinNewstemplate weixinNewstemplate, WeixinNewsitem weixinNewsitem) {
+		String content = weixinNewsitem.getContent();
+		
+		String[] urls = ReadImgUrls.getImgs(content);
+		
+		if(urls!=null){
+			for(String url:urls){
+				if(url.indexOf("mmbiz.qpic.cn")!=-1){
+					continue;
+				}
+				String relativeImgurl =url.replace(CommonWeixinProperties.domain,"");
+				String newUrl = null;
+				try {
+					newUrl = download2(url);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				content = content.replace(url, "http://localhost/tzbwx" + newUrl);
+			}
+		}
+		
+		weixinNewsitem.setContent(content);
+		
+		//检查今天是否有图文素材
+		List<WeixinNewstemplate> newsTemplsteList = weixinNewstemplateDao.queryFromCurrentDay();
+		if (newsTemplsteList != null && newsTemplsteList.size() > 0) {
+			weixinNewstemplate = newsTemplsteList.get(0);
+		}
+		
+		saveWeixinNewstemplate(weixinNewstemplate, weixinNewsitem);
+	}
 	
-	public void syncPCNewsTemplate() {
-		JSONObject obj = JSONObject.fromObject(new Object());
-		JSONObject result = WeixinUtil.httpRequestNoSSL("http://localhost:8080/jwxtbg_v3/a/login", "POST", obj.toString());
-		System.out.println("hao");
+	@Transactional(rollbackFor = {Exception.class})
+	private void saveWeixinNewstemplate(WeixinNewstemplate weixinNewstemplate, WeixinNewsitem weixinNewsitem) {
+		if (weixinNewstemplate.getId() == null) {
+			weixinNewstemplateDao.insert(weixinNewstemplate);
+		}
+		
+		weixinNewsitem.setNewstemplateId(weixinNewstemplate.getId());
+		
+		List<WeixinNewsitem> newsitemList = weixinNewsitemDao.
+				queryByNewstemplateIdAndArticleId(weixinNewstemplate.getId(), weixinNewsitem.getArticleId());
+		if (newsitemList != null && newsitemList.size() > 0) {
+			weixinNewsitemDao.update(weixinNewsitem);
+		} else {
+			weixinNewsitemDao.insert(weixinNewsitem);
+		}
 	}
 	
 }

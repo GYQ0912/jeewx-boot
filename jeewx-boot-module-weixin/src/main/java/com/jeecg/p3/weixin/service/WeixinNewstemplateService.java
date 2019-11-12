@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.jeecgframework.p3.core.utils.common.PageList;
 import org.jeecgframework.p3.core.utils.common.PageQuery;
+
+import com.jeecg.p3.weixin.entity.WeixinNewsitem;
 import com.jeecg.p3.weixin.entity.WeixinNewstemplate;
 
 /**
@@ -43,5 +45,6 @@ public interface WeixinNewstemplateService {
 	public String uploadNewstemplate(String id, String jwid);
 	//update-end--Author:zhangweijian  Date: 20180820 for：新增media_id字段
 
+	void receiveArticle(WeixinNewstemplate weixinNewstemplate, WeixinNewsitem weixinNewsitem);
 }
 

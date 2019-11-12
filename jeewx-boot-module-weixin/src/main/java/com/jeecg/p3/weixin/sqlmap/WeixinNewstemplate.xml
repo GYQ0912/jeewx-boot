@@ -261,4 +261,7 @@
 	</select>
 	<!-- update-end-Author:zhangweijian  Date: 20180820 for：添加上传状态的判断 -->
 	
+	<select id="queryFromCurrentDay" resultMap="WeixinNewstemplate">
+		select * from weixin_newstemplate where date(create_time) = curdate()
+	</select>
 </mapper>

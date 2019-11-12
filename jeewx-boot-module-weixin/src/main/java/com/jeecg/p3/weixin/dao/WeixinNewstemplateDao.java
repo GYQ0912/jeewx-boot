@@ -31,5 +31,10 @@ public interface WeixinNewstemplateDao extends GenericDao<WeixinNewstemplate>{
 	public List<WeixinNewstemplate> getAllItems(@Param("jwid")String jwid, @Param("uploadType")String uploadType);
 	//update-end--Author:zhangweijian  Date: 20180820 for：获取所有图文素材
 	
+	/**
+	 * 获取当天所有数据
+	 * @return
+	 */
+	public List<WeixinNewstemplate> queryFromCurrentDay();
 }
 

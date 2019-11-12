@@ -1,6 +1,11 @@
 package com.jeecg.p3.weixin.web.back;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Enumeration;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -8,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.velocity.VelocityContext;
 import org.jeecgframework.p3.core.common.utils.AjaxJson;
 import org.jeecgframework.p3.core.util.SystemTools;
-import org.jeecgframework.p3.core.util.WeiXinHttpUtil;
 import org.jeecgframework.p3.core.util.plugin.ViewVelocity;
 import org.jeecgframework.p3.core.utils.common.PageQuery;
 import org.jeecgframework.p3.core.web.BaseController;
@@ -23,15 +27,19 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.alibaba.fastjson.JSON;
 import com.jeecg.p3.baseApi.service.BaseApiJwidService;
 import com.jeecg.p3.commonweixin.entity.MyJwWebJwid;
 import com.jeecg.p3.commonweixin.util.Constants;
 import com.jeecg.p3.system.service.MyJwWebJwidService;
+import com.jeecg.p3.weixin.entity.Article;
 import com.jeecg.p3.weixin.entity.WeixinGzuser;
+import com.jeecg.p3.weixin.entity.WeixinNewsitem;
 import com.jeecg.p3.weixin.entity.WeixinNewstemplate;
 import com.jeecg.p3.weixin.enums.WeixinMsgTypeEnum;
 import com.jeecg.p3.weixin.service.WeixinGzuserService;
 import com.jeecg.p3.weixin.service.WeixinNewstemplateService;
+import com.jeecg.p3.weixin.util.JsonMapper;
 import com.jeecg.p3.weixin.util.WeixinUtil;
 import com.jeecg.p3.weixin.util.WxErrCodeUtil;
 
@@ -321,7 +329,42 @@ public class WeixinNewstemplateController extends BaseController{
 		return j;
 	}
 	
-	
+	@RequestMapping(value="receiveArticle",method = RequestMethod.POST)
+	@ResponseBody
+	public AjaxJson receiveArticle(HttpServletRequest request) {
+		//String jwid = request.getSession().getAttribute("jwid").toString();
+		//String updateBy = (String)request.getSession().getAttribute(Constants.SYSTEM_USERID);
+		
+		System.out.println();
+		
+		String articleStr = request.getParameter("params");
+		
+		Article article = (Article) JsonMapper.fromJsonString(articleStr, Article.class);
+		
+		Date now = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日");
+		
+		WeixinNewstemplate weixinNewstemplate = new WeixinNewstemplate();
+		weixinNewstemplate.setTemplateName("统战部" + sdf.format(now) + "文章推送");
+		weixinNewstemplate.setUploadType("0");
+		weixinNewstemplate.setTemplateType(WeixinMsgTypeEnum.wx_msg_type_news.getCode());
+		weixinNewstemplate.setCreateTime(new Date());
+		weixinNewstemplate.setJwid("gh_b4e21a659ae9");
+		//weixinNewstemplate.setUpdateBy(updateBy);
+		//weixinNewstemplate.setJwid(jwid);
+		
+		WeixinNewsitem weixinNewsitem = new WeixinNewsitem();
+		weixinNewsitem.setContent(article.getContent());
+		weixinNewsitem.setTitle(article.getTitle());
+		weixinNewsitem.setArticleId(article.getId());
+		//weixinNewsitem.setDescription(article.getSummary());
+		
+		weixinNewstemplateService.receiveArticle(weixinNewstemplate, weixinNewsitem);
+		
+		AjaxJson ajaxJson = new AjaxJson();
+		ajaxJson.setMsg("成功");
+		return ajaxJson;
+	}
 
 }
 

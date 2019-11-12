@@ -9,6 +9,7 @@
 		<result column="id" property="id" jdbcType="VARCHAR"/>
 		<result column="newstemplate_id" property="newstemplateId" jdbcType="VARCHAR"/>
 		<result column="thumb_media_id" property="thumbMediaId" jdbcType="VARCHAR"/>
+		<result column="article_id" property="articleId" jdbcType="VARCHAR"/>
 		<result column="title" property="title" jdbcType="VARCHAR"/>
 		<result column="author" property="author" jdbcType="VARCHAR"/>
 		<result column="image_path" property="imagePath" jdbcType="VARCHAR"/>
@@ -111,6 +112,7 @@
                       id                            /* 序号 */ 
                      ,newstemplate_id               /* 图文id */ 
                      ,thumb_media_id                /* 图文缩略图的media_id */ 
+                     ,article_id
                      ,title                         /* 标题 */ 
                      ,author                        /* 作者 */ 
                      ,image_path                    /* 图片路径 */ 
@@ -130,6 +132,7 @@
                       #{id,jdbcType=VARCHAR}                            /* 序号 */ 
                      ,#{newstemplateId,jdbcType=VARCHAR}                /* 图文id */ 
                      ,#{thumbMediaId,jdbcType=VARCHAR}                  /* 图文缩略图的media_id */ 
+                     ,#{articleId,jdbcType=VARCHAR}                
                      ,#{title,jdbcType=VARCHAR}                         /* 标题 */ 
                      ,#{author,jdbcType=VARCHAR}                        /* 作者 */ 
                      ,#{imagePath,jdbcType=VARCHAR}                     /* 图片路径 */ 
@@ -346,5 +349,31 @@
 		SELECT MAX(order_no)
 		FROM weixin_newsitem     /* 图文模板素材表 */ 
 		WHERE newstemplate_id=#{newstemplateId}
+	</select>
+	
+	<!-- 根据newstemplateId获取模板素材 -->
+	<select id="queryByNewstemplateIdAndArticleId" parameterType="java.lang.String" resultMap="WeixinNewsitem">
+			SELECT 
+                   wn.id                            /* 序号 */ 
+                  ,wn.newstemplate_id               /* 图文id */ 
+                  ,wn.thumb_media_id                /* 图文缩略图的media_id */
+                  ,wn.article_id
+                  ,wn.title                         /* 标题 */ 
+                  ,wn.author                        /* 作者 */ 
+                  ,wn.image_path                    /* 图片路径 */ 
+                  ,wn.content                       /* 内容 */ 
+                  ,wn.description                   /*  */ 
+                  ,wn.order_no                      /* 素材顺序 */ 
+                  ,wn.new_type                      /* 图文类型*/ 
+                  ,wn.url                           /* 原文链接 */ 
+                  ,wn.external_url                  /* 外部链接 */ 
+                  ,wn.show_cover_pic                /* 是否显示封面 */
+                  ,wn.create_by                     /* 创建人名称 */ 
+                  ,wn.create_time                   /* 创建时间 */ 
+                  ,wn.update_by                     /* 修改人名称 */ 
+                  ,wn.update_time                   /* 修改人时间 */ 
+		FROM   	 weixin_newsitem      AS wn      /* 图文模板素材表 */ 
+		WHERE wn.newstemplate_id=#{newstemplateId} and wn.article_id=#{articleId}
+		ORDER BY wn.order_no
 	</select>
 </mapper>

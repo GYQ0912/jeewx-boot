@@ -92,7 +92,7 @@
 								<label class="Validform_label" style="display: none;"></label>
 							</td>
 						</tr>
-						<tr>
+						<!--<tr>
 							<td align="right" style="width:10%;text-align: left;">
 								<label class="Validform_label" style="margin-right:10px">作者:</label>
 							</td>
@@ -100,7 +100,7 @@
 								<input id="author" value="$!{weixinNewsitem.author}" name="author" type="text" style="width: 600px;border-radius:3px" class="inputxt" >
 								<span class="Validform_checktip">选填</span>
 							</td>
-						</tr>
+						</tr>-->
 						<tr>
 							<td align="right" style="width:10%;text-align: left;">
 								<label class="Validform_label" style="margin-right:10px">图片链接:</label>
@@ -108,7 +108,7 @@
 							<td class="value">
 								<span class="btn btn-success fileinput-button" onmouseover="changeColor()">
 							        <i class="glyphicon glyphicon-plus"></i>
-							        <span>浏览</span> 
+							        <span>从图片库选择</span> 
 							        <input id="fileupload" type="file" name="files[]" >
 							    </span>
 							        <input id="imagePath" name="imagePath" type="hidden" value="$!{weixinNewsitem.imagePath}" datatype="*" nullmsg="请添加图片">
@@ -136,7 +136,7 @@
                                 </div>
 							</td>
 						</tr>
-						<tr>
+						<!--<tr>
 							<td align="right" style="width:10%;text-align: left;">
 								<label class="Validform_label" style="margin-right:10px">摘要:</label>
 							</td>
@@ -145,7 +145,7 @@
 								<span class="Validform_checktip"></span>
 								<label class="Validform_label" style="display: none;">摘要</label>
 							</td>
-						</tr>
+						</tr>-->
 						<tr>
 							<td align="right" style="width:10%;text-align: left;">
 								<label class="Validform_label" style="margin-right:10px">跳转方式:</label>

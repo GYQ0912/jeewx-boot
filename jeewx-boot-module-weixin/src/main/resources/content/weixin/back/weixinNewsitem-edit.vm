@@ -95,7 +95,7 @@
     								<label class="Validform_label" style="display: none;"></label>
     							</td>
     						</tr>
-    						<tr>
+    						<!--<tr>
     							<td align="right" style="width:10%;text-align: left;">
     								<label class="Validform_label" style="margin-right:10px">作者:</label>
     							</td>
@@ -103,7 +103,7 @@
     								<input id="author" value="$!{weixinNewsitem.author}" name="author" type="text" style="width: 600px;border-radius:3px" class="inputxt">
     								<span class="Validform_checktip">选填</span>
     							</td>
-    						</tr>
+    						</tr>-->
     						<tr>
     							<td align="right" style="width:10%;text-align: left;">
     								<label class="Validform_label" style="margin-right:10px">图片链接:</label>
@@ -114,10 +114,10 @@
     							        <span>从图片库选择</span>
     							        <input id="fileupload" type="file" name="files[]" >
     							    </span>
-    							    <span class="btn btn-success fileinput-button" onclick="selectImgFromText()">
+    							    <!--<span class="btn btn-success fileinput-button" onclick="selectImgFromText()">
     							        <i class="glyphicon glyphicon-plus"></i>
     							        <span>从正文选择</span>
-    							    </span>
+    							    </span>-->
     							    <input id="imagePath" name="imagePath" type="hidden" value="$!{weixinNewsitem.imagePath}" datatype="*" nullmsg="请添加图片">
     							    <span id="imgName"></span> 
     								<span class="Validform_checktip"></span>
@@ -135,14 +135,14 @@
         								<i style="height:110px;overflow:hidden;display:inline-block;width:100;"><img src="$!{basePath}/$!{weixinNewsitem.imagePath}" width="100px" height="100px" /></i>
         							</div>
 									<input type="hidden" name="showCoverPic" value="$!{weixinNewsitem.showCoverPic}"  class="showCoverPic"/>
-									<!--<input type="checkbox" #if($!{weixinNewsitem.showCoverPic}=="1")checked#end id="showCoverPic" style="float: left;margin-top: 3px;margin-right: 10px;"/><span>封面图片显示在正文中</span>-->
+									<input type="checkbox" #if($!{weixinNewsitem.showCoverPic}=="1")checked#end id="showCoverPic" style="float: left;margin-top: 3px;margin-right: 10px;"/><span>封面图片显示在正文中</span>
         							 <div id="progress" class="progress">
         						        <div class="progress-bar progress-bar-success"></div>
         						    </div>
                                     </div>
     							</td>
     						</tr>
-    						<tr>
+    						<!--<tr>
     							<td align="right" style="width:10%;text-align: left;">
     								<label class="Validform_label" style="margin-right:10px">摘要:</label>
     							</td>
@@ -151,7 +151,7 @@
     								<span class="Validform_checktip"></span>
     								<label class="Validform_label" style="display: none;">摘要</label>
     							</td>
-    						</tr>
+    						</tr>-->
 							<tr>
     							<td align="right" style="width:10%;text-align: left;">
     								<label class="Validform_label" style="margin-right:10px">跳转方式:</label>

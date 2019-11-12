@@ -740,6 +740,95 @@ public class SystemController extends BaseController {
 		ViewVelocity.view(request, response, viewName, velocityContext);
 	}
 
+	/**
+	 * 强制登录
+	 * 
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/forcedLogin", method = { RequestMethod.GET, RequestMethod.POST })
+	public void forcedLogin(String jwid, String username, String password, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		String viewName = "base/back/common/login.vm";
+		VelocityContext velocityContext = new VelocityContext();
+		try {
+			String referer = request.getRequestURL().toString();
+			if ((referer != null) && (referer.trim().startsWith("http://h5huodong.com"))) {
+				response.sendRedirect("http://www.h5huodong.com" + request.getRequestURI());
+				return;
+			}
+			LoginUser user = (LoginUser) request.getSession().getAttribute(Constants.OPERATE_WEB_LOGIN_USER);
+			JwSystemLogoTitle logoTitle = jwSystemLogoTitleService.queryLogoTitle().get(0);
+			velocityContext.put("logoTitle", logoTitle);
+			// 验证用户信息
+			if (user != null) {
+				// 用户已登录
+				viewName = indexPath;
+				velocityContext.put("jwidname", (String) request.getSession().getAttribute(Constants.SYSTEM_JWIDNAME));
+				velocityContext.put("userid", user.getUserId());
+				try {
+					// 获取菜单
+					List<Menu> menuTree = jwSystemAuthService.getMenuTree(user.getUserId());
+//					LOG.info("menuTree---->"+menuTree);
+					velocityContext.put(Constants.OPERATE_WEB_MENU_TREE, menuTree);
+					ViewVelocity.view(request, response, viewName, velocityContext);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				return;
+			} else {
+				// -----------update begin Author:黄青全 date：2016-10-20 09:43:17
+				// for:用户未登录时,校验验证码-------------------
+				String randCode = request.getParameter("randCode");
+				HttpSession session = request.getSession();
+				Object yzm = session.getAttribute("randCode");
+				if (StringUtils.isEmpty(randCode) || yzm == null || !randCode.equals(yzm.toString())) {
+					throw new RuntimeException("验证码错误");
+				}
+				session.removeAttribute("randCode");
+				// -----------update end Author:黄青全 date：2016-10-20 09:43:17
+				// for:用户未登录时,校验验证码------------------
+				validateLoginParam(jwid, username, password);
+				// 用户未登录
+				user = jwSystemUserService.queryUserByUserId(username);
+				if (user != null) {
+					String passwordEncode = MD5Util.MD5Encode(password, "utf-8");
+					if (passwordEncode != null && passwordEncode.equals(user.getPassword())
+							&& "NORMAL".equals(user.getUserStat())) {
+						// 判断jwid是否属于该用户
+						WeixinAccountDto jw = jwidService.queryJwidByJwidAndUserId(jwid, username);
+						if (jw != null) {
+							request.getSession().setAttribute(Constants.SYSTEM_JWID, jwid);
+							request.getSession().setAttribute(Constants.SYSTEM_JWIDNAME, jw.getName());
+							request.getSession().setAttribute(Constants.SYSTEM_USERID, username);
+							request.getSession().setAttribute(Constants.OPERATE_WEB_LOGIN_USER, user);
+							velocityContext.put("jwidname", jw.getName());
+							velocityContext.put("userid", user.getUserId());
+							try {
+								// 获取菜单
+								List<Menu> menuTree = jwSystemAuthService.getMenuTree(user.getUserId());
+								velocityContext.put(Constants.OPERATE_WEB_MENU_TREE, menuTree);
+								viewName = indexPath;
+								ViewVelocity.view(request, response, viewName, velocityContext);
+							} catch (Exception e) {
+								e.printStackTrace();
+							}
+							return;
+						} else {
+							LOG.info("登录失败：jwid【" + jwid + "】不属于用户【" + username + "】");
+						}
+					}
+				} else {
+					LOG.info("登录失败：用户【" + username + "】不存在");
+				}
+
+			}
+		} catch (Exception e) {
+			LOG.info("登录失败：用户【" + username + "】" + e.getMessage());
+		}
+		ViewVelocity.view(request, response, viewName, velocityContext);
+	}
+	
+	
 //	 /**
 //	   * 登录
 //	 * @throws Exception 

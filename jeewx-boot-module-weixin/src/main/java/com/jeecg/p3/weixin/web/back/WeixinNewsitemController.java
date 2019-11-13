@@ -153,6 +153,11 @@ public AjaxJson doAdd(@ModelAttribute WeixinNewsitem weixinNewsitem){
 public void toEdit(@RequestParam(required = true, value = "id" ) String id,HttpServletResponse response,HttpServletRequest request) throws Exception{
 		 VelocityContext velocityContext = new VelocityContext();
 		 WeixinNewsitem weixinNewsitem = weixinNewsitemService.queryById(id);
+		 
+		 if (weixinNewsitem.getImagePath() == null) {
+			 weixinNewsitem.setImagePath("/content/weixin/plug-in/imgs/timg.jpg");
+		 }
+		 
 		 velocityContext.put("weixinNewsitem",weixinNewsitem);
 		 String viewName = "weixin/back/weixinNewsitem-edit.vm";
 		 ViewVelocity.view(request,response,viewName,velocityContext);

@@ -64,14 +64,10 @@ h1{ margin-top: 160px; color: #0096cd; font-family: "sans-serif"; font-size: 32p
 		-->
 		<div class="loginP">
 			<h1 class="center-block" style="width:290px;font-size:x-large;text-align:center">$!{logoTitle.title1}</h1>
-			<form action="../system/login.do" id="loginform" class="form-signin" role="form" method="post">
+			<form action="../system/forceLogin.do" id="loginform" class="form-signin" role="form" method="post">
 				<input type="hidden" name="jwid" id="jwid" value="">
 				<input type="text" name="username" id="username" class="form-control" placeholder="用户名" required autofocus style="background:url('../plug-in/css/images/u.png') 10px center no-repeat #fff; text-indent:30px;"> <br/>
 				<input type="password" name="password"  id="password"  class="form-control" placeholder="密码" required autofocus style="background:url('../plug-in/css/images/p.png') 10px center no-repeat #fff; text-indent:30px;margin-bottom:0"> <br/>
-				<input type="text" id="randCode" name="randCode" class="form-control" placeholder="验证码" required autofocus style="background:url('../plug-in/css/images/p.png') 10px center no-repeat #fff; text-indent:30px;width:170px;float:left">
-					<img style="float:left;margin-left:15px;height:44px;width:110px" scr="javascript:location.href='/randCodeImage.do" id="randCodeImage"/> 
-					<br/>
-					<div style="clear:both;height:1px"></div>
 				<label class="checkbox"> 
 				<input type="checkbox" id="rememberme" name="rememberme"  onchange="javascript:setCheckbox(this);" />下次自动登录 </label>
 				<input type="button" class="btn btn-primary" name="Submit2" value="登&nbsp;录"  onclick="javascript:checkUser();"/>
@@ -81,7 +77,7 @@ h1{ margin-top: 160px; color: #0096cd; font-family: "sans-serif"; font-size: 32p
 	</div>
 	
 <!-- Modal -->
-<div class="modal fade" id="addOrUpdateModal" tabindex="-1" role="dialog" aria-labelledby="addOrUpdateModalLabel" aria-hidden="true">
+<!--<div class="modal fade" id="addOrUpdateModal" tabindex="-1" role="dialog" aria-labelledby="addOrUpdateModalLabel" aria-hidden="true">
   <div class="modal-dialog" style="width: 50%;">
     <div class="modal-content">
       <div class="modal-header">
@@ -95,9 +91,9 @@ h1{ margin-top: 160px; color: #0096cd; font-family: "sans-serif"; font-size: 32p
         <button type="button" class="btn btn-default" id="dialogFormClose" data-dismiss="modal">关闭</button>
         <button type="button" class="btn btn-primary" id="dialogFormSubmit" onclick="submitForm();" >确&nbsp;定</button>
       </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+    </div>
+  </div>
+</div>-->
 
 <script type="text/javascript">
 	$(function() {
@@ -123,16 +119,14 @@ h1{ margin-top: 160px; color: #0096cd; font-family: "sans-serif"; font-size: 32p
 			box.value="00";
 		}
 	}
-	function submitForm(){
-		  var jwid = $("#jwid").val();
-	      if(jwid==""){
-	         alert("请选择公众号");
-	         return;
-	      }
-		  document.getElementById('loginform').submit();
-	}
 	
 	function checkUser(){
+		document.getElementById('loginform').submit();
+	}
+	
+	function checkUser111(){
+		document.getElementById('loginform').submit();
+	
 		var url = "$!{basePath}/system/checkUser.do";
 		var username = $("#username").val();
 	 	var password = $("#password").val();
@@ -148,14 +142,8 @@ h1{ margin-top: 160px; color: #0096cd; font-family: "sans-serif"; font-size: 32p
 				,randCode:randCode
 		    },
 			success : function(data){
-				//$("#randCodeImage").attr("src","$!{basePath}/randCodeImage?v="+new Date().getTime());
 				if(data.success){	
-				     if(data.obj!=""){
-				     	$("#jwid").val(data.obj);
-				     	submitForm();
-				     }else{
-					 	preLogin('$!{basePath}/system/preLogin.do','请选择公众号');
-					 }
+					document.getElementById('loginform').submit();
 				}else{
 					alert(data.msg);
 				}
@@ -169,81 +157,6 @@ h1{ margin-top: 160px; color: #0096cd; font-family: "sans-serif"; font-size: 32p
 				}
 	       }
 		});
-	}
-	
-	
-	function preLogin(url,title){ 
-		if(url.indexOf('?')>-1){
-	 		url += '&t=' + Math.random(1000);  
-	 	}else{
-	 		url += '?t=' + Math.random(1000);  
-	 	}
-	 	var username = $("#username").val();
-	 	var password = $("#password").val();
-	 	$('#addOrUpdateModalLabel').html(title);
-	 	$('#addOrUpdateModal .modal-body').html(""); 
-		jQuery.ajax({
-	      url: url,
-	      cache: false,
-	      data:{
-	      	username:username
-	      	,password:password
-	      },
-		  dataType: "html",
-	      success: function(data){
-	        $('#addOrUpdateModal .modal-body').html(data); 
-	      },  
-	      error: function(data, status, e){  
-	      		if(data.status == "401"){
-					alert("没有权限！");
-					return;
-				}
-	      }
-	    });
-		$('#addOrUpdateModal').modal({show:true,backdrop:false}); 
-	}
-	
-	function selectJwid(){
-		var jwid = $("#jwid_select").val();
-		$("#jwid").val(jwid);
-	} 
-	
-	function syncJwid(url){
-		if(url.indexOf('?')>-1){
-	 		url += '&t=' + Math.random(1000);  
-	 	}else{
-	 		url += '?t=' + Math.random(1000);  
-	 	}
-	 	var username = $("#username").val();
-	 	var password = $("#password").val();
-	 	//$('#addOrUpdateModal .modal-body').html(""); 
-		jQuery.ajax({
-	      url: url,
-	      cache: false,
-	      data:{
-	      	 username:username
-	      	,password:password
-	      },
-		  dataType: "html",
-	      success: function(data){
-	          $('#addOrUpdateModal .modal-body').html(data); 
-	      	  if(data!=""&&data.indexOf("jwid_select_flag_success")!=-1){
-	          		alert("同步完成");
-	          }else if(data!=""&&data.indexOf("jwid_select_flag_fail")!=-1){
-	          		alert("没有查到分配的公众号");
-	          }else{
-	          	    alert("同步异常");
-	          }
-	      },  
-	      error: function(data, status, e){  
-	      		if(data.status == "401"){
-					alert("没有权限！");
-					return;
-				}else{
-					alert("同步异常");
-				}
-	      }
-	    });
 	}
 	
 	

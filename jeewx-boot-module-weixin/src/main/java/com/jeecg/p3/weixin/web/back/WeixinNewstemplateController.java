@@ -218,7 +218,7 @@ public class WeixinNewstemplateController extends BaseController{
 	public AjaxJson uploadNewstemplate(@RequestParam(required = true, value = "id") String id,HttpServletRequest request){
 		AjaxJson j = new AjaxJson();
 		try {
-		String jwid =request.getSession().getAttribute("jwid").toString();
+			String jwid = request.getSession().getAttribute("jwid").toString();
 			String message=weixinNewstemplateService.uploadNewstemplate(id,jwid);
 			j.setMsg(message);
 			j.setSuccess(true);

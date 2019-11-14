@@ -1,0 +1,180 @@
+@charset "utf-8";
+/* CSS Document */
+* {
+	margin: 0;
+	padding: 0;
+}
+ul, li {
+	list-style: none;
+	margin-bottom: 0;
+}
+a {
+	color: #333;
+	outline: none;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: none;
+	color: #333;
+	background: none;
+}
+a:active, a:focus, a img {
+	outline: none;
+	text-decoration: none;
+}
+a img {
+	border: 0;
+}
+.clear {
+	clear: both;
+}
+.fixed:after {
+	content: ".";
+	display: block;
+	clear: both;
+	height: 0;
+	visibility: hidden
+}
+.fixed {
+	display: block;
+	min-height: 1%
+}
+*html .fixed {
+	height: 1%
+}
+html, body {
+	color: #333;
+	font-family: "Microsoft YaHei";
+	background: #fff;
+	font-size: 16px;
+	overflow: hidden;
+}
+/*主体内容*/
+.tzb_tkmain{
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 52px;
+	bottom: 0;
+	height: 100%;
+}
+/*弹框*/
+.tzb_tk{
+    width: 900px;
+    height: 500px;
+    position: absolute;
+    top: calc(50% - 265px);
+    left: calc(50% - 450px);
+}
+.tzb_tk_title{
+    height: 46px;
+    line-height: 46px;
+    padding: 0px 20px;
+    border-bottom: 1px solid #d7d7d7;
+    background-color: #f4f4f4;
+    font-size: 16px;
+    position: relative;
+}
+.tzb_tk_title h4{
+	display: inline-block;
+	line-height: 46px;
+	font-size: 18px;
+	font-weight: normal;
+	margin: 0;
+}
+.tzb_tk_title h4 i{
+	float: left;
+	display: inline-block;
+	width: 4px;
+	height: 20px;
+	margin: 13px 15px 0 0;
+	background-color: #4b7efe;
+}
+.tzb_tk_title h4 span{
+   float: left;
+}
+/*关闭*/
+.tzb_tk_close{
+    position: absolute;
+    right: 30px;
+    top: 14px;
+    cursor: pointer;
+    display: block;
+    width: 18px;
+    height: 18px;
+}
+.tzb_tk_info{
+	height: calc(100% - 46px);
+}
+.tzb_tk_info ul{
+	float: left;
+	width: 100%;
+	height: 360px;
+	padding: 20px 50px;
+	overflow: auto;
+}
+/*滚动条样式*/
+.tzb_tk_info ul::-webkit-scrollbar {/*滚动条整体样式*/
+    width: 4px;     /*高宽分别对应横竖滚动条的尺寸*/
+    height: 4px;
+}
+.tzb_tk_info ul::-webkit-scrollbar-thumb {/*滚动条里面小方块*/
+    border-radius: 5px;
+    -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+    background: rgba(0,0,0,0.2);
+}
+.tzb_tk_info ul::-webkit-scrollbar-track {/*滚动条里面轨道*/
+    -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+    border-radius: 0;
+    background: rgba(0,0,0,0.1);
+}
+.tzb_tk_info li{
+	float: left;
+	width: 143px;
+	margin-right: 20px;
+	margin-top: 20px;
+	cursor: pointer;
+	position: relative;
+}
+.tzb_tk_info li:nth-child(5n){
+	margin-right: 0;
+}
+.tzb_tk_info li img{
+	display: block;
+	width: 143px;
+	height: 143px;
+}
+.tzb_tk_info li span{
+	display: block;
+	width: 143px;
+	height: 143px;
+	position: absolute;
+	left: 0;
+	top: 0;
+	background: rgba(0,0,0,0.6);
+	text-align: center;
+	line-height: 166px;
+	display: none;
+}
+.tzb_tk_info li span img{
+	display: inline-block;
+	width: 50px;
+	height: 50px;
+}
+.tzb_tk_btn{
+	width: 100%;
+	text-align: center;
+}
+.tzb_tk_btn span{
+	display: inline-block;
+	background-color: #4b7efe;
+	color: #fff;
+	padding: 5px 26px;
+	border-radius: 6px;
+	font-size: 16px;
+	margin: 20px 0;
+	cursor: pointer;
+}
+.tzb_tk_btn span:hover{
+	opacity: 0.9;
+}

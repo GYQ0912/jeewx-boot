@@ -111,7 +111,7 @@
 							        <span>从图片库选择</span> 
 							        <input id="fileupload" type="file" name="files[]" >
 							    </span>
-							        <input id="imagePath" name="imagePath" type="hidden" value="$!{weixinNewsitem.imagePath}" datatype="*" nullmsg="请添加图片">
+							    <input id="imagePath" name="imagePath" type="hidden" value="$!{weixinNewsitem.imagePath}" datatype="*" nullmsg="请添加图片">
 							    <span id="imgName"></span> 
 								<span class="Validform_checktip"></span>
 								<label class="Validform_label" style="display: none;">图片链接</label>

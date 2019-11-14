@@ -19,6 +19,7 @@ import org.jeecgframework.p3.core.util.SystemTools;
 import org.jeecgframework.p3.core.util.plugin.ViewVelocity;
 import org.jeecgframework.p3.core.utils.common.PageQuery;
 import org.jeecgframework.p3.core.web.BaseController;
+import org.jeewx.api.wxsendmsg.util.ReadImgUrls;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -151,16 +152,31 @@ public AjaxJson doAdd(@ModelAttribute WeixinNewsitem weixinNewsitem){
  */
 @RequestMapping(value="toEdit",method = RequestMethod.GET)
 public void toEdit(@RequestParam(required = true, value = "id" ) String id,HttpServletResponse response,HttpServletRequest request) throws Exception{
-		 VelocityContext velocityContext = new VelocityContext();
-		 WeixinNewsitem weixinNewsitem = weixinNewsitemService.queryById(id);
-		 
-		 if (weixinNewsitem.getImagePath() == null) {
-			 weixinNewsitem.setImagePath("/content/weixin/plug-in/imgs/timg.jpg");
-		 }
-		 
-		 velocityContext.put("weixinNewsitem",weixinNewsitem);
-		 String viewName = "weixin/back/weixinNewsitem-edit.vm";
-		 ViewVelocity.view(request,response,viewName,velocityContext);
+	VelocityContext velocityContext = new VelocityContext();
+	WeixinNewsitem weixinNewsitem = weixinNewsitemService.queryById(id);
+	
+	if (weixinNewsitem.getImagePath() == null) {
+		weixinNewsitem.setImagePath("/content/weixin/plug-in/imgs/timg.jpg");
+	}
+	
+	if (weixinNewsitem.getContent() != null) {
+		String[] urls = ReadImgUrls.getImgs(weixinNewsitem.getContent());
+		
+		if (urls != null && urls.length > 0) {
+			Map<String, Object> tmpMap = new HashMap<String, Object>();
+			for (String str : urls) {
+				tmpMap.put(str, str);
+			}
+			//返回一个包含所有对象的指定类型的数组
+			urls = tmpMap.keySet().toArray(new String[1]);
+			
+			velocityContext.put("imgList", urls);
+		}
+	}
+	 
+	velocityContext.put("weixinNewsitem",weixinNewsitem);
+	String viewName = "weixin/back/weixinNewsitem-edit.vm";
+	ViewVelocity.view(request,response,viewName,velocityContext);
 }
 
 //update-begin--Author:zhangweijian  Date: 20180724 for：跳转预览页面

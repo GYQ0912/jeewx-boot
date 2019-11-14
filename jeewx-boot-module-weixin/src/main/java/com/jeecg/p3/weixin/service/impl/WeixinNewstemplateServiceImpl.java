@@ -14,7 +14,9 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.annotation.Resource;
@@ -208,6 +210,14 @@ public class WeixinNewstemplateServiceImpl implements WeixinNewstemplateService 
 			String baseImageUrl=request.getSession().getServletContext().getRealPath("/");
 			//update-end--Author:zhangweijian  Date: 20180831 for：接口方法替换
 			String[] urls = ReadImgUrls.getImgs(content);
+			
+			Map<String, Object> tmpMap = new HashMap<String, Object>();
+	        for (String str : urls) {
+	        	tmpMap.put(str, str);
+	        }
+	        //返回一个包含所有对象的指定类型的数组
+	        urls = tmpMap.keySet().toArray(new String[1]);
+			
 			if(urls!=null){
 				for(String url:urls){
 					if(url.indexOf("mmbiz.qpic.cn")!=-1){
@@ -218,7 +228,6 @@ public class WeixinNewstemplateServiceImpl implements WeixinNewstemplateService 
 					try {
 						src = download1(url);
 					} catch (Exception e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 					/*String tempimgurl ="";
@@ -275,10 +284,10 @@ public class WeixinNewstemplateServiceImpl implements WeixinNewstemplateService 
         // 完毕，关闭所有链接  
         os.close();  
         is.close();  
-        return savePath+filename;
+        return savePath+ "/" + filename;
     }
 	
-	public String download2(String urlString) throws Exception {  
+	public String downloadImageFromPC(String urlString) throws Exception {  
 		File file=new File(urlString);
 		String basePath = upLoadPath;
 		String filePath = "/upload/files/";
@@ -363,6 +372,13 @@ public class WeixinNewstemplateServiceImpl implements WeixinNewstemplateService 
 		
 		String[] urls = ReadImgUrls.getImgs(content);
 		
+		Map<String, Object> tmpMap = new HashMap<String, Object>();
+        for (String str : urls) {
+        	tmpMap.put(str, str);
+        }
+        //返回一个包含所有对象的指定类型的数组
+        urls = tmpMap.keySet().toArray(new String[1]);
+		
 		if(urls!=null){
 			for(String url:urls){
 				if(url.indexOf("mmbiz.qpic.cn")!=-1){
@@ -371,7 +387,7 @@ public class WeixinNewstemplateServiceImpl implements WeixinNewstemplateService 
 				String relativeImgurl =url.replace(CommonWeixinProperties.domain,"");
 				String newUrl = null;
 				try {
-					newUrl = download2(url);
+					newUrl = downloadImageFromPC(url);
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

@@ -64,9 +64,9 @@ public class BaseApiJwidServiceImpl implements BaseApiJwidService {
 			url = url.substring(0, url.indexOf("#"));
 		}
 
-		WeixinAccount po = JedisPoolUtil.getWxAccount(jwid);
-		String jsapi_ticket = po.getJsapiticket();
-		String need_make_string = "jsapi_ticket=" + jsapi_ticket + "&noncestr=" + "oDxlNmsjqvV9D29r" + "&timestamp="
+		//WeixinAccount po = JedisPoolUtil.getWxAccount(jwid);
+		//String jsapi_ticket = po.getJsapiticket();
+		String need_make_string = "jwid=" + jwid + "&timestamp="
 				+ "1420942347" + "&url=" + url;
 		logger.debug("----------通过Redis缓存获取公众号，本地生成签名----------------------getRedisSignature-------");
 		logger.debug("----------------------need_make_string--------------：" + need_make_string);
@@ -85,9 +85,9 @@ public class BaseApiJwidServiceImpl implements BaseApiJwidService {
 	public String getRedisSignature(String url, String jwid) {
 		long startTime = System.currentTimeMillis();
 		String signature = null;
-		WeixinAccount po = JedisPoolUtil.getWxAccount(jwid);
-		String jsapi_ticket = po.getJsapiticket();
-		String need_make_string = "jsapi_ticket=" + jsapi_ticket + "&noncestr=" + "oDxlNmsjqvV9D29r" + "&timestamp="
+		//WeixinAccount po = JedisPoolUtil.getWxAccount(jwid);
+		//String jsapi_ticket = po.getJsapiticket();
+		String need_make_string = "jwid=" + jwid + "&noncestr=" + "oDxlNmsjqvV9D29r" + "&timestamp="
 				+ "1420942347" + "&url=" + url;
 		logger.debug("----------通过Redis缓存获取公众号，本地生成签名----------------------getRedisSignature-------");
 		logger.debug("----------------------need_make_string--------------：" + need_make_string);

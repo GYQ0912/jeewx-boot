@@ -211,14 +211,14 @@ public class WeixinNewstemplateServiceImpl implements WeixinNewstemplateService 
 			//update-end--Author:zhangweijian  Date: 20180831 for：接口方法替换
 			String[] urls = ReadImgUrls.getImgs(content);
 			
-			Map<String, Object> tmpMap = new HashMap<String, Object>();
-	        for (String str : urls) {
-	        	tmpMap.put(str, str);
-	        }
-	        //返回一个包含所有对象的指定类型的数组
-	        urls = tmpMap.keySet().toArray(new String[1]);
-			
 			if(urls!=null){
+				Map<String, Object> tmpMap = new HashMap<String, Object>();
+		        for (String str : urls) {
+		        	tmpMap.put(str, str);
+		        }
+		        //返回一个包含所有对象的指定类型的数组
+		        urls = tmpMap.keySet().toArray(new String[1]);
+				
 				for(String url:urls){
 					if(url.indexOf("mmbiz.qpic.cn")!=-1){
 						continue;
@@ -372,14 +372,14 @@ public class WeixinNewstemplateServiceImpl implements WeixinNewstemplateService 
 		
 		String[] urls = ReadImgUrls.getImgs(content);
 		
-		Map<String, Object> tmpMap = new HashMap<String, Object>();
-        for (String str : urls) {
-        	tmpMap.put(str, str);
-        }
-        //返回一个包含所有对象的指定类型的数组
-        urls = tmpMap.keySet().toArray(new String[1]);
-		
-		if(urls!=null){
+		if(urls != null){
+			Map<String, Object> tmpMap = new HashMap<String, Object>();
+	        for (String str : urls) {
+	        	tmpMap.put(str, str);
+	        }
+	        //返回一个包含所有对象的指定类型的数组
+	        urls = tmpMap.keySet().toArray(new String[1]);
+			
 			for(String url:urls){
 				if(url.indexOf("mmbiz.qpic.cn")!=-1){
 					continue;
@@ -393,7 +393,7 @@ public class WeixinNewstemplateServiceImpl implements WeixinNewstemplateService 
 					e.printStackTrace();
 				}
 				
-				content = content.replace(url, "http://localhost/tzbwx" + newUrl);
+				content = content.replace(url, CommonWeixinProperties.domain + "tzbwx" + newUrl);
 			}
 		}
 		

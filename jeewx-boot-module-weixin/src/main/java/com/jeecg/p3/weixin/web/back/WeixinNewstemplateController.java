@@ -357,6 +357,7 @@ public class WeixinNewstemplateController extends BaseController{
 		weixinNewsitem.setContent(article.getContent());
 		weixinNewsitem.setTitle(article.getTitle());
 		weixinNewsitem.setArticleId(article.getId());
+		weixinNewsitem.setCreateTime(new Date());
 		//weixinNewsitem.setDescription(article.getSummary());
 		
 		weixinNewstemplateService.receiveArticle(weixinNewstemplate, weixinNewsitem);

@@ -8,13 +8,8 @@
                     </div>
                 </form>
             </div>
+            
             <ul class="nav navbar-top-links navbar-right">
-                   
-                    <li class="dropdown hidden-xs">
-                    	<a class="" aria-expanded="false" href="javascript:void(0)" onclick="preLogin('$!{basePath}/system/back/preSelectJwid.do','请选择公众号')">
-                           <span><i class="fa fa-wechat" style="color:#1ab394"></i>$!{jwidname}<b class="caret"></b></span>
-                        </a>
-                    </li>
 					<li class="dropdown hidden-xs">
                     	<a class="dropdown hidden-xs" href="#">
                                <span ><strong class="font-bold"><i class="fa fa-user" style="color:#1ab394"></i> 欢迎您，$!{userid}</strong></span>
@@ -27,6 +22,7 @@
                         </a>
                     </li>
                 </ul>
+                
         </nav>
     </div>
     <div class="row content-tabs">

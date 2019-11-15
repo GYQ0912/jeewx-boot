@@ -6,10 +6,12 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class SystemProperties {
-	public static String domain;
+	public final static String domain;
 	public final static String defaultJwid;
 	/**签名密钥*/
 	public final static String SIGN_KEY;
+	
+	public final static String IPWHITELIST;
 
 	/**
 	 * 邮箱配置
@@ -43,6 +45,8 @@ public class SystemProperties {
 		domain = globalp.readProperty("oAuthDomain");
 		defaultJwid = globalp.readProperty("defaultJwid");
 		SIGN_KEY = globalp.readProperty("oAuthSignKey");
+		
+		IPWHITELIST = globalp.readProperty("ipWhitelist");
 
 		component_appid = globalp.readProperty("COMPONENT_APPID");
 		COMPONENT_TOKEN = globalp.readProperty("COMPONENT_TOKEN");
@@ -59,10 +63,6 @@ public class SystemProperties {
 
 	public String getUser() {
 		return user;
-	}
-
-	public static void setDomain(String domain) {
-		SystemProperties.domain = domain;
 	}
 
 	public String getPwd() {

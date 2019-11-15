@@ -1,5 +1,6 @@
 package com.jeecg.p3.system.web;
 
+import java.net.InetAddress;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -22,6 +23,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -37,6 +39,7 @@ import com.jeecg.p3.system.service.JwSystemRegisterService;
 import com.jeecg.p3.system.service.JwSystemUserJwidService;
 import com.jeecg.p3.system.service.JwSystemUserService;
 import com.jeecg.p3.system.service.JwWebJwidService;
+import com.jeecg.p3.system.util.AESUtils;
 import com.jeecg.p3.system.util.Constants;
 import com.jeecg.p3.system.util.SendMailUtil;
 import com.jeecg.p3.system.vo.WeixinAccountDto;
@@ -67,12 +70,52 @@ public class SystemController extends BaseController {
 	private JwSystemUserJwidService jwSystemUserJwidService;
 	
 	@RequestMapping(value = "/forceLogin", method = { RequestMethod.GET, RequestMethod.POST })
-	public void forceLogin(String username, String password, HttpServletRequest request,
+	public void forceLogin(String certification, HttpServletRequest request,
 			HttpServletResponse response) {
-			
-		//***********
-		String jwid = "gh_b4e21a659ae9";
-		//***********
+		
+		byte[] encrytByte = AESUtils.parseHexStr2Byte(certification); 
+		String username = "";
+		Long anotherTime = null;
+		
+        try {
+        	String deCryptStr = AESUtils.deCrypt(encrytByte,AESUtils.KEY);
+        	if (deCryptStr != null) {
+        		String[] arr = deCryptStr.split("&");
+        		username = arr[0];
+        		anotherTime = Long.parseLong(arr[1]);
+        	}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+        
+        //必须在10s内执行该方法
+        Long now = System.currentTimeMillis();
+        int a = now.intValue() - anotherTime.intValue();
+        if (!(a > 0 && a < 6000)) {
+        	return;
+        }
+		
+		//非白名单用户拦截
+		/*try {
+			String ip = InetAddress.getLocalHost().getHostAddress();
+			String ipWhitelist = SystemProperties.IPWHITELIST;
+			if (ipWhitelist == null) {
+				return;
+			}
+			if (ipWhitelist.indexOf(ip) <= -1) {
+				return;
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		}*/
+		
+		
+		List<WeixinAccountDto> jwWebJwids = jwidService.queryJwids();
+		if (jwWebJwids == null || jwWebJwids.size() == 0) {
+			return;
+		}
+		String jwid = jwWebJwids.get(0).getJwid();
+		LOG.info("微信公众号原始id:" + jwid);
 		
 		String viewName = "base/back/common/login.vm";
 		VelocityContext velocityContext = new VelocityContext();
@@ -81,11 +124,12 @@ public class SystemController extends BaseController {
 			velocityContext.put("logoTitle", logoTitle);
 			// 验证用户信息
 			// for:用户未登录时,校验验证码------------------
-			validateLoginParam(jwid, username, password);
+			//validateLoginParam(jwid, username, password);
 			// 用户未登录
 			// 验证用户是否存在
 			LoginUser user = jwSystemUserService.queryUserByUserId(username);
 			if (user != null) {
+				String password = "123456";
 				String passwordEncode = MD5Util.MD5Encode(password, "utf-8");
 				if (passwordEncode != null && passwordEncode.equals(user.getPassword())
 						&& "NORMAL".equals(user.getUserStat())) {
@@ -614,9 +658,12 @@ public class SystemController extends BaseController {
 	public void login(String jwid, String username, String password, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		
-		//***********
-		jwid = "gh_b4e21a659ae9";
-		//***********
+		List<WeixinAccountDto> jwWebJwids = jwidService.queryJwids();
+		if (jwWebJwids == null || jwWebJwids.size() == 0) {
+			return;
+		}
+		jwid = jwWebJwids.get(0).getJwid();
+		LOG.info("微信公众号原始id:" + jwid);
 		
 		String viewName = "base/back/common/login.vm";
 		VelocityContext velocityContext = new VelocityContext();
@@ -717,4 +764,5 @@ public class SystemController extends BaseController {
 		}
 		return ajson;
 	}
+	
 }

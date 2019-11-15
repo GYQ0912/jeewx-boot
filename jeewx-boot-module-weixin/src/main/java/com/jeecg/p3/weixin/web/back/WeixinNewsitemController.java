@@ -203,6 +203,12 @@ public void goContent(@RequestParam(required = true, value = "id" ) String id,Ht
 public AjaxJson doEdit(@ModelAttribute WeixinNewsitem weixinNewsitem,HttpServletRequest request){
 	AjaxJson j = new AjaxJson();
 	try {
+		String imagePath = weixinNewsitem.getImagePath();
+		if (imagePath != null && imagePath.indexOf("tzbwx") > -1) {
+			imagePath = imagePath.substring(imagePath.indexOf("tzbwx") + 5, imagePath.length());
+			weixinNewsitem.setImagePath(imagePath);
+		}
+		
 		weixinNewsitem.setUpdateTime(new Date());
 		String updateBy = (String)request.getSession().getAttribute(Constants.SYSTEM_USERID);
 		weixinNewsitem.setUpdateBy(updateBy);

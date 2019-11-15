@@ -1,36 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 #parse("content/base/back/common/head.vm")
-<link href="$!{basePath}/plug-in/plugin/hplus/css/style.css" type="text/css" rel="stylesheet"/>
-<link href="$!{basePath}/plug-in/plugin/hplus/css/font-awesome.min.css" type="text/css" rel="stylesheet"/>
+<link type="text/css" rel="stylesheet" href="$!{basePath}/plug-in/plugin/hplus/css/style.css"/>
+<link type="text/css" rel="stylesheet" href="$!{basePath}/plug-in/plugin/hplus/css/font-awesome.min.css"/>
 <!--样式，文件上传-->
-<link type="text/css" rel="stylesheet" href="$!{basePath}/content/weixin/plug-in/css/appmsg_edit2.css" />
-<link type="text/css" rel="stylesheet" href="$!{basePath}/content/weixin/plug-in/css/jquery.fileupload.css" />
-<link type="text/css" rel="stylesheet" href="$!{basePath}/content/weixin/plug-in/css/tablefrom.css" />
-<link type="text/css" rel="stylesheet" href="$!{basePath}/content/weixin/plug-in/css/weixin_article_edit.css" />
-<!--文本编辑器-->
-<link href="$!{basePath}/plug-in/plugin/UEditor/themes/default/css/umeditor.css" type="text/css" rel="stylesheet">
-<!--fileupload-->
-
-<script type="text/javascript" src="$!{basePath}/content/weixin/plug-in/js/jquery-2.1.1.min.js"></script>
-<!--bootstrap-->
-<script type="text/javascript" src="$!{basePath}/content/weixin/plug-in/js/bootstrap.min.js"></script>
-<link rel="stylesheet" type="text/css" href="$!{basePath}/content/weixin/plug-in/css/bootstrap.min.css" />
-<!--弹框样式表-->
-<link rel="stylesheet" type="text/css" href="$!{basePath}/content/weixin/plug-in/css/tzb_tk.css" />
-
-
-<script type="text/javascript" src="$!{basePath}/content/weixin/plug-in/js/vendor/jquery.ui.widget.js"></script>
-<script type="text/javascript" src="$!{basePath}/content/weixin/plug-in/js/load-image.min.js"></script>
-<script type="text/javascript" src="$!{basePath}/content/weixin/plug-in/js/jquery.fileupload.js"></script>
-<script type="text/javascript" src="$!{basePath}/content/weixin/plug-in/js/jquery.fileupload-process.js"></script>
-<script type="text/javascript" src="$!{basePath}/content/weixin/plug-in/js/jquery.fileupload-image.js"></script>
-<script type="text/javascript" src="$!{basePath}/content/weixin/plug-in/js/jquery.iframe-transport.js"></script>
-<script src = "$!{basePath}/content/weixin/js/newsItem-add.js"></script>
-<!--文本编辑器-->
-<script type="text/javascript" charset="utf-8" src="$!{basePath}/plug-in/plugin/UEditor/umeditor.config.js"></script>
-<script type="text/javascript" charset="utf-8" src="$!{basePath}/plug-in/plugin/UEditor/umeditor.min.js"></script>
-<script type="text/javascript" src="$!{basePath}/plug-in/plugin/UEditor/lang/zh-cn/zh-cn.js"></script>
+<link type="text/css" rel="stylesheet" href="$!{basePath}/content/weixin/plug-in/css/appmsg_edit2.css"/>
+<link type="text/css" rel="stylesheet" href="$!{basePath}/content/weixin/plug-in/css/jquery.fileupload.css"/>
+<link type="text/css" rel="stylesheet" href="$!{basePath}/content/weixin/plug-in/css/tablefrom.css"/>
+<link type="text/css" rel="stylesheet" href="$!{basePath}/content/weixin/plug-in/css/weixin_article_edit.css"/>
+<link type="text/css" rel="stylesheet" href="$!{basePath}/plug-in/plugin/UEditor/themes/default/css/umeditor.css">
+<link type="text/css" rel="stylesheet" href="$!{basePath}/content/weixin/plug-in/css/bootstrap.min.css"/>
+<link type="text/css" rel="stylesheet" href="$!{basePath}/content/weixin/plug-in/css/tzb_tk.css"/>
 <style type="text/css">
 .btn-success{
 	background-color: #1ab394;
@@ -77,6 +57,23 @@
  		width:2px;  
 }
 </style>
+
+<script type="text/javascript" src="$!{basePath}/content/weixin/plug-in/js/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="$!{basePath}/content/weixin/plug-in/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="$!{basePath}/content/weixin/plug-in/js/vendor/jquery.ui.widget.js"></script>
+<script type="text/javascript" src="$!{basePath}/content/weixin/plug-in/js/load-image.min.js"></script>
+<script type="text/javascript" src="$!{basePath}/content/weixin/plug-in/js/jquery.fileupload.js"></script>
+<script type="text/javascript" src="$!{basePath}/content/weixin/plug-in/js/jquery.fileupload-process.js"></script>
+<script type="text/javascript" src="$!{basePath}/content/weixin/plug-in/js/jquery.fileupload-image.js"></script>
+<script type="text/javascript" src="$!{basePath}/content/weixin/plug-in/js/jquery.iframe-transport.js"></script>
+<script src = "$!{basePath}/content/weixin/js/newsItem-add.js"></script>
+<!--文本编辑器-->
+<script type="text/javascript" charset="utf-8" src="$!{basePath}/plug-in/plugin/UEditor/umeditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="$!{basePath}/plug-in/plugin/UEditor/umeditor.min.js"></script>
+<script type="text/javascript" src="$!{basePath}/plug-in/plugin/UEditor/lang/zh-cn/zh-cn.js"></script>
+<script type="text/javascript" src="$!{basePath}/plug-in/js/Validform_v5.3.2.js"></script> 
+<script type="text/javascript" src="$!{basePath}/plug-in/js/forminit.p3.js"></script> 
+
 <body>
 	<div class="main_bd">
 		<!--右侧内容-->
@@ -115,13 +112,13 @@
     						</tr>-->
     						<tr>
     							<td align="right" style="width:10%;text-align: left;">
-    								<label class="Validform_label" style="margin-right:10px">图片链接:</label>
+    								<label class="Validform_label" style="margin-right:10px">封面图片:</label>
     							</td>
     							<td class="value">
     								<span class="btn btn-success fileinput-button" onmouseover="changeColor()">
     							        <i class="glyphicon glyphicon-plus"></i>
     							        <span>从图片库选择</span>
-    							        <input id="fileupload" type="file" name="files[]" >
+    							        <input id="fileupload" type="file" name="files[]">
     							    </span>
     							    <span class="btn btn-success fileinput-button" onclick="selectImgFromText()">
 								        <i class="glyphicon glyphicon-plus"></i>
@@ -137,17 +134,16 @@
     							</td>
     							<td class="value">
     								<div style="border:1px solid #a5aeb6;height:100%;width:320px;padding-left:20px;border-radius:3px">
-    								<h4 class="appmsg_title">
-    									<a style="font-size:12px" target="_blank" href="javascript:void(0);" onclick="return false;">支持jpg/jpeg/png/gif格式，大小必须在5MB以下</a>
-    								</h4>
-        							<div id="files" class="files">
-        								<i style="height:110px;overflow:hidden;display:inline-block;width:100;"><img src="$!{basePath}/$!{weixinNewsitem.imagePath}" width="100px" height="100px" /></i>
-        							</div>
-									<input type="hidden" name="showCoverPic" value="$!{weixinNewsitem.showCoverPic}"  class="showCoverPic"/>
-									<input type="checkbox" #if($!{weixinNewsitem.showCoverPic}=="1")checked#end id="showCoverPic" style="float: left;margin-top: 3px;margin-right: 10px;"/><span>封面图片显示在正文中</span>
-        							 <div id="progress" class="progress">
-        						        <div class="progress-bar progress-bar-success"></div>
-        						    </div>
+	    								<h4 class="appmsg_title">
+	    									<a style="font-size:12px" target="_blank" href="javascript:void(0);" onclick="return false;">支持jpg/jpeg/png/gif格式，大小必须在5MB以下</a>
+	    								</h4>
+	        							<div id="files" class="files">
+	        								<i><img src="$!{basePath}/$!{weixinNewsitem.imagePath}" width="100px" height="100px" style="margin-bottom:14px"/></i>
+	        							</div>
+										<input type="hidden" name="showCoverPic" value="0"  class="showCoverPic"/>
+	        							 <div id="progress" class="progress">
+	        						        <div class="progress-bar progress-bar-success"></div>
+	        						     </div>
                                     </div>
     							</td>
     						</tr>
@@ -265,9 +261,9 @@
 
 </body>
 </html>
-<script type="text/javascript" src="$!{basePath}/plug-in/js/Validform_v5.3.2.js"></script> 
-<script type="text/javascript" src="$!{basePath}/plug-in/js/forminit.p3.js"></script> 
+
 <script type="text/javascript">
+
 
 $(function(){
 	$("#showCoverPic").click(function(){
@@ -292,15 +288,6 @@ $(function(){
 	initMySheetTemplate(1);
     var basePath="$!{basePath}";
 	initUpload(basePath);
-	
-	//跳转类型
-	var type='$!{weixinNewsitem.newType}';
-	change(type);
-	
-	//修改浏览框的颜色
-	function changeColor(){
-		$(".btn-success").css({"background-color":"#1ab394"},{"border-color":"#1ab394"});
-	}
 	
 	//序列化提交表单
 	$!("#formSubmit1").click(function(){
@@ -334,156 +321,182 @@ $(function(){
 			error:function(data){
 				layeralert(data.msg);
 			}
-		})
-	})
-	
-	//切换正文，链接菜单
-	function change(type){
-		if(type=="url"){
-	    	$("#news").removeAttr('checked');
-	    	$("#tzurl").attr("checked","true");
-	    	$("#article").css("display","none");
-	    	$("#ywlj").css("display","none");
-	    	$("#tzlj").removeAttr("style");
-	    	$("#newType").val("url");
-	    	$("#externalUrl").removeAttr("ignore");
-		}else{
-	    	$("#tzurl").removeAttr('checked');
-	    	$("#news").attr("checked","true");
-	    	$("#article").css("display","block");
-	    	$("#ywlj").removeAttr("style");
-	    	$("#tzlj").css("display","none");
-	    	$("#newType").val("news");
-	    	$("#externalUrl").attr("ignore","ignore");
-		}
-	}
-	
-	function previewboxNowDate(){
-	  var now= new Date();
-	  var year=now.getFullYear();
-	  var month=now.getMonth()+1;
-	  var strDate=now.getDate();
-	  if (month >= 1 && month <= 9) {
-	      month = "0" + month;
-	  }
-	  if (strDate >= 0 && strDate <= 9) {
-	      strDate = "0" + strDate;
-	  }
-	  return year+"-"+month+"-"+strDate;
-	} 
-	//关闭预览框
-	function previewboxClose(){
-		$("#previewbox").hide();
-	}
-	//预览框添加内容
-	function previewboxShow(flag){
-		var authorHref = $("#url").val();
-		var href = "";
-		var content=$("#content").html();
-		if(!authorHref){
-			authorHref = "";
-		}else{
-			authorHref ="href= '"+authorHref+"' ";
-			href = '<a style="font-size:12px;color:#607fa6" href="'+$("#url").val()+'" target="_blank" id="post-user">阅读原文</a>';
-		}
-		var previewboxTitle = "<div class='preview-title'>"+$("#title").val()+"</div>";
-		if($(".showCoverPic").val()==1){
-			var imagePath = $("#imagePath").val();
-	    	var previewCoverPic = "<div><img style='width:248px;' src='$!{basePath}/"+imagePath+"'></div>";
-		}else{
-	    	var previewCoverPic = "";
-		}
-		var previewUserAndDate ="<div><em class='preview-date'>"+previewboxNowDate()+"</em> <a class = 'preview-author' "+authorHref+" target='_blank'>"+$("#author").val()+"</a>";
-		$("#previewContent").html(previewboxTitle+previewUserAndDate+previewCoverPic+content + '<div>'+href+'<em style="color:#8c8c8c;font-style:normal;font-size:12px;">阅读 100000+</em></div>');
-		if(!flag){
-			if ($("#previewbox").css("display") == "block") {
-		         $("#previewbox").hide();
-		     } else {
-		        $("#previewbox").show();
-		    }
-		}
-	}
-	
-	//初始化单个样式库
-	var mySheetTemplate = "";
-	function initMySheetTemplate(flag){
-		var url= "$!{basePath}/weixin/back/weixinNewsitem/getMySheet.do";
-		jQuery.ajax({
-		  url :url,
-		  type:'post',
-		  dataType:'json',
-		  success:function(data){
-		  		if(data.total<0){
-		  			alert('no weixin type data:');
-		  		}else{
-					var html="";
-					for(var element in data.obj)
-		  				if(element=="WXNRQ"){
-		  					html += "<li><a href='javascript:void(0);' onclick='changeMySheet(\""+element+"\",this)' class='current' tab='tab"+element+"'>"+data.obj[element]+"</a></li>";
-		  				}else{
-		  					html += "<li><a href='javascript:void(0);' onclick='changeMySheet(\""+element+"\",this)' tab='tab"+element+"'>"+data.obj[element]+"</a></li>";
-		  				}
-		  			}
-		  			$("#editor-sheetlist").html(html);
-					changeMySheet("WXNRQ");
-		        }
 		});
-	}
-	//初始化单个样式库
-	function changeMySheet(type,obj){
-		if(!!obj){
-			$(obj).addClass("current");
-			$(obj).closest("li").siblings().find("a").removeClass("current");
-		}
-		var url= "$!{basePath}/weixin/back/weixinNewsitem/getTemplate.do?type="+type;
-		jQuery.ajax({
-	      	url :url,
-	    	type:'post',
-	      	dataType:'json',
-	      	success:function(data){
-	      		if(data.success){
-	        		var html="";
-	    			jQuery(data.obj).each(function(index,element){
-	                	html+='<div class="preitem" id="preitem'+index+'" onclick="pre(' + index + ')">'+element.content+'</div>';
-	    			});
-	                $( "#preitem" ).html(html);
-	      		}else{
-	      			mySheetTemplate = msg.rows;
-	      		}
-	      }
-		});
-	}
-	//选中样式，添加到编辑器中
-	function pre(n){
-		var choseTemplate=$("#preitem"+n).html();
-		var um=UM.getEditor('content',{initialFrameHeight:525,autoHeightEnabled: false});
-		um.execCommand('inserthtml',choseTemplate);
-	
-	
-	function selectImgFromText() {
-	    $("#openmodel").click();
-	}
+	});
 	
 	$('.tzb_tk_info li').click(function(){
 		$(this).find('span').show().end().siblings().find('span').hide();
 		$(this).addClass("active");
 		$(this).siblings().removeClass("active");
 	});
-	
-	function getCkValue() {
-		var $obj = $("#openmodel");
-	
-		var $img = $("#openmodel ul .active").find(".img");
-		
-		console.log($img.attr("src"));
-		
-		console.log($img);
-	}
 });
 
+//跳转类型
+var type='$!{weixinNewsitem.newType}';
+change(type);
 
+//修改浏览框的颜色
+function changeColor(){
+	$(".btn-success").css({"background-color":"#1ab394"},{"border-color":"#1ab394"});
+}
 
+//切换正文，链接菜单
+function change(type){
+	if(type=="url"){
+    	$("#news").removeAttr('checked');
+    	$("#tzurl").attr("checked","true");
+    	$("#article").css("display","none");
+    	$("#ywlj").css("display","none");
+    	$("#tzlj").removeAttr("style");
+    	$("#newType").val("url");
+    	$("#externalUrl").removeAttr("ignore");
+	}else{
+    	$("#tzurl").removeAttr('checked');
+    	$("#news").attr("checked","true");
+    	$("#article").css("display","block");
+    	$("#ywlj").removeAttr("style");
+    	$("#tzlj").css("display","none");
+    	$("#newType").val("news");
+    	$("#externalUrl").attr("ignore","ignore");
+	}
+}
 
+function previewboxNowDate(){
+  var now= new Date();
+  var year=now.getFullYear();
+  var month=now.getMonth()+1;
+  var strDate=now.getDate();
+  if (month >= 1 && month <= 9) {
+      month = "0" + month;
+  }
+  if (strDate >= 0 && strDate <= 9) {
+      strDate = "0" + strDate;
+  }
+  return year+"-"+month+"-"+strDate;
+} 
+
+//关闭预览框
+function previewboxClose(){
+	$("#previewbox").hide();
+}
+//预览框添加内容
+function previewboxShow(flag){
+	var authorHref = $("#url").val();
+	var href = "";
+	var content=$("#content").html();
+	if(!authorHref){
+		authorHref = "";
+	}else{
+		authorHref ="href= '"+authorHref+"' ";
+		href = '<a style="font-size:12px;color:#607fa6" href="'+$("#url").val()+'" target="_blank" id="post-user">阅读原文</a>';
+	}
+	var previewboxTitle = "<div class='preview-title'>"+$("#title").val()+"</div>";
+	if($(".showCoverPic").val()==1){
+		var imagePath = $("#imagePath").val();
+    	var previewCoverPic = "<div><img style='width:248px;' src='$!{basePath}/"+imagePath+"'></div>";
+	}else{
+    	var previewCoverPic = "";
+	}
+	var previewUserAndDate ="<div><em class='preview-date'>"+previewboxNowDate()+"</em> <a class = 'preview-author' "+authorHref+" target='_blank'>"+$("#author").val()+"</a>";
+	$("#previewContent").html(previewboxTitle+previewUserAndDate+previewCoverPic+content + '<div>'+href+'<em style="color:#8c8c8c;font-style:normal;font-size:12px;">阅读 100000+</em></div>');
+	if(!flag){
+		if ($("#previewbox").css("display") == "block") {
+	         $("#previewbox").hide();
+	     } else {
+	        $("#previewbox").show();
+	    }
+	}
+}
+
+//初始化单个样式库
+var mySheetTemplate = "";
+function initMySheetTemplate(flag){
+	var url= "$!{basePath}/weixin/back/weixinNewsitem/getMySheet.do";
+	jQuery.ajax({
+	  url :url,
+	  type:'post',
+	  dataType:'json',
+	  success:function(data){
+	  		if(data.total<0){
+	  			alert('no weixin type data:');
+	  		}else{
+				var html="";
+				for(var element in data.obj)
+	  				if(element=="WXNRQ"){
+	  					html += "<li><a href='javascript:void(0);' onclick='changeMySheet(\""+element+"\",this)' class='current' tab='tab"+element+"'>"+data.obj[element]+"</a></li>";
+	  				}else{
+	  					html += "<li><a href='javascript:void(0);' onclick='changeMySheet(\""+element+"\",this)' tab='tab"+element+"'>"+data.obj[element]+"</a></li>";
+	  				}
+	  			}
+	  			$("#editor-sheetlist").html(html);
+				changeMySheet("WXNRQ");
+	        }
+	});
+}
+
+//初始化单个样式库
+function changeMySheet(type,obj){
+	if(!!obj){
+		$(obj).addClass("current");
+		$(obj).closest("li").siblings().find("a").removeClass("current");
+	}
+	var url= "$!{basePath}/weixin/back/weixinNewsitem/getTemplate.do?type="+type;
+	jQuery.ajax({
+      	url :url,
+    	type:'post',
+      	dataType:'json',
+      	success:function(data){
+      		if(data.success){
+        		var html="";
+    			jQuery(data.obj).each(function(index,element){
+                	html+='<div class="preitem" id="preitem'+index+'" onclick="pre(' + index + ')">'+element.content+'</div>';
+    			});
+                $( "#preitem" ).html(html);
+      		}else{
+      			mySheetTemplate = msg.rows;
+      		}
+      }
+	});
+}
+
+//选中样式，添加到编辑器中
+function pre(n){
+	var choseTemplate=$("#preitem"+n).html();
+	var um=UM.getEditor('content',{initialFrameHeight:525,autoHeightEnabled: false});
+	um.execCommand('inserthtml',choseTemplate);
+}
+
+function selectImgFromText() {
+    $("#openmodel").click();
+}
+
+function getCkValue() {
+	var $img = $(".bs-example-modal-lg ul .active").find(".img");
+	
+	if ($img.length == 0) {
+		alert("请选择图片");
+		return;
+	}
+	
+	var src = $img.attr("src");
+	
+	$("#files").children().remove();
+	
+	var i = $("<i></i>");
+	var i_img = $("<img/>");
+	i_img.attr("width","100px");
+	i_img.attr("height","100px");
+	i_img.css("margin-bottom","14px");
+	i.append(i_img);
+	$("#files").append(i);
+	
+	$("#files").find("img").attr("src", src);
+	
+	$("#imagePath").val(src);
+	
+	$("#openmodel").click();
+	$(".modal-backdrop.fade.in").hide();
+}
 
 
 </script>

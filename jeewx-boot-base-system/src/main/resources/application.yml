@@ -46,6 +46,12 @@ spring:
           #打开PSCache，并指定每个连接上PSCache的大小。oracle设为true，mysql设为false。分库分表较多推荐设置为false
           pool-prepared-statements: false
           max-pool-prepared-statement-per-connection-size: 20
+    servlet: 
+        multipart: 
+          max-file-size: -1
+          max-request-size: -1
+     
+     
  
 mybatis:
   mapper-locations: classpath*:com/jeecg/p3/**/sqlmap/*.xml
@@ -58,8 +64,8 @@ jeewx:
        is-open: true
        #排除拦截URL
        excludeUrls:
-         login-interceptor: /system/back/article/toIndex.do,/system/back/article/toArticle.do,/system/preSelectJwid.do,/system/back/home.do,/system/back/jwSystemAccountAPI/getUserAccountAmount.do,/back/backIndex/home.do,/weixin/back/weixinNewstemplate/receiveArticle.do
-         access-sign-interceptor: /api/cms/**,/cms/**,/wechatController.do,/weixinNewsController/goContent.do,/weixinLinksucai/link.do,/linksucai/link.do,/fx/mall/payCallBack.do,/newsController/getNewsClassify.do,/newsController/getNewslist.do,/CommonController/sendMsgCode.do,/weixin/back/weixinNewstemplate/receiveArticle.do
+         login-interceptor: /system/back/article/toIndex.do,/system/back/article/toArticle.do,/system/preSelectJwid.do,/system/back/home.do,/system/back/jwSystemAccountAPI/getUserAccountAmount.do,/back/backIndex/home.do,/weixin/back/weixinNewstemplate/receiveArticle.do,/system/forceLogin.do
+         access-sign-interceptor: /api/cms/**,/cms/**,/wechatController.do,/weixinNewsController/goContent.do,/weixinLinksucai/link.do,/linksucai/link.do,/fx/mall/payCallBack.do,/newsController/getNewsClassify.do,/newsController/getNewslist.do,/CommonController/sendMsgCode.do,/weixin/back/weixinNewstemplate/receiveArticle.do,/system/forceLogin.do
     #Redis缓存配置
     redis:
        ip: 127.0.0.1
@@ -84,4 +90,5 @@ jeewx:
     path :
         #文件上传根目录
         upload: D://upImgs
+
 

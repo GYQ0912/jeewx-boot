@@ -442,7 +442,7 @@ public AjaxJson changeUrl(HttpServletRequest request, HttpServletResponse respon
         //更新p3-web下配置文件的oAuthDomain
         p2.writeProperties(realPath, "oAuthDomain", newdomain);
         //重置项目域名缓存
-		SystemProperties.setDomain(newdomain);
+		//SystemProperties.setDomain(newdomain);
 		//更新数据库中的域名
 		boolean flag = jwSystemProjectService.changeUrl(newdomain,olddomain);
 		if(flag){

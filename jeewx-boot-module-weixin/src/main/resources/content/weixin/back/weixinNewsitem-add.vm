@@ -103,7 +103,7 @@
 						</tr>-->
 						<tr>
 							<td align="right" style="width:10%;text-align: left;">
-								<label class="Validform_label" style="margin-right:10px">图片链接:</label>
+								<label class="Validform_label" style="margin-right:10px">封面图片:</label>
 							</td>
 							<td class="value">
 								<span class="btn btn-success fileinput-button" onmouseover="changeColor()">
@@ -126,10 +126,9 @@
 									<a style="font-size:12px" target="_blank" href="javascript:void(0);" onclick="return false;">支持jpg/jpeg/png/gif格式，大小必须在5MB以下</a>
 								</h4>
     							<div id="files" class="files">
-    								<i style="height:110px;overflow:hidden;display:inline-block;width:100;"><img src="$!{basePath}/content/weixin/plug-in/imgs/timg.jpg" width="100px" height="100px" /></i>
+    								<i style="height:110px;overflow:hidden;display:inline-block;width:100;"><img src="$!{basePath}/content/weixin/plug-in/imgs/timg.jpg" width="100px" height="100px" style="margin-bottom:14px"/></i>
     							</div>
-								<input type="hidden" name="showCoverPic" value="1"  class="showCoverPic"/>
-								<input type="checkbox" checked id="showCoverPic" style="float: left;margin-top: 3px;margin-right: 10px;"/><span>封面图片显示在正文中</span>
+								<input type="hidden" name="showCoverPic" value="0"  class="showCoverPic"/>
     							 <div id="progress" class="progress">
     						        <div class="progress-bar progress-bar-success"></div>
     						    </div>

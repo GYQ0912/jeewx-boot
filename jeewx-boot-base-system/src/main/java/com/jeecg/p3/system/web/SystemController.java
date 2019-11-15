@@ -70,7 +70,8 @@ public class SystemController extends BaseController {
 	private JwSystemUserJwidService jwSystemUserJwidService;
 	
 	@RequestMapping(value = "/forceLogin", method = { RequestMethod.GET, RequestMethod.POST })
-	public void forceLogin(String certification, HttpServletRequest request,
+	@ResponseBody
+	public String forceLogin(String certification, HttpServletRequest request,
 			HttpServletResponse response) {
 		
 		byte[] encrytByte = AESUtils.parseHexStr2Byte(certification); 
@@ -86,13 +87,14 @@ public class SystemController extends BaseController {
         	}
 		} catch (Exception e) {
 			e.printStackTrace();
+			return "访问超时或没有权限访问微信平台，请重新操作。";
 		}
         
         //必须在10s内执行该方法
         Long now = System.currentTimeMillis();
         int a = now.intValue() - anotherTime.intValue();
         if (!(a > 0 && a < 6000)) {
-        	return;
+        	return "访问超时或没有权限访问微信平台，请重新操作。";
         }
 		
 		//非白名单用户拦截
@@ -112,7 +114,7 @@ public class SystemController extends BaseController {
 		
 		List<WeixinAccountDto> jwWebJwids = jwidService.queryJwids();
 		if (jwWebJwids == null || jwWebJwids.size() == 0) {
-			return;
+			return "没有配置公众号原始id";
 		}
 		String jwid = jwWebJwids.get(0).getJwid();
 		LOG.info("微信公众号原始id:" + jwid);
@@ -151,7 +153,7 @@ public class SystemController extends BaseController {
 						} catch (Exception e) {
 							e.printStackTrace();
 						}
-						return;
+						return null;
 					} else {
 						LOG.info("登录失败：jwid【" + jwid + "】不属于用户【" + username + "】");
 					}
@@ -162,6 +164,8 @@ public class SystemController extends BaseController {
 		} catch (Exception e) {
 			LOG.info("登录失败：用户【" + username + "】" + e.getMessage());
 		}
+		
+		return null;
 	}
 
 	/**
